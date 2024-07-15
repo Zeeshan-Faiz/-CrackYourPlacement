@@ -14,18 +14,19 @@ Input: nums = [0]
 Output: [0]
 */
 
-public class Q283MoveZeroes{
-    
+public class Q283MoveZeroes {
+
     public void moveZeroes(int[] nums) {
+        
         int nz = 0, z = 0;
-        while(nz < nums.length){
-            if(nums[nz] != 0){
+        while (nz < nums.length) {
+            if (nums[nz] != 0) {
                 int t = nums[nz];
                 nums[nz] = nums[z];
                 nums[z] = t;
                 nz++;
                 z++;
-            }
+            } 
             else
                 nz++;
         }

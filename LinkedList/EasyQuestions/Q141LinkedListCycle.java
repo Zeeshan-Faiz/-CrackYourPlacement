@@ -26,8 +26,9 @@ Explanation: There is no cycle in the linked list.
 */
 
 public class Q141LinkedListCycle {
-    
-    ListNode fast = head;
+
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;
         ListNode slow = head;
 
         while (fast != null && fast.next != null) {

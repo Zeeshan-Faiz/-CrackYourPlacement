@@ -18,4 +18,12 @@ Explanation: "leeto" did not occur in "leetcode", so we return -1.
 
 public class Q28FindIndexOfFirstOccurence {
     
+    public int strStr(String haystack, String needle) {
+        int l2 = needle.length();
+        for (int i = 0; i <= haystack.length() - l2; i++) {
+            if (haystack.substring(i, i + l2).equalsIgnoreCase(needle))
+                return i;
+        }
+        return -1;
+    }
 }

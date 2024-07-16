@@ -1,5 +1,7 @@
 package LinkedList.EasyQuestions;
 
+import LinkedList.EasyQuestions.Q876MiddleOfLinkedList.ListNode;
+
 /*
 Given head, the head of a linked list, determine if the linked list has a cycle in it.
 There is a cycle in a linked list if there is some node in the list that can be reached again by 
@@ -25,4 +27,16 @@ Explanation: There is no cycle in the linked list.
 
 public class Q141LinkedListCycle {
     
+    ListNode fast = head;
+        ListNode slow = head;
+
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

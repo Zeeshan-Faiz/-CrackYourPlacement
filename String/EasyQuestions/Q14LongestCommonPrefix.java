@@ -17,17 +17,17 @@ Explanation: There is no common prefix among the input strings.
 */
 
 public class Q14LongestCommonPrefix {
-    
+
     public String longestCommonPrefix(String[] strs) {
+        
         Arrays.sort(strs);
         String s1 = strs[0];
-        String s2 = strs[strs.length-1];
+        String s2 = strs[strs.length - 1];
         int idx = 0;
-        while(idx < s1.length() && idx < s2.length()){
-            if(s1.charAt(idx) == s2.charAt(idx)){
+        while (idx < s1.length() && idx < s2.length()) {
+            if (s1.charAt(idx) == s2.charAt(idx)) {
                 idx++;
-            } 
-            else
+            } else
                 break;
         }
         return s1.substring(0, idx);

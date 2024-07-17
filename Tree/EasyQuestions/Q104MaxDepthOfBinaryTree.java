@@ -1,5 +1,7 @@
 package Tree.EasyQuestions;
 
+import Tree.EasyQuestions.Q101SymmetricTree.TreeNode;
+
 /*
 Given the root of a binary tree, return its maximum depth.
 A binary tree's maximum depth is the number of nodes along the longest path from the root node 
@@ -15,7 +17,7 @@ Output: 2
 */
 
 public class Q104MaxDepthOfBinaryTree {
-    
+
     public int maxDepth(TreeNode root) {
 
         if (root == null)

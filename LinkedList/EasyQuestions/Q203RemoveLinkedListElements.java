@@ -19,4 +19,34 @@ Output: []
 
 public class Q203RemoveLinkedListElements {
     
+    public ListNode removeElements(ListNode head, int val) {
+
+        ListNode temp = new ListNode(0);
+        ListNode curr = temp;
+        temp.next = head;//dummy node added ahead of head of the given list
+        while(curr.next != null){
+            if(curr.next.val == val){
+                curr.next = curr.next.next;
+            }
+            else
+                curr = curr.next;
+        }
+        return temp.next;
+    }
+
+    public class ListNode {
+        
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+        ListNode(int val) {
+            this.val = val;
+        }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
 }

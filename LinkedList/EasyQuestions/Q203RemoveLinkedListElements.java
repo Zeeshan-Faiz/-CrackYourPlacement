@@ -23,7 +23,7 @@ public class Q203RemoveLinkedListElements {
 
         ListNode temp = new ListNode(0);
         ListNode curr = temp;
-        temp.next = head;//dummy node added ahead of head of the given list
+        temp.next = head;//dummy node added before head of the given list
         while(curr.next != null){
             if(curr.next.val == val){
                 curr.next = curr.next.next;
@@ -31,7 +31,7 @@ public class Q203RemoveLinkedListElements {
             else
                 curr = curr.next;
         }
-        return temp.next;
+        return temp.next; //the actual head of the list is returned
     }
 
     public class ListNode {

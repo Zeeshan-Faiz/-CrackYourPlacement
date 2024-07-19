@@ -30,32 +30,34 @@ Note that because m = 0, there are no elements in nums1. The 0 is only there to 
 */
 
 public class Q88MergeSortedArray {
-    
+
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        
         int i = m - 1;
         int j = n - 1;
         int k = m + n - 1;
 
-        while(i >= 0 && j >= 0){
-            if(nums1[i] > nums2[j]){
+        while (i >= 0 && j >= 0) 
+        {
+            if (nums1[i] > nums2[j]) {
                 nums1[k] = nums1[i];
                 k--;
-                i--; 
-            }
-            else{
+                i--;
+            } 
+            else {
                 nums1[k] = nums2[j];
                 k--;
                 j--;
             }
         }
 
-        //residual elements if any
-        while(i >= 0){
+        // residual elements if any
+        while (i >= 0) {
             nums1[k] = nums1[i];
             k--;
             i--;
         }
-        while(j >= 0){
+        while (j >= 0) {
             nums1[k] = nums2[j];
             k--;
             j--;

@@ -29,6 +29,7 @@ public class GFGPrintAllDuplicateCharacters {
                 map.put(str.charAt(i), 1);
         }
 
+        //print the characters having frequency > 1
         for (Map.Entry<Character, Integer> mapElement : map.entrySet()) 
         {
             if (mapElement.getValue() > 1)

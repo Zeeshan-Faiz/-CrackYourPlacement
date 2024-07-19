@@ -1,5 +1,7 @@
 package Tree.EasyQuestions;
 
+import Tree.EasyQuestions.Q101SymmetricTree.TreeNode;
+
 /*
 Given the roots of two binary trees root and subRoot, return true if there is a subtree of root 
 with the same structure and node values of subRoot and false otherwise.
@@ -16,5 +18,13 @@ Output: false
 */
 
 public class Q572SubtreeOfAnotherTree {
-    
+ 
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+
+        if (root == null)
+            return false;
+        if (isSame(root, subRoot))
+            return true;
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+    }
 }

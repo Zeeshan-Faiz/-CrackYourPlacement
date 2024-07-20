@@ -15,20 +15,20 @@ Output: 2
 */
 
 public class Q169MajorityElement {
-    
+
     public int majorityElement(int[] nums) {
 
-        //Boyer-Moore Algorithm
+        // Boyer-Moore Algorithm
         int maj = nums[0];
         int count = 1;
-        for(int i = 1; i < nums.length; i++){
+        for (int i = 1; i < nums.length; i++) {
 
-            if(nums[i] == maj)
+            if (nums[i] == maj)
                 count++;
             else
                 count--;
-            
-            if(count == 0){
+
+            if (count == 0) {
                 maj = nums[i];
                 count = 1;
             }

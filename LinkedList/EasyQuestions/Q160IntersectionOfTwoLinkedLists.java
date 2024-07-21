@@ -1,5 +1,7 @@
 package LinkedList.EasyQuestions;
 
+import LinkedList.EasyQuestions.Q876MiddleOfLinkedList.ListNode;
+
 /*
 Given the heads of two singly linked-lists headA and headB, return the node at which the two 
 lists intersect. If the two linked lists have no intersection at all, return null.
@@ -36,8 +38,10 @@ public class Q160IntersectionOfTwoLinkedLists {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         
         ListNode ptrA = headA, ptrB = headB;
-        while (ptrA != ptrB) { // loop until we found the first common node
-
+        
+        // loop until we find the first common node
+        while (ptrA != ptrB) 
+        {
             // once we're done with A, move to B
             if(ptrA == null)
                 ptrA = headB;

@@ -24,7 +24,11 @@ From the head of A, it reads as [1,9,1,2,4]. From the head of B, it reads as [3,
 3 nodes before the intersected node in A; There are 1 node before the intersected node in B.
 
 Example 3:
-
+Input: intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
+Output: No intersection
+Explanation: From the head of A, it reads as [2,6,4]. From the head of B, it reads as [1,5]. 
+Since the two lists do not intersect, intersectVal must be 0, while skipA and skipB can be 
+arbitrary values. Explanation: The two lists do not intersect, so return null.
 */
 
 public class Q160IntersectionOfTwoLinkedLists {

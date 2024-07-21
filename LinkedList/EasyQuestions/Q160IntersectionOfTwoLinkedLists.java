@@ -33,4 +33,23 @@ arbitrary values. Explanation: The two lists do not intersect, so return null.
 
 public class Q160IntersectionOfTwoLinkedLists {
     
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        
+        ListNode ptrA = headA, ptrB = headB;
+        while (ptrA != ptrB) { // loop until we found the first common node
+
+            // once we're done with A, move to B
+            if(ptrA == null)
+                ptrA = headB;
+            else
+                ptrA = ptrA.next;
+            
+            // once we're done with B, move to A
+            if(ptrB == null)
+                ptrB = headA;
+            else
+                ptrB = ptrB.next;
+        }
+        return ptrA;
+    }
 }

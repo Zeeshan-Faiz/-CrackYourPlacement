@@ -29,30 +29,26 @@ public class Q623MaxProductOfThreeNumbers {
 
         for (int num : nums) {
             // Find three largest numbers.
-            if (num > maxNum1) {
-                if (num > maxNum3) {
-                    maxNum1 = maxNum2;
-                    maxNum2 = maxNum3;
-                    maxNum3 = num;
-                } 
-                else if (num > maxNum2) {
-                    maxNum1 = maxNum2;
-                    maxNum2 = num;
-                } 
-                else {
-                    maxNum1 = num;
-                }
+            if (num > maxNum3) {
+                maxNum1 = maxNum2;
+                maxNum2 = maxNum3;
+                maxNum3 = num;
+            } 
+            else if (num > maxNum2) {
+                maxNum1 = maxNum2;
+                maxNum2 = num;
+            } 
+            else if (num > maxNum1) {
+                maxNum1 = num;
             }
 
             // Find two smallest numbers.
-            if (num < minNum2) {
-                if (num < minNum1) {
-                    minNum2 = minNum1;
-                    minNum1 = num;
-                } 
-                else {
-                    minNum2 = num;
-                }
+            if (num < minNum1) {
+                minNum2 = minNum1;
+                minNum1 = num;
+            } 
+            else if (num < minNum2) {
+                minNum2 = num;
             }
         }
 

@@ -1,5 +1,8 @@
 package Array.EasyQuestions;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /*
 Given an array A[ ] of positive integers of size N, where each value represents the number of 
 chocolates in a packet. Each packet can have a variable number of chocolates. There are M 
@@ -22,4 +25,21 @@ Explanation: The minimum difference between maximum chocolates and minimum choco
 
 public class GFGChocolateDistribution {
     
+    public long findMinDiff (ArrayList<Integer> a, int n, int m)
+    {
+       
+       Collections.sort(a);
+       long min=Long.MAX_VALUE;
+       int i=0;
+       int j=m-1;
+       
+       while(j<n){
+           long diff=a.get(j)-a.get(i);
+           
+           min=Math.min(min,diff);
+           i++;
+           j++;
+       }
+       return min;
+    }
 }

@@ -28,17 +28,33 @@ public class Q108ConvertSortedArrayToBST {
         if (l > r)
             return null;
 
-        // we take middle element as head value such that it will become height balanced
-        // tree
+        // we take middle element as head value such that it will become height balanced tree
         int mid = l + (r - l) / 2;
         TreeNode root = new TreeNode(nums[mid]);
 
-        // assign the value for left of subtree that is l to mid -1 for given array
+        // assign nodes to left of subtree
         root.left = CreateBST(nums, l, mid - 1);
 
-        // assign the value for right go subtree that is mid+1 to r for given array
+        // assign nodes to right of subtree
         root.right = CreateBST(nums, mid + 1, r);
 
         return root;
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }

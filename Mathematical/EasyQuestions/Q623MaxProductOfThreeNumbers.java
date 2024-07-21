@@ -42,7 +42,6 @@ public class Q623MaxProductOfThreeNumbers {
                 else {
                     maxNum1 = num;
                 }
-
             }
 
             // Find two smallest numbers.

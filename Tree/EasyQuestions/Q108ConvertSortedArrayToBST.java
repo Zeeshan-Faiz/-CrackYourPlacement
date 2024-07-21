@@ -17,4 +17,9 @@ Explanation: [1,null,3] and [3,1] are both height-balanced BSTs.
 
 public class Q108ConvertSortedArrayToBST {
 
+    public TreeNode sortedArrayToBST(int[] nums) {
+        if (nums == null || nums.length == 0)
+            return null;
+        return CreateBST(nums, 0, nums.length - 1);
+    }
 }

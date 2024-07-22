@@ -14,4 +14,36 @@ Output: false
 
 public class Q234PalindromeLinkedList {
     
+    public boolean isPalindrome(ListNode head) {
+        
+        //Approach : Find the middle node and reverse the 2nd half of the list and compare it with
+        //the first half to find palindrome
+        ListNode mid = middleNode(head);
+        ListNode headSecond = reverseList(mid);
+        ListNode rereverseHead = headSecond;
+
+        // compare both the halves
+        while (head != null && headSecond != null) {
+            if (head.val != headSecond.val) {
+                return false;
+            }
+            head = head.next;
+            headSecond = headSecond.next;
+        }
+        reverseList(rereverseHead);//bring back the original list
+
+        return true;
+    }
+
+    //finding the middle node
+    public ListNode middleNode(ListNode head) {
+        ListNode s = head;
+        ListNode f = head;
+
+        while (f != null && f.next != null) {
+            s = s.next;
+            f = f.next.next;
+        }
+        return s;
+    }
 }

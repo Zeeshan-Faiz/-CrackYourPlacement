@@ -1,5 +1,7 @@
 package LinkedList.EasyQuestions;
 
+import LinkedList.EasyQuestions.Q876MiddleOfLinkedList.ListNode;
+
 /*
 Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
 
@@ -13,11 +15,11 @@ Output: false
 */
 
 public class Q234PalindromeLinkedList {
-    
+
     public boolean isPalindrome(ListNode head) {
-        
-        //Approach : Find the middle node and reverse the 2nd half of the list and compare it with
-        //the first half to find palindrome
+
+        // Approach : Find the middle node and reverse the 2nd half of the list and compare it with
+        // the first half to find palindrome
         ListNode mid = middleNode(head);
         ListNode headSecond = reverseList(mid);
         ListNode rereverseHead = headSecond;
@@ -30,12 +32,12 @@ public class Q234PalindromeLinkedList {
             head = head.next;
             headSecond = headSecond.next;
         }
-        reverseList(rereverseHead);//bring back the original list
+        reverseList(rereverseHead);// bring back the original list
 
         return true;
     }
 
-    //finding the middle node
+    // finding the middle node
     public ListNode middleNode(ListNode head) {
         ListNode s = head;
         ListNode f = head;
@@ -47,7 +49,7 @@ public class Q234PalindromeLinkedList {
         return s;
     }
 
-    //reversing a list
+    // reversing a list
     public ListNode reverseList(ListNode head) {
         if (head == null) {
             return head;

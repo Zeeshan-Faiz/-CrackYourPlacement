@@ -20,13 +20,16 @@ Output: 16
 */
 
 public class Q462MinMovesToEqualArrayElementsII {
-    
-    public int minMoves2(int[] nums) {
-        Arrays.sort(nums);
 
+    public int minMoves2(int[] nums) {
+       
+        //sort the array 
+        Arrays.sort(nums);
+        //find the median
         int mid = nums[nums.length / 2];
         int count = 0;
 
+        //use that median to find the total count for all other elements to reach to that median
         for (int num : nums)
             count += Math.abs(mid - num);
 

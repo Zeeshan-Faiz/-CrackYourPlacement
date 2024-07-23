@@ -1,5 +1,7 @@
 package LinkedList.EasyQuestions;
 
+import LinkedList.EasyQuestions.Q876MiddleOfLinkedList.ListNode;
+
 /*
 Given the head of a singly linked list, reverse the list, and return the reversed list.
 
@@ -17,21 +19,21 @@ Output: []
 */
 
 public class Q206ReverseLinkedList {
-    
+
     public ListNode reverseList(ListNode head) {
-        
-        if(head == null)
+
+        if (head == null)
             return head;
-        
+
         ListNode prev = null;
         ListNode present = head;
         ListNode next = present.next;
 
-        while(present != null){
+        while (present != null) {
             present.next = prev;
             prev = present;
             present = next;
-            if(next != null)
+            if (next != null)
                 next = next.next;
         }
         return prev;

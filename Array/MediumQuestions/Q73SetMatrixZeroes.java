@@ -14,11 +14,12 @@ Output: [[0,0,0,0],[0,4,5,0],[0,3,1,0]]
 */
 
 public class Q73SetMatrixZeroes {
-    
-    public void setZeroes(int[][] matrix) {
-        int col0 = 1, rows = matrix.length, cols = matrix[0].length;
 
+    public void setZeroes(int[][] matrix) {
+
+        int col0 = 1, rows = matrix.length, cols = matrix[0].length;
         for (int i = 0; i < rows; i++) {
+            //just mark the 1st row and column as this might affect the overall answer
             if (matrix[i][0] == 0)
                 col0 = 0;
             for (int j = 1; j < cols; j++) {

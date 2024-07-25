@@ -1,7 +1,5 @@
 package LinkedList.MediumQuestions;
 
-import org.w3c.dom.Node;
-
 /*
 A linked list of length n is given such that each node contains an additional random pointer, 
 which could point to any node in the list, or null.
@@ -34,15 +32,15 @@ Output: [[3,null],[3,0],[3,null]]
 */
 
 public class Q138CopyListWithRandomPointer {
-    
+
     public Node copyRandomList(Node head) {
-        
-        if(head == null) 
+
+        if (head == null)
             return head;
-        
+
         Node temp = head;
         // copying the nodes
-        while(temp != null){
+        while (temp != null) {
             Node curr = temp.next;
             temp.next = new Node(temp.val);
             temp.next.next = curr;
@@ -50,24 +48,34 @@ public class Q138CopyListWithRandomPointer {
         }
         temp = head;
         // setting the random pointers
-        while(temp != null){
-            if(temp.next != null){
-                temp.next.random = (temp.random != null)?
-                    temp.random.next : null;
+        while (temp != null) {
+            if (temp.next != null) {
+                temp.next.random = (temp.random != null) ? temp.random.next : null;
             }
             temp = temp.next.next;
         }
-        
-        Node orig = head , copy = head.next;
+
+        Node orig = head, copy = head.next;
         Node curr = copy;
         // separating orignal and copied list
-        while(orig != null){
+        while (orig != null) {
             orig.next = orig.next.next;
-            copy.next = (copy.next != null) ? 
-                copy.next.next : copy.next;
+            copy.next = (copy.next != null) ? copy.next.next : copy.next;
             orig = orig.next;
             copy = copy.next;
         }
         return curr;
+    }
+
+    class Node {
+        int val;
+        Node next;
+        Node random;
+    
+        public Node(int val) {
+            this.val = val;
+            this.next = null;
+            this.random = null;
+        }
     }
 }

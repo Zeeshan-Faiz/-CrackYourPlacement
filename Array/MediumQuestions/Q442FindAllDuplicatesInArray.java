@@ -24,9 +24,8 @@ Output: []
 public class Q442FindAllDuplicatesInArray {
 
     /*
-     * We can either use Cyclic Sort or the below approach as the elements lies in
-     * [1,n] range
-     */
+     * We can either use Cyclic Sort or the below approach as the elements lies in [1,n] range.
+    */
 
     public List<Integer> findDuplicates(int[] nums) {
 

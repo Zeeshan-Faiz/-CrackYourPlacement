@@ -1,5 +1,7 @@
 package Tree.EasyQuestions;
 
+import Tree.EasyQuestions.Q101SymmetricTree.TreeNode;
+
 /*
 Given the root of a binary tree and an integer targetSum, return true if the tree has a 
 root-to-leaf path such that adding up all the values along the path equals targetSum.
@@ -25,18 +27,17 @@ Explanation: Since the tree is empty, there are no root-to-leaf paths.
 */
 
 public class Q112PathSum {
-    
+
     public boolean hasPathSum(TreeNode root, int targetSum) {
 
-        if (root == null) {
+        if (root == null)
             return false;
-        }
+
         // check whether the value of the leaf node is equal to the remaining targetSum.
         if (root.left == null && root.right == null) {
             return targetSum == root.val;
         }
-        // check for a valid path with the target sum in both the left and right
-        // subtrees
+        // check for a valid path with the target sum in both the left and right subtrees
         return hasPathSum(root.left, targetSum - root.val) || hasPathSum(root.right, targetSum - root.val);
 
     }

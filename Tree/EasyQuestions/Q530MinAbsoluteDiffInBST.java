@@ -1,5 +1,7 @@
 package Tree.EasyQuestions;
 
+import Tree.EasyQuestions.Q101SymmetricTree.TreeNode;
+
 /*
 Given the root of a Binary Search Tree (BST), return the minimum absolute difference between 
 the values of any two different nodes in the tree.
@@ -19,11 +21,11 @@ public class Q530MinAbsoluteDiffInBST {
     int minDiff = Integer.MAX_VALUE;
 
     public int getMinimumDifference(TreeNode root) {
-        if (root == null) {
+        
+        if (root == null)
             return minDiff;
-        }
 
-        //in order traversal to compare all nodes
+        //We'll do in order traversal as it's a BST and in-order will product sorted nodes
 
         // Traverse the left subtree
         getMinimumDifference(root.left);

@@ -1,5 +1,7 @@
 package Array.MediumQuestions;
 
+import java.util.HashMap;
+
 /*
 Given an integer array nums and an integer k, return the number of non-empty subarrays that 
 have a sum divisible by k. A subarray is a contiguous part of an array.
@@ -17,4 +19,25 @@ Output: 0
 
 public class Q974SubarraySumsDivisibleByK {
     
+    public int subarraysDivByK(int[] nums, int k) {
+        HashMap<Integer, Integer> prefixsum = new HashMap<>();
+        prefixsum.put(0, 1);
+
+        int count = 0, sum = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            sum += nums[i];
+            // remainder is present in hashmap it means in between the sum is divisible by k
+            int target = sum % k;
+            if (target < 0)
+                target += k; // it is in minus it means sum in negative
+
+            if (prefixsum.containsKey(target))
+                count += prefixsum.get(target);
+
+            prefixsum.put(target, prefixsum.getOrDefault(target, 0) + 1);
+
+        }
+        return count;
+    }
 }

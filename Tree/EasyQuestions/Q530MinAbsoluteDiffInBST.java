@@ -23,7 +23,7 @@ public class Q530MinAbsoluteDiffInBST {
     public int getMinimumDifference(TreeNode root) {
         
         if (root == null)
-            return minDiff;
+            return 0;
 
         //We'll do in order traversal as it's a BST and in-order will product sorted nodes
 

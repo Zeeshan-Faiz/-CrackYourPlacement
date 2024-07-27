@@ -31,14 +31,13 @@ Explanation: The only possible triplet sums up to 0.
 */
 
 public class Q15ThreeSum {
-    
+
     public List<List<Integer>> threeSum(int[] nums) {
 
         List<List<Integer>> res = new ArrayList<>();
         // Sort the array
         Arrays.sort(nums);
 
-        
         for (int i = 0; i < nums.length; i++) 
         {
             // Skip duplicate elements for i
@@ -53,12 +52,10 @@ public class Q15ThreeSum {
             {
                 int sum = nums[i] + nums[j] + nums[k];
 
-                if (sum > 0) {
+                if (sum > 0)
                     k--;
-                } 
-                else if (sum < 0) {
+                else if (sum < 0)
                     j++;
-                } 
                 else 
                 {
                     // Found a triplet with zero sum

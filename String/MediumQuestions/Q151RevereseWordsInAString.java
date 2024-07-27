@@ -25,4 +25,27 @@ Explanation: You need to reduce multiple spaces between two words to a single sp
 
 public class Q151RevereseWordsInAString {
     
+    public String reverseWords(String s) {
+        int i = s.length() - 1;
+        StringBuilder ans = new StringBuilder();
+
+        while (i >= 0) {
+
+            // find the extra spaces
+            while (i >= 0 && s.charAt(i) == ' ')
+                i--;
+
+            int j = i;
+            // find the length of the current word without space
+            while (i >= 0 && s.charAt(i) != ' ')
+                i--;
+
+            // start appending each word in ans
+            if (ans.length() == 0)
+                ans.append(s.substring(i + 1, j + 1));
+            else
+                ans.append(" ").append(s.substring(i + 1, j + 1));
+        }
+        return ans.toString().trim();
+    }
 }

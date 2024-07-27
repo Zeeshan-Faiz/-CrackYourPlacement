@@ -24,13 +24,14 @@ Explanation: You need to reduce multiple spaces between two words to a single sp
 */
 
 public class Q151RevereseWordsInAString {
-    
+
     public String reverseWords(String s) {
+        
         int i = s.length() - 1;
         StringBuilder ans = new StringBuilder();
 
-        while (i >= 0) {
-
+        while (i >= 0) 
+        {
             // find the extra spaces
             while (i >= 0 && s.charAt(i) == ' ')
                 i--;

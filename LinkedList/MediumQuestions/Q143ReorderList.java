@@ -16,10 +16,11 @@ Input: head = [1,2,3,4,5]
 Output: [1,5,2,4,3]
 */
 
-public class Q143ReorderList{
+public class Q143ReorderList {
 
     public void reorderList(ListNode head) {
-        if (head == null || head.next == null) // base case
+        
+        if (head == null || head.next == null)
             return;
 
         // Find the middle of the list
@@ -49,6 +50,22 @@ public class Q143ReorderList{
             p1.next = p2;
             p1 = p2.next;
             p2 = preMiddle.next;
+        }
+    }
+
+    public class ListNode {
+        
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+        ListNode(int val) {
+            this.val = val;
+        }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
         }
     }
 }

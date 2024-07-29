@@ -51,8 +51,9 @@ Explanation:
 */
 
 public class Q71SimplifyPath {
-    
+
     public String simplifyPath(String path) {
+        
         Stack<String> stack = new Stack<>();
         StringBuilder res = new StringBuilder();
         String[] p = path.split("/");

@@ -19,14 +19,30 @@ Output: true.
 */
 
 public class Q110BalancedBinaryTree {
-    
+
     public boolean isBalanced(TreeNode root) {
-        // If the tree is empty, we can say it’s balanced...
+        
         if (root == null)
             return true;
-        // Height Function will return -1, when it’s an unbalanced tree...
+        
         if (findHeight(root) == -1)
             return false;
+
         return true;
+    }
+
+    public int findHeight(TreeNode root) {
+
+        if (root == null)
+            return 0;
+
+        // find height of left & rightsubtree...
+        int leftHeight = findHeight(root.left);
+        int rightHight = findHeight(root.right);
+        // In case of left or right subtree unbalanced, or heights differ by more than ‘1’, return -1
+        if ((leftHeight == -1 || rightHight == -1) || (Math.abs(leftHeight - rightHight) > 1))
+            return -1;
+
+        return Math.max(leftHeight, rightHight) + 1;
     }
 }

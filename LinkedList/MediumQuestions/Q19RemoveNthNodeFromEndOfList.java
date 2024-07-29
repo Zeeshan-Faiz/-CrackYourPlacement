@@ -17,8 +17,9 @@ Output: [1]
 */
 
 public class Q19RemoveNthNodeFromEndOfList {
-    
+
     public ListNode removeNthFromEnd(ListNode head, int n) {
+        
         ListNode dummy = new ListNode(-1);
         dummy.next = head;
 
@@ -40,5 +41,21 @@ public class Q19RemoveNthNodeFromEndOfList {
         firstPtr.next = firstPtr.next.next;
 
         return dummy.next;
+    }
+
+    public class ListNode {
+        
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+        ListNode(int val) {
+            this.val = val;
+        }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 }

@@ -20,4 +20,13 @@ Output: true.
 
 public class Q110BalancedBinaryTree {
     
+    public boolean isBalanced(TreeNode root) {
+        // If the tree is empty, we can say it’s balanced...
+        if (root == null)
+            return true;
+        // Height Function will return -1, when it’s an unbalanced tree...
+        if (findHeight(root) == -1)
+            return false;
+        return true;
+    }
 }

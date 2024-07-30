@@ -16,4 +16,25 @@ Output: [1,2]
 
 public class Q86PartitionList {
     
+    public ListNode partition(ListNode head, int x) {
+        ListNode small = new ListNode(0);
+        ListNode high = new ListNode(0);
+        ListNode smallHead = small,highHead = high;
+
+        while (head != null) 
+        {
+            if (head.val < x) {
+                smallHead.next = head;
+                smallHead = smallHead.next;
+            } else {
+                highHead.next = head;
+                highHead = highHead.next;
+            }
+            head = head.next;
+        }
+        smallHead.next = high.next;
+        highHead.next = null;
+
+        return small.next;
+    }
 }

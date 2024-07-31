@@ -23,16 +23,16 @@ public class Q347TopKFrequentElements {
 
         @SuppressWarnings("unchecked")
         List<Integer>[] bucket = new List[nums.length + 1];
-        HashMap<Integer, Integer> hm = new HashMap<>();
+        HashMap<Integer, Integer> map = new HashMap<>();
 
         //count the frequency of each element
         for (int num : nums) {
-            hm.put(num, hm.getOrDefault(num, 0) + 1);
+            map.put(num, map.getOrDefault(num, 0) + 1);
         }
 
         //add the most frequent elements in the respective bucket
-        for (int key : hm.keySet()) {
-            int freq = hm.get(key);
+        for (int key : map.keySet()) {
+            int freq = map.get(key);
             if (bucket[freq] == null) {
                 bucket[freq] = new ArrayList<>();
             }

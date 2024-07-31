@@ -21,11 +21,16 @@ public class Q347TopKFrequentElements {
 
     public int[] topKFrequent(int[] nums, int k) {
 
+        @SuppressWarnings("unchecked")
         List<Integer>[] bucket = new List[nums.length + 1];
         HashMap<Integer, Integer> hm = new HashMap<>();
+
+        //count the frequency of each element
         for (int num : nums) {
             hm.put(num, hm.getOrDefault(num, 0) + 1);
         }
+
+        //add the most frequent elements in the respective bucket
         for (int key : hm.keySet()) {
             int freq = hm.get(key);
             if (bucket[freq] == null) {
@@ -35,6 +40,8 @@ public class Q347TopKFrequentElements {
         }
         int[] ans = new int[k];
         int pos = 0;
+
+        //traverse the bucket and get the k most frequent elements
         for (int i = bucket.length - 1; i >= 0; i--) {
             if (bucket[i] != null) {
                 for (int j = 0; j < bucket[i].size() && pos < k; j++) {

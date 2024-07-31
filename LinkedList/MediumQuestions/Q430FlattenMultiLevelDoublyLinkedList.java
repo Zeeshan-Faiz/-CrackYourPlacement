@@ -13,7 +13,12 @@ Return the head of the flattened list. The nodes in the list must have all of th
 set to null.
 
 Example 1:
+Input: head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
+Output: [1,2,3,7,8,11,12,9,10,4,5,6]
 
+Example 2:
+Input: head = [1,2,null,3]
+Output: [1,3,2]
 */
 
 public class Q430FlattenMultiLevelDoublyLinkedList {

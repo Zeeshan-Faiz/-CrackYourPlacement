@@ -25,20 +25,21 @@ Output: [1,3,2]
 */
 
 public class Q430FlattenMultiLevelDoublyLinkedList {
-    
+
     public Node flatten(Node head) {
 
         // iteratively
         if (head == null)
             return head;
 
-        Node pseudoHead = new Node(0, null, head, null);
-        Node curr, prev = pseudoHead;
+        Node dummy = new Node(0, null, head, null);
+        Node curr, prev = dummy;
 
         Deque<Node> stack = new ArrayDeque<>();
         stack.push(head);
 
-        while (!stack.isEmpty()) {
+        while (!stack.isEmpty()) 
+        {
             curr = stack.pop();
             prev.next = curr;
             curr.prev = prev;
@@ -51,7 +52,21 @@ public class Q430FlattenMultiLevelDoublyLinkedList {
             }
             prev = curr;
         }
-        pseudoHead.next.prev = null;
-        return pseudoHead.next;
+        dummy.next.prev = null;
+        return dummy.next;
+    }
+
+    class Node {
+        public int val;
+        public Node prev;
+        public Node next;
+        public Node child;
+
+        Node(int val, Node prev, Node next, Node child){
+            this.val = val;
+            this.prev = prev;
+            this.next = next;
+            this.child = child;
+        }
     }
 }

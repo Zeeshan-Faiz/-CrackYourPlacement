@@ -21,9 +21,8 @@ public class Q54SpiralMatrix {
         
         List<Integer> res = new ArrayList<>();
 
-        if (matrix.length == 0) {
+        if (matrix.length == 0)
             return res;
-        }
 
         int rowBegin = 0, rowEnd = matrix.length - 1;
         int colBegin = 0, colEnd = matrix[0].length - 1;

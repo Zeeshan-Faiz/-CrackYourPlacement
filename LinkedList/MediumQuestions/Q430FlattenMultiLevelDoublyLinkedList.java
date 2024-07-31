@@ -1,5 +1,8 @@
 package LinkedList.MediumQuestions;
 
+import java.util.ArrayDeque;
+import java.util.Deque;
+
 /*
 You are given a doubly linked list, which contains nodes that have a next pointer, a previous 
 pointer, and an additional child pointer. This child pointer may or may not point to a separate 
@@ -23,4 +26,32 @@ Output: [1,3,2]
 
 public class Q430FlattenMultiLevelDoublyLinkedList {
     
+    public Node flatten(Node head) {
+
+        // iteratively
+        if (head == null)
+            return head;
+
+        Node pseudoHead = new Node(0, null, head, null);
+        Node curr, prev = pseudoHead;
+
+        Deque<Node> stack = new ArrayDeque<>();
+        stack.push(head);
+
+        while (!stack.isEmpty()) {
+            curr = stack.pop();
+            prev.next = curr;
+            curr.prev = prev;
+
+            if (curr.next != null)
+                stack.push(curr.next);
+            if (curr.child != null) {
+                stack.push(curr.child);
+                curr.child = null;
+            }
+            prev = curr;
+        }
+        pseudoHead.next.prev = null;
+        return pseudoHead.next;
+    }
 }

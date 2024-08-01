@@ -26,54 +26,51 @@ public class Q863AllNodesDistanceK {
 
     public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
 
-        Map<TreeNode, TreeNode> map = new HashMap<>();
-        setparent(root, map);
-        Map<TreeNode, Boolean> check = new HashMap<>();
-        check.put(target, true);
+        Map<TreeNode, TreeNode> parent_check = new HashMap<>();
+        setparent(root, parent_check);
+        Map<TreeNode, Boolean> visited = new HashMap<>();
+        visited.put(target, true);
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(target);
         int level = 0;
-        while (!q.isEmpty()) {
+        while (!q.isEmpty()) 
+        {
             int size = q.size();
             if (level == k) {
                 break;
             }
             level++;
 
-            for (int i = 0; i < size; i++) {
+            for (int i = 0; i < size; i++) 
+            {
                 TreeNode temp = q.poll();
-                if (temp.left != null && check.get(temp.left) == null) {
+                if (temp.left != null && visited.get(temp.left) == null) {
                     q.add(temp.left);
-                    check.put(temp.left, true);
-
+                    visited.put(temp.left, true);
                 }
-                if (temp.right != null && check.get(temp.right) == null) {
+                if (temp.right != null && visited.get(temp.right) == null) {
                     q.add(temp.right);
-                    check.put(temp.right, true);
+                    visited.put(temp.right, true);
                 }
-                if (map.get(temp) != null && check.get(map.get(temp)) == null) {
-                    q.add(map.get(temp));
-                    check.put(map.get(temp), true);
+                if (parent_check.get(temp) != null && visited.get(parent_check.get(temp)) == null) {
+                    q.add(parent_check.get(temp));
+                    visited.put(parent_check.get(temp), true);
 
                 }
-
             }
         }
-        List<Integer> mc = new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
         while (!q.isEmpty()) {
-            TreeNode help = q.poll();
-            mc.add(help.val);
+            TreeNode curr = q.poll();
+            res.add(curr.val);
         }
-
-        return mc;
+        return res;
     }
 
     public void setparent(TreeNode root, Map<TreeNode, TreeNode> map) {
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
         while (!q.isEmpty()) {
-
-            int size = q.size();
 
             TreeNode temp = q.poll();
             if (temp.left != null) {
@@ -85,6 +82,23 @@ public class Q863AllNodesDistanceK {
                 q.add(temp.right);
             }
 
+        }
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
         }
     }
 }

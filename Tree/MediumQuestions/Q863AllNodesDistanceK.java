@@ -67,21 +67,21 @@ public class Q863AllNodesDistanceK {
         return res;
     }
 
-    public void setparent(TreeNode root, Map<TreeNode, TreeNode> map) {
+    public void setparent(TreeNode root, Map<TreeNode, TreeNode> parent_track) {
+        
         Queue<TreeNode> q = new LinkedList<>();
         q.offer(root);
-        while (!q.isEmpty()) {
-
-            TreeNode temp = q.poll();
-            if (temp.left != null) {
-                map.put(temp.left, temp);
-                q.add(temp.left);
+        while (!q.isEmpty()) 
+        {
+            TreeNode curr = q.poll();
+            if (curr.left != null) {
+                parent_track.put(curr.left, curr);
+                q.add(curr.left);
             }
-            if (temp.right != null) {
-                map.put(temp.right, temp);
-                q.add(temp.right);
+            if (curr.right != null) {
+                parent_track.put(curr.right, curr);
+                q.add(curr.right);
             }
-
         }
     }
 

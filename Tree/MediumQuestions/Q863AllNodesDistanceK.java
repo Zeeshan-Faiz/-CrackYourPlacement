@@ -1,5 +1,9 @@
 package Tree.MediumQuestions;
 
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+
 /*
 Given the root of a binary tree, the value of a target node target, and an integer k, return 
 an array of the values of all nodes that have a distance k from the target node.
@@ -16,5 +20,24 @@ Output: []
 */
 
 public class Q863AllNodesDistanceK {
-    
+
+    public void setparent(TreeNode root, Map<TreeNode, TreeNode> map) {
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        while (!q.isEmpty()) {
+
+            int size = q.size();
+
+            TreeNode temp = q.poll();
+            if (temp.left != null) {
+                map.put(temp.left, temp);
+                q.add(temp.left);
+            }
+            if (temp.right != null) {
+                map.put(temp.right, temp);
+                q.add(temp.right);
+            }
+
+        }
+    }
 }

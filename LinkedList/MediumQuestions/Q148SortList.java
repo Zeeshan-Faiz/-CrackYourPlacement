@@ -17,5 +17,21 @@ Output: []
 */
 
 public class Q148SortList {
-    
+
+    public ListNode sortList(ListNode head) {
+        
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode mid = findMid(head);
+        ListNode left = head;
+        ListNode right = mid.next;
+        mid.next = null;
+
+        left = sortList(left);
+        right = sortList(right);
+
+        ListNode res = mergeTwoLists(left, right);
+        return res;
+    }
 }

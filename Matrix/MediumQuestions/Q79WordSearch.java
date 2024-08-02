@@ -20,5 +20,16 @@ Output: false
 */
 
 public class Q79WordSearch {
-    
+
+    public boolean exist(char[][] board, String word) {
+        
+        char[] words = word.toCharArray();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == words[0] && helper(board, i, j, words, 0))
+                    return true;
+            }
+        }
+        return false;
+    }
 }

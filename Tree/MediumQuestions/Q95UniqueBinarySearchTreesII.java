@@ -1,5 +1,8 @@
 package Tree.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Given an integer n, return all the structurally unique BST's (binary search trees), which 
 has exactly n nodes of unique values from 1 to n. Return the answer in any order.
@@ -15,4 +18,10 @@ Output: [[1]]
 
 public class Q95UniqueBinarySearchTreesII {
     
+    public List<TreeNode> generateTrees(int n) {
+
+        if (n <= 0)
+            return new ArrayList<>();
+        return generate_trees(1, n);
+    }
 }

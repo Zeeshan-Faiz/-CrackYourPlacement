@@ -26,18 +26,22 @@ public class Q95UniqueBinarySearchTreesII {
     }
 
     private List<TreeNode> helper(int start, int end) {
+        
         List<TreeNode> all_trees = new ArrayList<>();
         if (start > end) {
             all_trees.add(null);
             return all_trees;
         }
 
-        for (int i = start; i <= end; i++) {
+        for (int i = start; i <= end; i++) 
+        {
             List<TreeNode> left_trees = helper(start, i - 1);
             List<TreeNode> right_trees = helper(i + 1, end);
 
-            for (TreeNode l : left_trees) {
-                for (TreeNode r : right_trees) {
+            for (TreeNode l : left_trees) 
+            {
+                for (TreeNode r : right_trees) 
+                {
                     TreeNode current_tree = new TreeNode(i);
                     current_tree.left = l;
                     current_tree.right = r;
@@ -46,5 +50,22 @@ public class Q95UniqueBinarySearchTreesII {
             }
         }
         return all_trees;
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }

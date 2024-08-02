@@ -1,5 +1,8 @@
 package Matrix.MediumQuestions;
 
+import java.util.Collections;
+import java.util.PriorityQueue;
+
 /*
 Given an n x n matrix where each of the rows and columns is sorted in ascending order, 
 return the kth smallest element in the matrix. Note that it is the kth smallest element in 
@@ -18,4 +21,21 @@ Output: -5
 
 public class Q378KthSmallestElementInSortedMatrix {
     
+    public int kthSmallest(int[][] matrix, int k) {
+        int n = matrix.length;
+        PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                if (pq.size() < k)
+                    pq.add(matrix[i][j]);
+                else {
+                    if (pq.peek() > matrix[i][j]) {
+                        pq.poll();
+                        pq.add(matrix[i][j]);
+                    }
+                }
+            }
+        }
+        return pq.peek();
+    }
 }

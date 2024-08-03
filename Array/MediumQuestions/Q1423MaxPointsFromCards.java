@@ -24,24 +24,26 @@ Explanation: You have to take all the cards. Your score is the sum of points of 
 */
 
 public class Q1423MaxPointsFromCards {
-    
+
     public int maxScore(int[] cardPoints, int k) {
-        if(cardPoints.length == 0){
+        
+        if (cardPoints.length == 0) {
             return -1;
         }
 
-        int lSum =0, rSum = 0, maxSum = 0;
-        for(int i = 0 ; i< k; i++){
+        int lSum = 0, rSum = 0, maxSum = 0;
+        //take k elements from left of array
+        for (int i = 0; i < k; i++) {
             lSum += cardPoints[i];
         }
-        maxSum =lSum;
+        maxSum = lSum;
 
         int rIndex = cardPoints.length - 1;
-
-        for(int i = k-1; i>=0; i--){
-            lSum -= cardPoints[i];
-            rSum += cardPoints[rIndex];
-            rIndex = rIndex -1;
+        //iteratively take elements from left and right both in the range of k and find maxSum
+        for (int i = k - 1; i >= 0; i--) {
+            lSum = lSum - cardPoints[i];
+            rSum = rSum + cardPoints[rIndex];
+            rIndex = rIndex - 1;
 
             maxSum = Math.max(maxSum, (lSum + rSum));
         }

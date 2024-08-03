@@ -27,6 +27,7 @@ public class Q263UglyNumber {
         if (n <= 0)
             return false;
 
+        // Repetitive divisions to determine if the number is ugly
         int curN = n;
         while (curN % 2 == 0)
             curN /= 2;

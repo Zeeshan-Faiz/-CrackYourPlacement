@@ -25,4 +25,26 @@ Explanation: You have to take all the cards. Your score is the sum of points of 
 
 public class Q1423MaxPointsFromCards {
     
+    public int maxScore(int[] cardPoints, int k) {
+        if(cardPoints.length == 0){
+            return -1;
+        }
+
+        int lSum =0, rSum = 0, maxSum = 0;
+        for(int i = 0 ; i< k; i++){
+            lSum += cardPoints[i];
+        }
+        maxSum =lSum;
+
+        int rIndex = cardPoints.length - 1;
+
+        for(int i = k-1; i>=0; i--){
+            lSum -= cardPoints[i];
+            rSum += cardPoints[rIndex];
+            rIndex = rIndex -1;
+
+            maxSum = Math.max(maxSum, (lSum + rSum));
+        }
+        return maxSum;
+    }
 }

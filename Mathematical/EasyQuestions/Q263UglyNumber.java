@@ -21,5 +21,20 @@ Explanation: 14 is not ugly since it includes the prime factor 7.
 */
 
 public class Q263UglyNumber {
-    
+
+    public boolean isUgly(int n) {
+        
+        if (n <= 0)
+            return false;
+
+        int curN = n;
+        while (curN % 2 == 0)
+            curN /= 2;
+        while (curN % 3 == 0)
+            curN /= 3;
+        while (curN % 5 == 0)
+            curN /= 5;
+
+        return curN == 1;
+    }
 }

@@ -1,5 +1,7 @@
 package HeapPriorityQueue.MediumQuestions;
 
+import java.util.PriorityQueue;
+
 /*
 An ugly number is a positive integer whose prime factors are limited to 2, 3, and 5.
 Given an integer n, return the nth ugly number.
@@ -16,22 +18,22 @@ Explanation: 1 has no prime factors, therefore all of its prime factors are limi
 */
 
 public class Q264UglyNumberII {
-    
+
     public int nthUglyNumber(int n) {
-        int[] ugly = new int[n];
-        ugly[0] = 1;
-        int index2 = 0, index3 = 0, index5 = 0;
-        int factor2 = 2, factor3 = 3, factor5 = 5;
-        for (int i = 1; i < n; i++) {
-            int min = Math.min(Math.min(factor2, factor3), factor5);
-            ugly[i] = min;
-            if (factor2 == min)
-                factor2 = 2 * ugly[++index2];
-            if (factor3 == min)
-                factor3 = 3 * ugly[++index3];
-            if (factor5 == min)
-                factor5 = 5 * ugly[++index5];
+
+        PriorityQueue<Long> pq = new PriorityQueue<>();
+        pq.add(1l);
+        for (int i = 0; i < n - 1; ++i) 
+        {
+            long val = pq.remove();
+            // remove duplicates
+            while (pq.size() > 0 && pq.peek() == val)
+                pq.remove();
+
+            pq.add(val * 2);
+            pq.add(val * 3);
+            pq.add(val * 5);
         }
-        return ugly[n - 1];
+        return pq.remove().intValue();
     }
 }

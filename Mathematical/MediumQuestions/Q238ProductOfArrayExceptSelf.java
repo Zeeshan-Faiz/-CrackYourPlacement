@@ -19,10 +19,8 @@ public class Q238ProductOfArrayExceptSelf {
     
     public int[] productExceptSelf(int[] nums) {
         
-        // Array to store all left multiplication
+        // Array to store all left & right multiplication
         int[] left = new int[nums.length];
-
-        // Array to store all right multiplication
         int[] right = new int[nums.length];
 
         left[0] = 1;
@@ -39,7 +37,6 @@ public class Q238ProductOfArrayExceptSelf {
         for (int i = 0; i < nums.length; i++) {
             ans[i] = left[i] * right[i];
         }
-
         return ans;
     }
 }

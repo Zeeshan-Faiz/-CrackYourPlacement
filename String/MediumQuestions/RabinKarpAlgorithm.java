@@ -10,22 +10,35 @@ hash values match then only it starts matching individual characters.
 */
 
 public class RabinKarpAlgorithm {
-    
+
+    private final int PRIME = 101;
     public void search(String text, String pattern) {
+
         int patternLength = pattern.length();
-          double patternHash = calculateHash(pattern);
-          double textHash = calculateHash(text.substring(0, patternLength));
-    
-        for(int i=0; i<= text.length() - patternLength; i++) {
-          if(textHash == patternHash) {
-            if(text.substring(i, i+patternLength).equals(pattern)) {
-              System.out.println("Pattern found at index " + i);
+        double patternHash = calculateHash(pattern);
+        double textHash = calculateHash(text.substring(0, patternLength));
+
+        for (int i = 0; i <= text.length() - patternLength; i++) {
+            if (textHash == patternHash) {
+                if (text.substring(i, i + patternLength).equals(pattern)) {
+                    System.out.println("Pattern found at index " + i);
+                }
             }
-          }
-    
-          if (i < text.length() - patternLength) {
-            textHash = updateHash(textHash, text.charAt(i), text.charAt(i + patternLength), patternLength);
-          }
+
+            if (i < text.length() - patternLength) {
+                textHash = updateHash(textHash, text.charAt(i), text.charAt(i + patternLength), patternLength);
+            }
         }
-      }
+    }
+
+    private double calculateHash(String str) {
+        
+        double hash = 0;
+        for (int i = 0; i < str.length(); i++) {
+            hash += str.charAt(i) * Math.pow(PRIME, i);
+        }
+        return hash;
+    }
+
+    
 }

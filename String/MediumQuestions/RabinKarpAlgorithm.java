@@ -40,5 +40,9 @@ public class RabinKarpAlgorithm {
         return hash;
     }
 
-    
+    private double updateHash(double prevHash, char oldChar, char newChar, int patternLength) {
+        double newHash = (prevHash - oldChar) / PRIME;
+      newHash = newHash + newChar * Math.pow(PRIME, patternLength - 1);
+      return newHash;
+    }
 }

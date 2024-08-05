@@ -21,4 +21,21 @@ Explanation: Your function can return either index number 1 where the peak eleme
 
 public class Q162FindPeakElement {
     
+    public int findPeakElement(int[] nums) {
+        int start = 0;
+        int end = nums.length - 1;
+        int mid = -1;
+
+        while(start < end){
+            
+            mid = (start+end)/2;
+            if(nums[mid] > nums[mid+1])
+                //we are in descending part
+                end = mid;
+            else
+                //we are in ascending part
+                start = mid + 1;
+        }
+        return start; 
+    }
 }

@@ -1,5 +1,8 @@
 package Array.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Given an array nums of distinct integers, return all the possible permutations. You can 
 return the answer in any order.
@@ -18,5 +21,13 @@ Output: [[1]]
 */
 
 public class Q46Permutations {
+    
+    public List<List<Integer>> permute(int[] nums) {
+
+        List<List<Integer>> resultList = new ArrayList<>();
+        helper(resultList, new ArrayList<>(), nums);
+        return resultList;
+    }
+
     
 }

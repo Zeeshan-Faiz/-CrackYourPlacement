@@ -28,4 +28,31 @@ public class Q47PermutationsII {
         helper(resultList, new ArrayList<>(), nums, new boolean[nums.length]);
         return resultList;
     }
+
+    private void helper(List<List<Integer>> resultList, ArrayList<Integer> tempList, int[] nums, boolean[] used) {
+        
+        // If we match the length, it is a permutation
+        if (tempList.size() == nums.length && !resultList.contains(tempList)) {
+            resultList.add(new ArrayList<>(tempList));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) 
+        {
+            // Skip if we get same element
+            if (used[i])
+                continue;
+
+            // Add the new element and mark it as used
+            used[i] = true;
+            tempList.add(nums[i]);
+
+            // Go back to try other element
+            helper(resultList, tempList, nums, used);
+
+            // Remove the element and mark it as unused
+            used[i] = false;
+            tempList.remove(tempList.size() - 1);
+        }
+    }
 }

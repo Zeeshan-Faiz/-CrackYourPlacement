@@ -43,4 +43,11 @@ public class Q41FirstMissingPositive {
         // If all positive integers from 1 to n are present, return n + 1
         return arr.length + 1;
     }
+
+    void swap(int[] arr, int first, int second) {
+        
+        int temp = arr[first];
+        arr[first] = arr[second];
+        arr[second] = temp;
+    }
 }

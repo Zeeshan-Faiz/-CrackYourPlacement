@@ -16,16 +16,20 @@ Output: ""
 public class Q767ReorganizeString {
 
     public String reorganizeString(String str) {
+
         int[] hash = new int[26];
+        // count frequency of each character
         for (int i = 0; i < str.length(); i++)
             hash[str.charAt(i) - 'a']++;
 
+        // find the character which occured the maximum time
         int max = 0, letter = 0;
-        for (int i = 0; i < hash.length; i++)
+        for (int i = 0; i < hash.length; i++) {
             if (hash[i] > max) {
                 max = hash[i];
                 letter = i;
             }
+        }
 
         if (max > (str.length() + 1) / 2)
             return "";
@@ -41,7 +45,7 @@ public class Q767ReorganizeString {
         }
 
         // Fill the remaining characters
-        for (int i = 0; i < hash.length; i++)
+        for (int i = 0; i < hash.length; i++) {
             while (hash[i] > 0) {
                 if (idx >= res.length)
                     idx = 1;
@@ -50,7 +54,7 @@ public class Q767ReorganizeString {
                 idx += 2;
                 hash[i]--;
             }
-
+        }
         return String.valueOf(res);
     }
 }

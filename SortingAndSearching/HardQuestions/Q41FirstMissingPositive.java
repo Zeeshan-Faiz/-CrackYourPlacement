@@ -22,4 +22,26 @@ Explanation: The smallest positive integer 1 is missing.
 
 public class Q41FirstMissingPositive {
     
+    public int firstMissingPositive(int[] arr) {
+        //use Cyclic sort and sort the array elements
+         int i = 0;
+        while (i < arr.length) {
+            int correct = arr[i] - 1;
+            if (arr[i] > 0 && arr[i] <= arr.length && arr[i] != arr[correct]) {
+                swap(arr, i , correct);
+            } else {
+                i++;
+            }
+        }
+
+        // Find the first missing positive integer
+        for (int index = 0; index < arr.length; index++) {
+            if (arr[index] != index + 1) {
+                return index + 1;
+            }
+        }
+
+        // If all positive integers from 1 to n are present, return n + 1
+        return arr.length + 1;
+    }
 }

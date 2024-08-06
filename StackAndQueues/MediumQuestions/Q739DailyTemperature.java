@@ -23,7 +23,8 @@ Output: [1,1,0]
 
 public class Q739DailyTemperature {
     
-    Stack<Integer> helperStack = new Stack<>();
+    public int[] dailyTemperatures(int[] temperatures) {
+        Stack<Integer> helperStack = new Stack<>();
 
         int n = temperatures.length;
         int[] result = new int[n];
@@ -48,4 +49,5 @@ public class Q739DailyTemperature {
         }
 
         return result;
+    }
 }

@@ -31,8 +31,9 @@ Explanation: There is one 0-diff pair in the array, (1, 1).
 */
 
 public class Q532KDiffPairs {
-    
+
     public int findPairs(int[] nums, int k) {
+        
         if (nums.length == 0 || k < 0)
             return 0;
 
@@ -44,11 +45,13 @@ public class Q532KDiffPairs {
         }
 
         // find the count of pairs
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) 
+        {
             if (k == 0) {
                 if (entry.getValue() >= 2)
                     count++;
-            } else {
+            } 
+            else {
                 if (map.containsKey(entry.getKey() + k))
                     count++;
             }

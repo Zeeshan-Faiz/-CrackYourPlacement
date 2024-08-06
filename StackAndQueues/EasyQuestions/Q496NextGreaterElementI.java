@@ -31,42 +31,44 @@ Explanation: The next greater element for each value of nums1 is as follows:
 */
 
 public class Q496NextGreaterElementI {
-    
+
     public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+        
         if (nums2.length == 0 || nums1.length == 0)
             return new int[0];
 
-        Map<Integer, Integer> numberNGE = new HashMap<>();
-        Stack<Integer> numStack = new Stack<>();
+        Map<Integer, Integer> map = new HashMap<>();
+        Stack<Integer> stack = new Stack<>();
 
-        numStack.push(nums2[nums2.length - 1]);
-        numberNGE.put(nums2[nums2.length - 1], -1);
+        stack.push(nums2[nums2.length - 1]);
+        map.put(nums2[nums2.length - 1], -1);
 
         for (int i = nums2.length - 2; i >= 0; i--) {
 
-            //if top of the stack is greater, then we'll take it
-            if (nums2[i] < numStack.peek()) {
-                numberNGE.put(nums2[i], numStack.peek());
-                numStack.push(nums2[i]);
+            // if top of the stack is greater, then we'll take it
+            if (nums2[i] < stack.peek()) {
+                map.put(nums2[i], stack.peek());
+                stack.push(nums2[i]);
                 continue;
             }
 
-            //Remove all elements from stack smaller than current element
-            while (!numStack.isEmpty() && numStack.peek() < nums2[i])
-                numStack.pop();
+            // Remove all elements from stack smaller than current element
+            while (!stack.isEmpty() && stack.peek() < nums2[i])
+                stack.pop();
 
-            if (numStack.isEmpty()) {
-                numStack.push(nums2[i]);
-                numberNGE.put(nums2[i], -1);
-            } else {
-                numberNGE.put(nums2[i], numStack.peek());
-                numStack.push(nums2[i]);
+            if (stack.isEmpty()) {
+                stack.push(nums2[i]);
+                map.put(nums2[i], -1);
+            } 
+            else {
+                map.put(nums2[i], stack.peek());
+                stack.push(nums2[i]);
             }
         }
 
-        //iterate over the map and store the values in nums1
+        // iterate over the map and store the values in nums1
         for (int i = 0; i < nums1.length; i++)
-            nums1[i] = numberNGE.get(nums1[i]);
+            nums1[i] = map.get(nums1[i]);
 
         return nums1;
     }

@@ -1,5 +1,8 @@
 package Array.MediumQuestions;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 Given an array of integers nums and an integer k, return the number of unique k-diff pairs in 
 the array.
@@ -29,4 +32,27 @@ Explanation: There is one 0-diff pair in the array, (1, 1).
 
 public class Q532KDiffPairs {
     
+    public int findPairs(int[] nums, int k) {
+        if (nums.length == 0 || k < 0)
+            return 0;
+
+        Map<Integer, Integer> map = new HashMap<>();
+        int count = 0;
+        // count frequency of each element
+        for (int i : nums) {
+            map.put(i, map.getOrDefault(i, 0) + 1);
+        }
+
+        // find the count of pairs
+        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+            if (k == 0) {
+                if (entry.getValue() >= 2)
+                    count++;
+            } else {
+                if (map.containsKey(entry.getKey() + k))
+                    count++;
+            }
+        }
+        return count;
+    }
 }

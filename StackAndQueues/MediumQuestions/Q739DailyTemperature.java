@@ -24,30 +24,27 @@ Output: [1,1,0]
 public class Q739DailyTemperature {
     
     public int[] dailyTemperatures(int[] temperatures) {
-        Stack<Integer> helperStack = new Stack<>();
-
+        
+        Stack<Integer> stack = new Stack<>();
         int n = temperatures.length;
         int[] result = new int[n];
 
         for (int idx = n - 1; idx >= 0; idx--) {
 
-            // Popping all indices with a lower or equal
-            // temperature than the current index
-            while (!helperStack.isEmpty()
-                    && temperatures[idx] >= temperatures[helperStack.peek()]) {
-                helperStack.pop();
+            // Pop all indices with a lower or equal temperature than the current index
+            while (!stack.isEmpty()
+                    && temperatures[idx] >= temperatures[stack.peek()]) {
+                stack.pop();
             }
 
-            // If the stack still has elements,
-            // then the next warmer temperature exists!
-            if (!helperStack.isEmpty()) {
-                result[idx] = helperStack.peek() - idx;
+            // If the stack still has elements, then the next warmer temperature exists!
+            if (!stack.isEmpty()) {
+                result[idx] = stack.peek() - idx;
             }
 
             // Inserting current index in the stack
-            helperStack.push(idx);
+            stack.push(idx);
         }
-
         return result;
     }
 }

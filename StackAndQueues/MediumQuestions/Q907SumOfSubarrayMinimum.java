@@ -22,6 +22,7 @@ Output: 444
 public class Q907SumOfSubarrayMinimum {
 
     public int sumSubarrayMins(int[] arr) {
+        
         int[] nse = findNSE(arr);
         int[] pse = findPSE(arr);
         long total = 0;
@@ -37,6 +38,7 @@ public class Q907SumOfSubarrayMinimum {
 
     // Function to find the next smaller elements
     public int[] findNSE(int[] arr) {
+        
         int n = arr.length;
         int[] nse = new int[n];
         Stack<Integer> stack = new Stack<>();
@@ -48,5 +50,21 @@ public class Q907SumOfSubarrayMinimum {
             stack.push(i);
         }
         return nse;
+    }
+
+    // Function to find the previous smaller or equal elements
+    public int[] findPSE(int[] arr) {
+        
+        int n = arr.length;
+        int[] pse = new int[n];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < n; i++) {
+            while (!stack.isEmpty() && arr[stack.peek()] > arr[i])
+                stack.pop();
+            pse[i] = stack.isEmpty() ? -1 : stack.peek();
+            stack.push(i);
+        }
+        return pse;
     }
 }

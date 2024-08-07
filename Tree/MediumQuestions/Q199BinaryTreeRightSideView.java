@@ -29,5 +29,16 @@ public class Q199BinaryTreeRightSideView {
         return result;
     }
 
+    public void rightView(TreeNode root, List<Integer> result, int level){
+        
+        if(root == null)
+            return;
     
+        if(level == result.size())
+            result.add(root.val);
+        
+        rightView(root.right, result, level + 1);
+        rightView(root.left, result, level + 1);
+        
+    }
 }

@@ -39,6 +39,22 @@ public class Q199BinaryTreeRightSideView {
         
         rightView(root.right, result, level + 1);
         rightView(root.left, result, level + 1);
-        
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }

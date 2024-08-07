@@ -19,4 +19,17 @@ Output: 444
 
 public class Q907SumOfSubarrayMinimum {
     
+    public int sumSubarrayMins(int[] arr) {
+        int[] nse = findNSE(arr);
+        int[] pse = findPSE(arr);
+        long total = 0;
+        int mod = 1000000007;
+
+        for (int i = 0; i < arr.length; i++) {
+            int left = i - pse[i];
+            int right = nse[i] - i;
+            total = (total + (right * left * 1L * arr[i]) % mod) % mod;
+        }
+        return (int) total;
+    }
 }

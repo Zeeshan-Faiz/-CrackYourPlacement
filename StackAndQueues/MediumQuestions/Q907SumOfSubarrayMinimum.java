@@ -1,5 +1,7 @@
 package StackAndQueues.MediumQuestions;
 
+import java.util.Stack;
+
 /*
 Given an array of integers arr, find the sum of min(b), where b ranges over every 
 (contiguous) subarray of arr. Since the answer may be large, return the answer modulo 109 + 7.
@@ -18,7 +20,7 @@ Output: 444
 */
 
 public class Q907SumOfSubarrayMinimum {
-    
+
     public int sumSubarrayMins(int[] arr) {
         int[] nse = findNSE(arr);
         int[] pse = findPSE(arr);
@@ -31,5 +33,20 @@ public class Q907SumOfSubarrayMinimum {
             total = (total + (right * left * 1L * arr[i]) % mod) % mod;
         }
         return (int) total;
+    }
+
+    // Function to find the next smaller elements
+    public int[] findNSE(int[] arr) {
+        int n = arr.length;
+        int[] nse = new int[n];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            while (!stack.isEmpty() && arr[stack.peek()] >= arr[i])
+                stack.pop();
+            nse[i] = stack.isEmpty() ? n : stack.peek();
+            stack.push(i);
+        }
+        return nse;
     }
 }

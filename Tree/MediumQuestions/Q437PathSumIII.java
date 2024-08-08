@@ -1,5 +1,7 @@
 package Tree.MediumQuestions;
 
+import java.util.HashMap;
+
 /*
 Given the root of a binary tree and an integer targetSum, return the number of paths where 
 the sum of the values along the path equals targetSum.
@@ -18,4 +20,13 @@ Output: 3
 
 public class Q437PathSumIII {
     
+    int count = 0;
+    int k;
+    HashMap<Long, Integer> h = new HashMap();
+
+    public int pathSum(TreeNode root, int sum) {
+        k = sum;
+        preorder(root, 0);
+        return count;
+    }
 }

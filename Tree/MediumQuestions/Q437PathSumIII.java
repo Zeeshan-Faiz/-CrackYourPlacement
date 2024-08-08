@@ -22,28 +22,49 @@ public class Q437PathSumIII {
     
     int count = 0;
     int k;
-    HashMap<Long, Integer> h = new HashMap();
+    HashMap<Long, Integer> map = new HashMap<>();
 
     public int pathSum(TreeNode root, int sum) {
+        
         k = sum;
         preorder(root, 0);
         return count;
     }
 
     public void preorder(TreeNode node, long currSum) {
+        
         if (node == null)
             return;
+        
         currSum += node.val;
         if (currSum == k)
             count++;
 
         //count the prefix sum
-        count += h.getOrDefault(currSum - k, 0);
-        h.put(currSum, h.getOrDefault(currSum, 0) + 1);
+        count += map.getOrDefault(currSum - k, 0);
+        map.put(currSum, map.getOrDefault(currSum, 0) + 1);
+        
         preorder(node.left, currSum);
         preorder(node.right, currSum);
 
         // backtrack once you reach leaf node
-        h.put(currSum, h.get(currSum) - 1);
+        map.put(currSum, map.get(currSum) - 1);
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }

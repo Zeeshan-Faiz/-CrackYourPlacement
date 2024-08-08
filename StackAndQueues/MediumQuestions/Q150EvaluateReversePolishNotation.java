@@ -42,19 +42,24 @@ public class Q150EvaluateReversePolishNotation {
 
         Stack<Integer> stack = new Stack<>();
 
-        for (String c : tokens) {
-            if (c.equals("+")) {
+        for (String ch : tokens) 
+        {
+            if (ch.equals("+")) {
                 stack.push(stack.pop() + stack.pop());
-            } else if (c.equals("-")) {
+            } 
+            else if (ch.equals("-")) {
                 int a = stack.pop(), b = stack.pop();
                 stack.push(b - a);
-            } else if (c.equals("*")) {
+            } 
+            else if (ch.equals("*")) {
                 stack.push(stack.pop() * stack.pop());
-            } else if (c.equals("/")) {
+            } 
+            else if (ch.equals("/")) {
                 int a = stack.pop(), b = stack.pop();
                 stack.push(b / a);
-            } else {
-                stack.push(Integer.parseInt(c));
+            } 
+            else {
+                stack.push(Integer.parseInt(ch));
             }
         }
         return stack.peek();

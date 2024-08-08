@@ -1,5 +1,7 @@
 package StackAndQueues.EasyQuestions;
 
+import java.util.Stack;
+
 /*
 Implement a first in first out (FIFO) queue using only two stacks. The implemented queue 
 should support all the functions of a normal queue (push, peek, pop, and empty).
@@ -34,4 +36,31 @@ myQueue.empty(); // return false
 
 public class Q232ImplementQueueUsingStack {
     
+    private final Stack<Integer> input;
+    private final Stack<Integer> output;
+
+    public MyQueue() {
+        input = new Stack<>();
+        output = new Stack<>();
+    }
+
+    public void push(int x) {
+        input.push(x);
+    }
+
+    public int pop() {
+        peek();
+        return output.pop();
+    }
+
+    public int peek() {
+        if (output.empty())
+            while (!input.empty())
+                output.push(input.pop());
+        return output.peek();
+    }
+
+    public boolean empty() {
+        return input.empty() && output.empty();
+    }
 }

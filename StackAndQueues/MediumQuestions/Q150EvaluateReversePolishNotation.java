@@ -41,7 +41,6 @@ public class Q150EvaluateReversePolishNotation {
     public int evalRPN(String[] tokens) {
 
         Stack<Integer> stack = new Stack<>();
-
         for (String ch : tokens) 
         {
             if (ch.equals("+")) {

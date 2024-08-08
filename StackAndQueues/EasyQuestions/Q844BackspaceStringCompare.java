@@ -26,15 +26,15 @@ public class Q844BackspaceStringCompare {
         return getActual(s).equals(getActual(t));
     }
 
-    private String getActual(String input) {
+    private String getActual(String str) {
 
         StringBuilder actualString = new StringBuilder();
         int hashCount = 0;
 
-        for (int i = input.length() - 1; i >= 0; i--) {
+        for (int i = str.length() - 1; i >= 0; i--) {
 
             // Keep a count of backspace characters
-            if (input.charAt(i) == '#') {
+            if (str.charAt(i) == '#') {
                 hashCount++;
                 continue;
             }
@@ -42,12 +42,12 @@ public class Q844BackspaceStringCompare {
             // If backspace count > 0 reduce it and skip the character
             if (hashCount > 0) {
                 hashCount--;
-            } else {
+            } 
+            else {
                 // If no backspace, just insert at beginning
-                actualString.insert(0, input.charAt(i));
+                actualString.insert(0, str.charAt(i));
             }
         }
-
         return actualString.toString();
     }
 }

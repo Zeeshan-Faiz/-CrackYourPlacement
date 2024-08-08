@@ -29,4 +29,21 @@ public class Q437PathSumIII {
         preorder(root, 0);
         return count;
     }
+
+    public void preorder(TreeNode node, long currSum) {
+        if (node == null)
+            return;
+        currSum += node.val;
+        if (currSum == k)
+            count++;
+
+        //count the prefix sum
+        count += h.getOrDefault(currSum - k, 0);
+        h.put(currSum, h.getOrDefault(currSum, 0) + 1);
+        preorder(node.left, currSum);
+        preorder(node.right, currSum);
+
+        // backtrack once you reach leaf node
+        h.put(currSum, h.get(currSum) - 1);
+    }
 }

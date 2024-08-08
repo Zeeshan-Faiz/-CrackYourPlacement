@@ -1,5 +1,7 @@
 package StackAndQueues.MediumQuestions;
 
+import java.util.Stack;
+
 /*
 You are given an array of strings tokens that represents an arithmetic expression in a Reverse Polish Notation.
 Evaluate the expression. Return an integer that represents the value of the expression.
@@ -35,5 +37,26 @@ Explanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
 */
 
 public class Q150EvaluateReversePolishNotation {
-    
+
+    public int evalRPN(String[] tokens) {
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (String c : tokens) {
+            if (c.equals("+")) {
+                stack.push(stack.pop() + stack.pop());
+            } else if (c.equals("-")) {
+                int a = stack.pop(), b = stack.pop();
+                stack.push(b - a);
+            } else if (c.equals("*")) {
+                stack.push(stack.pop() * stack.pop());
+            } else if (c.equals("/")) {
+                int a = stack.pop(), b = stack.pop();
+                stack.push(b / a);
+            } else {
+                stack.push(Integer.parseInt(c));
+            }
+        }
+        return stack.peek();
+    }
 }

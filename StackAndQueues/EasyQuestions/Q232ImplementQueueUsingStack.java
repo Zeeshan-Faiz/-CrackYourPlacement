@@ -39,7 +39,7 @@ public class Q232ImplementQueueUsingStack {
     private final Stack<Integer> input;
     private final Stack<Integer> output;
 
-    public MyQueue() {
+    public Q232ImplementQueueUsingStack() {
         input = new Stack<>();
         output = new Stack<>();
     }
@@ -54,6 +54,8 @@ public class Q232ImplementQueueUsingStack {
     }
 
     public int peek() {
+        //if output stack is empty then pull all elements from input stack to output stack
+        //and we get the first element to be peeked to
         if (output.empty())
             while (!input.empty())
                 output.push(input.pop());

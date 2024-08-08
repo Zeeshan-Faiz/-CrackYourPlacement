@@ -38,15 +38,16 @@ public class Q225ImplementStackUsingQueue {
     
     private Queue<Integer> queue;
 
-    public MyStack() {
+    public Q225ImplementStackUsingQueue() {
         queue = new LinkedList<>();
     }
 
     public void push(int x) {
+        //add one element and then insert all other elements from back to make the currently
+        //added element to appear in front
         queue.add(x);
         for (int i = 1; i < queue.size(); i++)
             queue.add(queue.remove());
-
     }
 
     public int pop() {

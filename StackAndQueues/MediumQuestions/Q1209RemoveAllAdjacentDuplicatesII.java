@@ -9,7 +9,21 @@ Return the final string after all such duplicate removals have been made. It is 
 that the answer is unique.
 
 Example 1:
+Input: s = "abcd", k = 2
+Output: "abcd"
+Explanation: There's nothing to delete.
 
+Example 2:
+Input: s = "deeedbbcccbdaa", k = 3
+Output: "aa"
+Explanation: 
+First delete "eee" and "ccc", get "ddbbbdaa"
+Then delete "bbb", get "dddaa"
+Finally delete "ddd", get "aa"
+
+Example 3:
+Input: s = "pbbcggttciiippooaais", k = 2
+Output: "ps"
 */
 
 public class Q1209RemoveAllAdjacentDuplicatesII {

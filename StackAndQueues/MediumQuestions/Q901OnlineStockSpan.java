@@ -1,5 +1,8 @@
 package StackAndQueues.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Design an algorithm that collects daily price quotes for some stock and returns the span of 
 that stock's price for the current day.
@@ -37,4 +40,20 @@ stockSpanner.next(85);  // return 6
 
 public class Q901OnlineStockSpan {
     
+    List<Integer> list;
+
+    public Q901OnlineStockSpan() {
+        this.list = new ArrayList<>();
+    }
+
+    public int next(int price) {
+        list.add(price);
+        int count = 0;
+        for (int i = list.size() - 1; i >= 0; i--) {
+            if (list.get(i) > price)
+                break;
+            count++;
+        }
+        return count;
+    }
 }

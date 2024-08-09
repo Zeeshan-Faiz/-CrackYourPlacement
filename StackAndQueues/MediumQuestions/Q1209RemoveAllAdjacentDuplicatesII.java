@@ -31,31 +31,32 @@ Output: "ps"
 public class Q1209RemoveAllAdjacentDuplicatesII {
     
     public String removeDuplicates(String s, int k) {
-        Stack<int[]> main = new Stack<>();
+        
+        Stack<int[]> stack = new Stack<>();
+        for (char ch : s.toCharArray()) 
+        {
+            //increase frequency of the character in stack
+            if (!stack.isEmpty() && stack.peek()[0] == ch)
+                stack.peek()[1]++;
+            else
+                //add new character with frequency 1 in the stack
+                stack.push(new int[] { ch, 1 });
 
-        for (char c : s.toCharArray()) {
-            if (!main.isEmpty() && main.peek()[0] == c) {
-                main.peek()[1]++;
-            } else {
-                main.push(new int[] { c, 1 });
-            }
-
-            if (main.peek()[1] == k) {
-                main.pop();
-            }
+            //if frequency equals k remove the character
+            if (stack.peek()[1] == k)
+                stack.pop();
         }
 
         StringBuilder sb = new StringBuilder();
-
-        while (!main.isEmpty()) {
-            int[] top = main.pop();
-
+        while (!stack.isEmpty()) 
+        {
+            int[] top = stack.pop();
             while (top[1] > 0){
+                //add all elements occurred less than k time together
                 sb.append((char) top[0]);
                 top[1]--;
             }
         }
-
         return sb.reverse().toString();
     }
 }

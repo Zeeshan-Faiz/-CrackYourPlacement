@@ -8,7 +8,17 @@ You need to return the index of the celebrity in the party, if the celebrity doe
 return -1.
 
 Example 1:
+Input: mat[][] = [[0 1 0],
+                [0 0 0], 
+                [0 1 0]]
+Output: 1
+Explanation: 0th and 2nd person both know 1. Therefore, 1 is the celebrity. 
 
+Example 2:
+Input: mat[][] = [[0 1],
+                [1 0]]
+Output: -1
+Explanation: The two people at the party both know each other. None of them is a celebrity.
 */
 
 public class TheCelebrityProblem {

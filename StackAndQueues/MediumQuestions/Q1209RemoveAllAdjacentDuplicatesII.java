@@ -1,5 +1,7 @@
 package StackAndQueues.MediumQuestions;
 
+import java.util.Stack;
+
 /*
 You are given a string s and an integer k, a k duplicate removal consists of choosing k 
 adjacent and equal letters from s and removing them, causing the left and the right side of 
@@ -28,4 +30,32 @@ Output: "ps"
 
 public class Q1209RemoveAllAdjacentDuplicatesII {
     
+    public String removeDuplicates(String s, int k) {
+        Stack<int[]> main = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (!main.isEmpty() && main.peek()[0] == c) {
+                main.peek()[1]++;
+            } else {
+                main.push(new int[] { c, 1 });
+            }
+
+            if (main.peek()[1] == k) {
+                main.pop();
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        while (!main.isEmpty()) {
+            int[] top = main.pop();
+
+            while (top[1] > 0){
+                sb.append((char) top[0]);
+                top[1]--;
+            }
+        }
+
+        return sb.reverse().toString();
+    }
 }

@@ -39,7 +39,7 @@ stockSpanner.next(85);  // return 6
 */
 
 public class Q901OnlineStockSpan {
-    
+
     List<Integer> list;
 
     public Q901OnlineStockSpan() {
@@ -47,6 +47,7 @@ public class Q901OnlineStockSpan {
     }
 
     public int next(int price) {
+        
         list.add(price);
         int count = 0;
         for (int i = list.size() - 1; i >= 0; i--) {

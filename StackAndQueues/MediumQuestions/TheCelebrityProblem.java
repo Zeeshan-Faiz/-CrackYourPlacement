@@ -22,28 +22,26 @@ Explanation: The two people at the party both know each other. None of them is a
 */
 
 public class TheCelebrityProblem {
-    
+
     public int celebrity(int mat[][]) {
+        
         int n = mat.length;
-    int candidate = 0;
+        int candidate = 0;
 
-    // Step 1: Identify a potential celebrity
-    for (int i = 1; i < n; i++) {
-        if (mat[candidate][i] == 1) {
-            candidate = i;  // candidate can't be a celebrity, i might be
-        }
-    }
-
-    // Step 2: Verify the candidate
-    for (int i = 0; i < n; i++) {
-        if (i != candidate) {
-            // candidate should not know i, and everyone should know candidate
-            if (mat[candidate][i] == 1 || mat[i][candidate] == 0) {
-                return -1;
+        // Step 1: Identify a potential celebrity
+        for (int i = 1; i < n; i++) {
+            if (mat[candidate][i] == 1) {
+                candidate = i; // candidate can't be a celebrity, i might be
             }
         }
-    }
-
-    return candidate;
+        // Step 2: Verify the candidate
+        for (int i = 0; i < n; i++) {
+            if (i != candidate) {
+                // candidate should not know i, and everyone should know candidate
+                if (mat[candidate][i] == 1 || mat[i][candidate] == 0)
+                    return -1;
+            }
+        }
+        return candidate;
     }
 }

@@ -36,10 +36,10 @@ lRUCache.get(4);    // return 4
 public class Q146LRUCache {
 
     Node head = new Node(0, 0), tail = new Node(0, 0);
-    Map<Integer, Node> map = new HashMap();
+    Map<Integer, Node> map = new HashMap<>();
     int capacity;
 
-    public LRUCache(int _capacity) {
+    public Q146LRUCache(int _capacity) {
         capacity = _capacity;
         head.next = tail;
         tail.prev = head;

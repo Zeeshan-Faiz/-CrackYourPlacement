@@ -3,7 +3,6 @@ package StackAndQueues.MediumQuestions;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Stack;
 
 /*
 You are given a nested list of integers nestedList. Each element is either an integer or a list 
@@ -38,7 +37,7 @@ public class Q341FlattenNestedListIterator implements Iterator<Integer> {
     List<Integer> flattenList = null;
     int current = 0;
 
-    public NestedIterator(List<NestedInteger> nestedList) {
+    public Q341FlattenNestedListIterator(List<NestedInteger> nestedList) {
         flattenList = new ArrayList<>();
         for (NestedInteger integer : nestedList) {
             helper(integer);
@@ -56,10 +55,10 @@ public class Q341FlattenNestedListIterator implements Iterator<Integer> {
     }
 
     private void helper(NestedInteger value) {
+        
         //if element is integer directly add in the output list
-        if (value.isInteger()) {
+        if (value.isInteger())
             flattenList.add(value.getInteger());
-        } 
         else 
         {
             //it's a list so recursively call the helper function and do the same procedure
@@ -69,5 +68,10 @@ public class Q341FlattenNestedListIterator implements Iterator<Integer> {
         }
     }
 
+    public interface NestedInteger {
 
+        public boolean isInteger();
+        public Integer getInteger();
+        public List<NestedInteger> getList();
+    }
 }

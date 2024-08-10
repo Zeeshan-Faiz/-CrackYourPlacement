@@ -50,5 +50,24 @@ public class Q341FlattenNestedListIterator implements Iterator<Integer> {
         return flattenList.get(current++);
     }
 
+    @Override
+    public boolean hasNext() {
+        return current < flattenList.size();
+    }
+
+    private void helper(NestedInteger value) {
+        //if element is integer directly add in the output list
+        if (value.isInteger()) {
+            flattenList.add(value.getInteger());
+        } 
+        else 
+        {
+            //it's a list so recursively call the helper function and do the same procedure
+            for (NestedInteger integer : value.getList()) {
+                helper(integer);
+            }
+        }
+    }
+
 
 }

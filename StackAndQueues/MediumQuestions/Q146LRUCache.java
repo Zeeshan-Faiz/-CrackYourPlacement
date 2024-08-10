@@ -54,15 +54,14 @@ public class Q146LRUCache {
             remove(node);
             insert(node);
             return node.value;
-        } else {
+        } 
+        else
             return -1;
-        }
     }
 
     public void put(int key, int value) {
 
-        // if map already has a given key just insert it back to the front with the new
-        // value
+        // if map already has a given key just insert it back to the front with the new value
         if (map.containsKey(key)) {
             remove(map.get(key));
         }

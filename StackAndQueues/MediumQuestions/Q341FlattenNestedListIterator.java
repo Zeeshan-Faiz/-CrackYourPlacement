@@ -1,5 +1,6 @@
 package StackAndQueues.MediumQuestions;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
@@ -34,14 +35,20 @@ Explanation: By calling next repeatedly until hasNext returns false, the order o
 
 public class Q341FlattenNestedListIterator implements Iterator<Integer> {
 
-    Stack<NestedInteger> stack = new Stack<NestedInteger>();
+    List<Integer> flattenList = null;
+    int current = 0;
 
     public NestedIterator(List<NestedInteger> nestedList) {
-        if (nestedList == null)
-            return;
-
-        for (int i = nestedList.size() - 1; i >= 0; i--) {
-            stack.push(nestedList.get(i));
+        flattenList = new ArrayList<>();
+        for (NestedInteger integer : nestedList) {
+            helper(integer);
         }
     }
+
+    @Override
+    public Integer next() {
+        return flattenList.get(current++);
+    }
+
+
 }

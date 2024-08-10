@@ -37,9 +37,24 @@ public class Q328OddEvenLinkedList {
             even.next = even.next.next;
             even = even.next;
         }
-
         // Assign even list at the end of odd list
         odd.next = evenHead;
         return head;
+    }
+
+    public class ListNode {
+        
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+        ListNode(int val) {
+            this.val = val;
+        }
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 }

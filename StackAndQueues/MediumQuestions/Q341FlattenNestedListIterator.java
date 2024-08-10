@@ -1,5 +1,9 @@
 package StackAndQueues.MediumQuestions;
 
+import java.util.Iterator;
+import java.util.List;
+import java.util.Stack;
+
 /*
 You are given a nested list of integers nestedList. Each element is either an integer or a list 
 whose elements may also be integers or other lists. Implement an iterator to flatten it.
@@ -28,6 +32,16 @@ Output: [1,4,6]
 Explanation: By calling next repeatedly until hasNext returns false, the order of elements returned by next should be: [1,4,6].
 */
 
-public class Q341FlattenNestedListIterator {
-    
+public class Q341FlattenNestedListIterator implements Iterator<Integer> {
+
+    Stack<NestedInteger> stack = new Stack<NestedInteger>();
+
+    public NestedIterator(List<NestedInteger> nestedList) {
+        if (nestedList == null)
+            return;
+
+        for (int i = nestedList.size() - 1; i >= 0; i--) {
+            stack.push(nestedList.get(i));
+        }
+    }
 }

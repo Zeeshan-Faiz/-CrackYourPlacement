@@ -17,5 +17,29 @@ Output: [2,3,6,7,1,5,4]
 */
 
 public class Q328OddEvenLinkedList {
-    
+
+    public ListNode oddEvenList(ListNode head) {
+
+        if (head == null)
+            return head;
+
+        ListNode odd = head;
+        ListNode even = head.next;
+        ListNode evenHead = even;
+
+        while (even != null && even.next != null) {
+
+            // Change pointers for odd list
+            odd.next = odd.next.next;
+            odd = odd.next;
+
+            // Change pointers for even list
+            even.next = even.next.next;
+            even = even.next;
+        }
+
+        // Assign even list at the end of odd list
+        odd.next = evenHead;
+        return head;
+    }
 }

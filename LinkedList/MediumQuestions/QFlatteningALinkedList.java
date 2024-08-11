@@ -10,7 +10,15 @@ order.
 Note: The flattened list will be printed using the bottom pointer instead of the next pointer. Look at the printList() function in the driver code for more clarity.
 
 Example 1:
-
+    5-> 10 -> 19 -> 28
+    |   |     |     |
+    7   20    22    35
+    |         |     |    
+    8         55    40
+    |               |
+    30              45
+Output:  5-> 7-> 8- > 10 -> 19-> 20-> 22-> 28-> 30-> 35-> 40-> 45-> 50.
+Explanation: The resultant linked lists has every node in a single level.(Note: | represents the bottom pointer.)
 */
 
 public class QFlatteningALinkedList {

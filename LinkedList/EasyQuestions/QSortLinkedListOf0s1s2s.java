@@ -19,9 +19,9 @@ public class QSortLinkedListOf0s1s2s {
             return head; 
 
         // Create three dummy ListNodes to point to beginning of three linked lists.
-        ListNode zeroHead = new ListNode(0);
-        ListNode oneHead = new ListNode(0); 
-        ListNode twoHead = new ListNode(0);
+        ListNode zeroHead = new ListNode(-1);
+        ListNode oneHead = new ListNode(-1); 
+        ListNode twoHead = new ListNode(-1);
 
         // Initialize current pointers for three lists 
         ListNode zero = zeroHead, one = oneHead, two = twoHead; 

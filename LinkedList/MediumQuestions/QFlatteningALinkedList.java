@@ -57,9 +57,7 @@ public class QFlatteningALinkedList {
                 b = b.bottom; 
             }
         }
-        
-        if(a != null) temp.bottom = a; 
-        else temp.bottom = b;
+        temp.bottom = (a != null) ? a : b; 
         return res.bottom; 
     }
 

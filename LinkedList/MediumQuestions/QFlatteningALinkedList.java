@@ -23,6 +23,22 @@ Explanation: The resultant linked lists has every node in a single level.(Note: 
 
 public class QFlatteningALinkedList {
     
+    Node flatten(Node root) {
+        
+        // recurse until you reach the last list
+        if (root == null || root.next == null) 
+                return root; 
+      
+            // recur for list on right 
+            root.next = flatten(root.next); 
+      
+            // now merge previous list with the current list
+            root = mergeTwoLists(root, root.next); 
+      
+            // return the root it will be in turn merged with its left 
+            return root; 
+    }
+
     Node mergeTwoLists(Node a, Node b) {
         
         Node temp = new Node(0);

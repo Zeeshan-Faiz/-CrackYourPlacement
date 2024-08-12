@@ -20,17 +20,17 @@ Output: [2,3,3,4]
 */
 
 public class Q1673FindTheMostCompetitiveSubseq {
-    
+
     public int[] mostCompetitive(int[] nums, int k) {
         int[] arr = new int[k];
         int j = 0;
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = 0; i < nums.length; i++) 
+        {
             while (j > 0 && arr[j - 1] > nums[i] && j + nums.length - i > k) {
                 j--;
             }
-            if (j < k) {
+            if (j < k)
                 arr[j++] = nums[i];
-            }
         }
         return arr;
     }

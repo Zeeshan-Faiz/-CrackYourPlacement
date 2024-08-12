@@ -23,19 +23,19 @@ public class Q424LongestRepeatingCharacterReplacement {
 
     public int characterReplacement(String s, int k) {
         
-        int[] arr = new int[26];
+        int[] freq = new int[26];
         char[] ans = s.toCharArray();
         int max = 0; // keep track of the maximum frequency of any single character
         int left = 0; 
 
         for (int right = 0; right < ans.length; right++) 
         {
-            arr[ans[right] - 'A']++; // Increment the frequency of the current character
-            max = Math.max(max, arr[ans[right] - 'A']);
+            freq[ans[right] - 'A']++; // Increment the frequency of the current character
+            max = Math.max(max, freq[ans[right] - 'A']);
 
             // If the number of characters to replace (j - i + 1 - max) is greater than k, shrink the window from the left
             while (right - left + 1 - max > k) {
-                arr[ans[left++] - 'A']--; // Decrement the frequency of the character at the start of the window and move the left pointer
+                freq[ans[left++] - 'A']--; // Decrement the frequency of the character at the start of the window and move the left pointer
             }
         }
         return ans.length - left;

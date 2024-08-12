@@ -28,17 +28,16 @@ public class Q424LongestRepeatingCharacterReplacement {
         int max = 0; // keep track of the maximum frequency of any single character
         int left = 0; 
 
-        for (int right = 0; right < ans.length; right++) {
+        for (int right = 0; right < ans.length; right++) 
+        {
             arr[ans[right] - 'A']++; // Increment the frequency of the current character
-            max = Math.max(max, arr[ans[right] - 'A']); // Update the maximum frequency of any character in the window
+            max = Math.max(max, arr[ans[right] - 'A']);
 
-            // If the number of characters to replace (j - i + 1 - max) is greater than k,
-            // shrink the window from the left
+            // If the number of characters to replace (j - i + 1 - max) is greater than k, shrink the window from the left
             while (right - left + 1 - max > k) {
-                arr[ans[left++] - 'A']--; // Decrement the frequency of the character at the start of the window and move
-                                       // the left pointer
+                arr[ans[left++] - 'A']--; // Decrement the frequency of the character at the start of the window and move the left pointer
             }
         }
-        return ans.length - left; // The length of the longest substring with at most k replacements
+        return ans.length - left;
     }
 }

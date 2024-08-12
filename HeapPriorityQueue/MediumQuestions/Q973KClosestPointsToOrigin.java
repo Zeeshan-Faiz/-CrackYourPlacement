@@ -26,8 +26,9 @@ Explanation: The answer [[-2,4],[3,3]] would also be accepted.
 */
 
 public class Q973KClosestPointsToOrigin {
-    
+
     public int[][] kClosest(int[][] points, int k) {
+        
         PriorityQueue<int[]> pq = new PriorityQueue<int[]>(
                 (a, b) -> (b[0] * b[0] + b[1] * b[1] - a[0] * a[0] - a[1] * a[1]));
 

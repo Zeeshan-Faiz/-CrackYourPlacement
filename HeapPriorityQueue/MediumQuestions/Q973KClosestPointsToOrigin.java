@@ -1,5 +1,7 @@
 package HeapPriorityQueue.MediumQuestions;
 
+import java.util.PriorityQueue;
+
 /*
 Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and 
 an integer k, return the k closest points to the origin (0, 0).
@@ -25,4 +27,23 @@ Explanation: The answer [[-2,4],[3,3]] would also be accepted.
 
 public class Q973KClosestPointsToOrigin {
     
+    public int[][] kClosest(int[][] points, int k) {
+        PriorityQueue<int[]> pq = new PriorityQueue<int[]>(
+                (a, b) -> (b[0] * b[0] + b[1] * b[1] - a[0] * a[0] - a[1] * a[1]));
+
+        for (int[] pt : points) {
+            pq.offer(pt);
+            if (pq.size() > k) {
+                pq.poll();
+            }
+        }
+
+        int[][] res = new int[k][2];
+        int count = 0;
+        while (!pq.isEmpty()) {
+            res[count] = pq.poll();
+            count++;
+        }
+        return res;
+    }
 }

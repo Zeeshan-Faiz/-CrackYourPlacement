@@ -20,5 +20,25 @@ There may exists other ways to achieve this answer too.
 */
 
 public class Q424LongestRepeatingCharacterReplacement {
-    
+
+    public int characterReplacement(String s, int k) {
+        
+        int[] arr = new int[26];
+        char[] ans = s.toCharArray();
+        int max = 0; // keep track of the maximum frequency of any single character
+        int left = 0; 
+
+        for (int right = 0; right < ans.length; right++) {
+            arr[ans[right] - 'A']++; // Increment the frequency of the current character
+            max = Math.max(max, arr[ans[right] - 'A']); // Update the maximum frequency of any character in the window
+
+            // If the number of characters to replace (j - i + 1 - max) is greater than k,
+            // shrink the window from the left
+            while (right - left + 1 - max > k) {
+                arr[ans[left++] - 'A']--; // Decrement the frequency of the character at the start of the window and move
+                                       // the left pointer
+            }
+        }
+        return ans.length - left; // The length of the longest substring with at most k replacements
+    }
 }

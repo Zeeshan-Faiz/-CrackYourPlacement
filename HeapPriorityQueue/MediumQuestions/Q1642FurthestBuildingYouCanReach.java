@@ -1,5 +1,7 @@
 package HeapPriorityQueue.MediumQuestions;
 
+import java.util.PriorityQueue;
+
 /*
 You are given an integer array heights representing the heights of buildings, some bricks, and some ladders.
 You start your journey from building 0 and move to the next building by possibly using bricks or ladders.
@@ -32,4 +34,25 @@ Output: 3
 
 public class Q1642FurthestBuildingYouCanReach {
     
+    public int furthestBuilding(int[] heights, int bricks, int ladders) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+
+        for (int i = 0; i < heights.length - 1; i++) {
+            int gap = heights[i + 1] - heights[i];
+            if (gap > 0) {
+                pq.add(gap);
+            }
+
+            // if ladders are not enough use bricks
+            if (pq.size() > ladders) {
+                bricks -= pq.poll();
+            }
+
+            // if bricks is also exhausted then return i
+            if (bricks < 0) {
+                return i;
+            }
+        }
+        return heights.length - 1;
+    }
 }

@@ -25,13 +25,14 @@ Explanation:
 */
 
 public class Q338CountingBits {
-    
+
     public int[] countBits(int n) {
         int[] ans = new int[n + 1];
         ans[0] = 0;
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++) 
+        {
             // count bits for i = y + (even/odd)
-            ans[i] = ans[i/2] + (i%2);
+            ans[i] = ans[i / 2] + (i % 2);
         }
         return ans;
     }

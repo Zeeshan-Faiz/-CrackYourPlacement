@@ -21,7 +21,7 @@ Explanation: There are three ways to climb to the top.
 */
 
 public class Q70ClimbingStairs {
-    
+
     public int climbStairs(int n) {
 
         if (n == 1)
@@ -34,7 +34,6 @@ public class Q70ClimbingStairs {
         for (int i = 3; i <= n; i++) {
             dp[i] = dp[i - 1] + dp[i - 2];
         }
-
         return dp[n];
     }
 }

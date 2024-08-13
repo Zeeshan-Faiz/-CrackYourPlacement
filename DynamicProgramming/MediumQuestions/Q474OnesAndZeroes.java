@@ -21,5 +21,20 @@ Explanation: The largest subset is {"0", "1"}, so the answer is 2.
 
 public class Q474OnesAndZeroes {
     
-    
+    public int findMaxForm(String[] strs, int M, int N) {
+
+        int[][] dp = new int[M + 1][N + 1];
+        for (String str : strs) {
+            int zeros = 0, ones = 0;
+            for (char c : str.toCharArray())
+                if (c == '0')
+                    zeros++;
+                else
+                    ones++;
+            for (int i = M; i >= zeros; i--)
+                for (int j = N; j >= ones; j--)
+                    dp[i][j] = Math.max(dp[i][j], dp[i - zeros][j - ones] + 1);
+        }
+        return dp[M][N];
+    }
 }

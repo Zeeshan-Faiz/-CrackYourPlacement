@@ -23,8 +23,7 @@ public class Q152MaximumProductSubArray {
             return 0;
 
         int n = nums.length;
-        long leftProd = 1;
-        long rightProd = 1;
+        long leftProd = 1, rightProd = 1;
         long maxProd = nums[0];
 
         for (int i = 0; i < n; i++) {

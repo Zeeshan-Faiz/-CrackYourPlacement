@@ -35,15 +35,15 @@ public class Q62UniquePaths {
             Arrays.fill(row, -1);
 
         // Start the recursive calculation from the bottom-right cell (m-1, n-1)
-        return countWaysUtil(m - 1, n - 1, dp);
+        return helper(m - 1, n - 1, dp);
     }
 
-    public int countWaysUtil(int i, int j, int[][] dp) {
-        // If we reach the starting cell (0, 0), there's one way to reach it.
+    public int helper(int i, int j, int[][] dp) {
+        
+        // If we reach the target cell (0, 0) return 1.
         if (i == 0 && j == 0)
             return 1;
 
-        // If we go out of bounds, there's no way to reach the cell.
         if (i < 0 || j < 0)
             return 0;
 
@@ -52,8 +52,8 @@ public class Q62UniquePaths {
             return dp[i][j];
 
         // Calculate the number of ways by moving up and moving left.
-        int up = countWaysUtil(i - 1, j, dp);
-        int left = countWaysUtil(i, j - 1, dp);
+        int up = helper(i - 1, j, dp);
+        int left = helper(i, j - 1, dp);
 
         // Store the result in the DP array and return it.
         return dp[i][j] = up + left;

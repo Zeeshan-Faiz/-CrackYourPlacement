@@ -1,5 +1,7 @@
 package DynamicProgramming.MediumQuestions;
 
+import java.util.Arrays;
+
 /*
 The chess knight has a unique movement, it may move two squares vertically and one square 
 horizontally, or two squares horizontally and one square vertically (with both forming the shape 
@@ -28,4 +30,26 @@ Explanation: Please take care of the mod.
 
 public class Q935KnightDialer {
     
+    public int knightDialer(int n) {
+        final int MOD = (int)1e9 + 7;
+        int[][] moves = { { 4, 6 }, { 6, 8 }, { 7, 9 }, { 4, 8 }, { 0, 3, 9 }, {}, { 0, 1, 7 }, { 2, 6 }, { 1, 3 },
+                { 2, 4 } };
+        int[][] dp = new int[n][10];
+        Arrays.fill(dp[0], 1);
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 0; j < 10; j++) {
+                for (int next : moves[j]) {
+                    dp[i][j] = (dp[i][j] + dp[i - 1][next]) % MOD;
+                }
+            }
+        }
+
+        int result = 0;
+        for (int count : dp[n - 1]) {
+            result = (result + count) % MOD;
+        }
+
+        return result;
+    }
 }

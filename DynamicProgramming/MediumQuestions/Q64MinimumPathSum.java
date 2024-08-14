@@ -34,12 +34,17 @@ public class Q64MinimumPathSum {
 
     private int helper(int i, int j, int[][] matrix, int[][] dp) {
 
+        // If we're at the top-left cell, return its value
         if (i == 0 && j == 0)
-            return matrix[0][0]; // If we're at the top-left cell, return its value
+            return matrix[0][0]; 
+
+        // If we're out of bounds, return a large value
         if (i < 0 || j < 0)
-            return (int) Math.pow(10, 9); // If we're out of bounds, return a large value
+            return (int) Math.pow(10, 9); 
+
+        // If we've already calculated this cell, return the stored result
         if (dp[i][j] != -1)
-            return dp[i][j]; // If we've already calculated this cell, return the stored result
+            return dp[i][j]; 
 
         // Calculate the sum of the current cell plus the minimum sum path from above and from the left
         int up = matrix[i][j] + helper(i - 1, j, matrix, dp);

@@ -44,9 +44,8 @@ public class Q91DecodeWays {
     
     public int numDecodings(String s) {
         
-        if (s == null || s.length() == 0 || s.charAt(0) == '0') {
+        if (s == null || s.length() == 0 || s.charAt(0) == '0')
             return 0;
-        }
 
         int n = s.length();
         int[] dp = new int[n + 1];

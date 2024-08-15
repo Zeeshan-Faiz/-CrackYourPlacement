@@ -26,7 +26,7 @@ public class QLongestCommonSubstring {
         for (int i = 1; i <= str1.length; i++) {
             for (int j = 1; j <= str2.length; j++) {
 
-                // If numbers are equal
+                // If characters are equal
                 if (str1[i - 1] == str2[j - 1]) {
                     // Get the number from diagonally opposite and add 1
                     dp[i][j] = dp[i - 1][j - 1] + 1;

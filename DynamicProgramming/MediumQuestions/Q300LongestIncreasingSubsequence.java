@@ -1,5 +1,7 @@
 package DynamicProgramming.MediumQuestions;
 
+import java.util.Arrays;
+
 /*
 Given an integer array nums, return the length of the longest strictly increasing subsequence.
 
@@ -18,27 +20,29 @@ Output: 1
 */
 
 public class Q300LongestIncreasingSubsequence {
-    
+
     public int lengthOfLIS(int[] nums) {
-        int[] T = new int[nums.length];
+        
+        int[] dp = new int[nums.length];
+        Arrays.fill(dp,1);
 
         // Start main pointer
-        for (int i = 1; i < nums.length; i++){
-
+        for (int i = 1; i < nums.length; i++) 
+        {
             // Start second pointer
-            for (int j = 0; j < i; j++)
-                if (nums[i] > nums[j])
-                    if (T[j] + 1 > T[i])
-                        T[i] = T[j] + 1;
-            
+            for (int j = 0; j < i; j++){
+                if (nums[i] > nums[j]){
+                    if (dp[j] + 1 > dp[i])
+                        dp[i] = dp[j] + 1;
+                }
+            }
         }
-
         // find the max value
         int maxIndex = 0;
-        for (int i = 0; i < T.length; i++)
-            if (T[i] > T[maxIndex])
+        for (int i = 0; i < dp.length; i++)
+            if (dp[i] > dp[maxIndex])
                 maxIndex = i;
 
-        return T[maxIndex] + 1;
+        return dp[maxIndex];
     }
 }

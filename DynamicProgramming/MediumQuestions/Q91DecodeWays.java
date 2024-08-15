@@ -49,7 +49,7 @@ public class Q91DecodeWays {
 
         int n = s.length();
         int[] dp = new int[n + 1];
-        dp[0] = 1; // length of string 0 can be decoded only in 1 way
+        dp[0] = 1; // String of length 0 can be decoded only in 1 way
         dp[1] = 1;
 
         for (int i = 2; i <= n; ++i) 

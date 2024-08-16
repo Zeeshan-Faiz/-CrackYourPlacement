@@ -34,18 +34,20 @@ Total number of squares = 6 + 1 = 7.
 public class Q1277CountSquareSubMatrixWithOnes {
 
     public int countSquares(int[][] matrix) {
+        
         int n = matrix.length;
         int m = matrix[0].length;
         int dp[][] = new int[n][m];
 
+        //fill first column and first row as is
         for (int i = 0; i < m; i++)
             dp[0][i] = matrix[0][i];
-
         for (int i = 0; i < n; i++)
             dp[i][0] = matrix[i][0];
 
         for (int i = 1; i < n; i++) {
-            for (int j = 1; j < m; j++) {
+            for (int j = 1; j < m; j++) 
+            {
                 if (matrix[i][j] == 0)
                     dp[i][j] = 0;
                 else
@@ -53,11 +55,12 @@ public class Q1277CountSquareSubMatrixWithOnes {
             }
         }
 
-        int ct = 0;
+        int count = 0;
+        //traverse the dp matrix and count all elements
         for (int j = 0; j < n; j++)
             for (int i = 0; i < m; i++)
-                ct += dp[j][i];
+                count += dp[j][i];
 
-        return ct;
+        return count;
     }
 }

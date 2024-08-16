@@ -57,9 +57,9 @@ public class Q1277CountSquareSubMatrixWithOnes {
 
         int count = 0;
         //traverse the dp matrix and count all elements
-        for (int j = 0; j < n; j++)
-            for (int i = 0; i < m; i++)
-                count += dp[j][i];
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < m; j++)
+                count += dp[i][j];
 
         return count;
     }

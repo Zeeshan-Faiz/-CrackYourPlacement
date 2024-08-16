@@ -16,5 +16,19 @@ Explanation: The array cannot be partitioned into equal sum subsets.
 */
 
 public class Q416PartitionEqualSubsetSum {
-    
+
+    public boolean canPartition(int[] nums) {
+        
+        int totalSum = 0;
+        for (int n : nums)
+            totalSum += n;
+
+        if (totalSum % 2 != 0)
+            return false;
+
+        int subSetSum = totalSum / 2;
+        Boolean[][] dp = new Boolean[nums.length][subSetSum + 1];
+
+        return dfs(1, subSetSum, nums, dp);
+    }
 }

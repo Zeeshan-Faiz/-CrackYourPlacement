@@ -29,10 +29,10 @@ public class Q416PartitionEqualSubsetSum {
         int subSetSum = totalSum / 2;
         Boolean[][] dp = new Boolean[nums.length][subSetSum + 1];
 
-        return dfs(1, subSetSum, nums, dp);
+        return helper(1, subSetSum, nums, dp);
     }
 
-    public boolean dfs(int idx, int subSetSum, int[] nums, Boolean[][] dp) {
+    public boolean helper(int idx, int subSetSum, int[] nums, Boolean[][] dp) {
         
         if (subSetSum == 0)
             return true;
@@ -44,8 +44,8 @@ public class Q416PartitionEqualSubsetSum {
             return dp[idx][subSetSum];
 
         //take current element or skip it
-        boolean result = dfs(idx + 1, subSetSum - nums[idx], nums, dp) ||
-                dfs(idx + 1, subSetSum, nums, dp);
+        boolean result = helper(idx + 1, subSetSum - nums[idx], nums, dp) ||
+                helper(idx + 1, subSetSum, nums, dp);
 
         return dp[idx][subSetSum] = result;
     }

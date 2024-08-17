@@ -1,5 +1,7 @@
 package Greedy.MediumQuestions;
 
+import java.util.Arrays;
+
 /*
 You are given an array of CPU tasks, each represented by letters A to Z, and a cooling time, n. 
 Each cycle or interval allows the completion of one task. Tasks can be completed in any order, but 
@@ -27,4 +29,19 @@ There are only two types of tasks, A and B, which need to be separated by 3 inte
 
 public class Q621TaskScheduler {
     
+    public int leastInterval(char[] tasks, int n) {
+
+        int[] f = new int[26];
+        for (char task : tasks)
+            f[task - 'A']++;
+
+        Arrays.sort(f);
+        int chunk = f[25] - 1;
+        int idleSpots = chunk * n;
+
+        for (int i = 24; i >= 0; i--)
+            idleSpots -= Math.min(chunk, f[i]);
+
+        return idleSpots < 0 ? tasks.length : idleSpots + tasks.length;
+    }
 }

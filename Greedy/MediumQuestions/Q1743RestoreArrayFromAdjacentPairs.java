@@ -1,5 +1,10 @@
 package Greedy.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /*
 There is an integer array nums that consists of n unique elements, but you have forgotten it. 
 However, you do remember every pair of adjacent elements in nums.
@@ -28,4 +33,36 @@ Output: [100000,-100000]
 
 public class Q1743RestoreArrayFromAdjacentPairs {
     
+    public int[] restoreArray(int[][] a) {
+        int n = a.length + 1;
+        int[] ans = new int[n];
+        Map<Integer, List<Integer>> graph = new HashMap<>();
+
+        // Build the graph
+        for (int[] pair : a) {
+            graph.computeIfAbsent(pair[0], k -> new ArrayList<>()).add(pair[1]);
+            graph.computeIfAbsent(pair[1], k -> new ArrayList<>()).add(pair[0]);
+        }
+
+        // Find the start element
+        int start = 0;
+        for (Map.Entry<Integer, List<Integer>> entry : graph.entrySet()) {
+            if (entry.getValue().size() == 1) {
+                start = entry.getKey();
+                break;
+            }
+        }
+
+        // Reconstruct the array
+        ans[0] = start;
+        int prev = -1;
+        for (int i = 1; i < n; i++) {
+            List<Integer> neighbors = graph.get(ans[i - 1]);
+            int next = neighbors.get(0) == prev ? neighbors.get(1) : neighbors.get(0);
+            ans[i] = next;
+            prev = ans[i - 1];
+        }
+
+        return ans;
+    }
 }

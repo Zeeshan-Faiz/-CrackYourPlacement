@@ -32,8 +32,9 @@ Output: [100000,-100000]
 */
 
 public class Q1743RestoreArrayFromAdjacentPairs {
-    
+
     public int[] restoreArray(int[][] a) {
+        
         int n = a.length + 1;
         int[] ans = new int[n];
         Map<Integer, List<Integer>> graph = new HashMap<>();
@@ -62,7 +63,6 @@ public class Q1743RestoreArrayFromAdjacentPairs {
             ans[i] = next;
             prev = ans[i - 1];
         }
-
         return ans;
     }
 }

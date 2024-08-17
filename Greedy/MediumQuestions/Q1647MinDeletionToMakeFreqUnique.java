@@ -1,5 +1,8 @@
 package Greedy.MediumQuestions;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /*
 A string s is called good if there are no two different characters in s that have the same frequency.
 Given a string s, return the minimum number of characters you need to delete to make s good.
@@ -26,4 +29,26 @@ Note that we only care about characters that are still in the string at the end 
 
 public class Q1647MinDeletionToMakeFreqUnique {
     
+        public int minDeletions(String s) {
+        
+        int deletion = 0;
+        int[] freq = new int[26];
+
+        //count freq of each character
+        for (char c : s.toCharArray()) {
+            freq[c - 'a']++;
+        }
+
+        Set<Integer> uniquefrequencies = new HashSet<Integer>();
+        for (int count : freq) {
+            while (count > 0 && uniquefrequencies.contains(count)) {
+                deletion++;
+                count--;
+            }
+            uniquefrequencies.add(count);
+
+        }
+
+        return deletion;
+    }
 }

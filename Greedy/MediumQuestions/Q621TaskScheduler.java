@@ -31,16 +31,17 @@ public class Q621TaskScheduler {
     
     public int leastInterval(char[] tasks, int n) {
 
-        int[] f = new int[26];
+        int[] freq = new int[26];
+        //count freq of each task
         for (char task : tasks)
-            f[task - 'A']++;
+            freq[task - 'A']++;
 
-        Arrays.sort(f);
-        int chunk = f[25] - 1;
+        Arrays.sort(freq); // sort in increasing order of freq
+        int chunk = freq[25] - 1;
         int idleSpots = chunk * n;
 
         for (int i = 24; i >= 0; i--)
-            idleSpots -= Math.min(chunk, f[i]);
+            idleSpots -= Math.min(chunk, freq[i]);
 
         return idleSpots < 0 ? tasks.length : idleSpots + tasks.length;
     }

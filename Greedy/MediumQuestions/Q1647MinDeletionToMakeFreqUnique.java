@@ -28,15 +28,15 @@ Note that we only care about characters that are still in the string at the end 
 */
 
 public class Q1647MinDeletionToMakeFreqUnique {
-    
-        public int minDeletions(String s) {
-        
+
+    public int minDeletions(String s) {
+
         int deletion = 0;
         int[] freq = new int[26];
 
-        //count freq of each character
-        for (char c : s.toCharArray()) {
-            freq[c - 'a']++;
+        // count freq of each character
+        for (char ch : s.toCharArray()) {
+            freq[ch - 'a']++;
         }
 
         Set<Integer> uniquefrequencies = new HashSet<Integer>();
@@ -46,9 +46,7 @@ public class Q1647MinDeletionToMakeFreqUnique {
                 count--;
             }
             uniquefrequencies.add(count);
-
         }
-
         return deletion;
     }
 }

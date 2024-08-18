@@ -27,11 +27,12 @@ Output: [[1,1],[1,1]]
 */
 
 public class Q289GameOfLife {
-    
+
     private int[][] directions = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 },
             { 1, 1 } };
 
     public void gameOfLife(int[][] board) {
+        
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (board[i][j] == 1) {
@@ -50,6 +51,7 @@ public class Q289GameOfLife {
     }
 
     private int getActiveNeigh(int[][] board, int row, int col) {
+        
         int activeNeigh = 0;
         for (int[] direction : directions) {
             int newRow = row + direction[0];
@@ -60,5 +62,17 @@ public class Q289GameOfLife {
                 activeNeigh++;
         }
         return activeNeigh;
+    }
+
+    private void updateBoard(int[][] board) {
+        
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == -2)
+                    board[i][j] = 0;
+                if (board[i][j] == 3)
+                    board[i][j] = 1;
+            }
+        }
     }
 }

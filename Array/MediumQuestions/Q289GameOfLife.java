@@ -48,4 +48,17 @@ public class Q289GameOfLife {
         updateBoard(board);
         return;
     }
+
+    private int getActiveNeigh(int[][] board, int row, int col) {
+        int activeNeigh = 0;
+        for (int[] direction : directions) {
+            int newRow = row + direction[0];
+            int newCol = col + direction[1];
+
+            if (newRow >= 0 && newRow < board.length && newCol >= 0 && newCol < board[0].length
+                    && (board[newRow][newCol] == 1 || board[newRow][newCol] == -2))
+                activeNeigh++;
+        }
+        return activeNeigh;
+    }
 }

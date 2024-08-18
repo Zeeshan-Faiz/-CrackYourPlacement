@@ -29,4 +29,21 @@ There are no longer two consecutive balloons of the same color. Total time = 1 +
 
 public class Q1578MinTimeToMekRopeColorful {
     
+    public int minCost(String colors, int[] neededTime) {
+        
+        int start = 0, end = 0, totalTime = 0;
+        int n = colors.length();
+
+        while(start < n && end < n){
+            int maxTime = 0, totalSum = 0;
+            while(end < n && colors.charAt(start) == colors.charAt(end)){
+                totalSum = totalSum + neededTime[end];
+                maxTime = Math.max(maxTime, neededTime[end]);
+                end++;
+            }
+            totalTime += (totalSum - maxTime);
+            start = end;
+        }
+        return totalTime;
+    }
 }

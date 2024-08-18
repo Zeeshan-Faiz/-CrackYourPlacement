@@ -23,10 +23,12 @@ Explanation: Remove all the digits from the number and it is left with nothing w
 */
 
 public class Q402RemoveKdigits {
-    
+
     public String removeKdigits(String num, int k) {
+        
         Stack<Character> stack = new Stack<>();
 
+        //only add smaller elements in the stack and eleminate bigger elements
         for (char digit : num.toCharArray()) {
             while (!stack.isEmpty() && k > 0 && stack.peek() > digit) {
                 stack.pop();

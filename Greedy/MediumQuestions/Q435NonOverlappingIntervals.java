@@ -23,19 +23,19 @@ Explanation: You don't need to remove any of the intervals since they're already
 */
 
 public class Q435NonOverlappingIntervals {
-    
+
     public int eraseOverlapIntervals(int[][] intervals) {
+        
         int n = intervals.length;
 
-        //sort the interval wrt to end points
+        // sort the interval wrt to end points
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
 
-        int prev = 0;
-        int count = 1;
+        int prevEndTime = 0,count = 1;
 
         for (int i = 1; i < n; i++) {
-            if (intervals[i][0] >= intervals[prev][1]) {
-                prev = i;
+            if (intervals[i][0] >= intervals[prevEndTime][1]) {
+                prevEndTime = i;
                 count++;
             }
         }

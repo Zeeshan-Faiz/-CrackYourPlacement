@@ -28,4 +28,24 @@ Output: [[1,1],[1,1]]
 
 public class Q289GameOfLife {
     
+    private int[][] directions = { { -1, -1 }, { -1, 0 }, { -1, 1 }, { 0, -1 }, { 0, 1 }, { 1, -1 }, { 1, 0 },
+            { 1, 1 } };
+
+    public void gameOfLife(int[][] board) {
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == 1) {
+                    int activeNeigh = getActiveNeigh(board, i, j);
+                    if (activeNeigh < 2 || activeNeigh > 3)
+                        board[i][j] = -2;
+                } else if (board[i][j] == 0) {
+                    int activeNeigh = getActiveNeigh(board, i, j);
+                    if (activeNeigh == 3)
+                        board[i][j] = 3;
+                }
+            }
+        }
+        updateBoard(board);
+        return;
+    }
 }

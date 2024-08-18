@@ -18,7 +18,12 @@ state, where births and deaths occur simultaneously. Given the current state of 
 return the next state.
 
 Example 1:
+Input: board = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+Output: [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
 
+Example 2:
+Input: board = [[1,1],[1,0]]
+Output: [[1,1],[1,1]]
 */
 
 public class Q289GameOfLife {

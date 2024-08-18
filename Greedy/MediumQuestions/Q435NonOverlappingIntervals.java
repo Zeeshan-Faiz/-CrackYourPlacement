@@ -26,11 +26,10 @@ public class Q435NonOverlappingIntervals {
 
     public int eraseOverlapIntervals(int[][] intervals) {
         
-        int n = intervals.length;
-
         // sort the interval wrt to end points
         Arrays.sort(intervals, (a, b) -> Integer.compare(a[1], b[1]));
 
+        int n = intervals.length;
         int prevEndTime = 0,count = 1;
 
         for (int i = 1; i < n; i++) {

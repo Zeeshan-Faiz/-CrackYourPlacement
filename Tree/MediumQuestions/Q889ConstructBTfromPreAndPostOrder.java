@@ -16,4 +16,38 @@ Output: [1]
 
 public class Q889ConstructBTfromPreAndPostOrder {
     
+    public TreeNode constructFromPrePost(int[] preorder, int[] postorder) {
+        return construct(preorder, 0, preorder.length - 1, postorder, 0, postorder.length - 1);
+    }
+
+    private static TreeNode construct(int[] preorder, int startPre, int endPre, int[] postorder, int startPost,
+            int endPost) {
+        // Base case: if the start index exceeds the end index, return null
+        if (startPre > endPre || startPost > endPost) {
+            return null;
+        }
+
+        // The first element in preorder is the root
+        TreeNode root = new TreeNode(preorder[startPre]);
+
+        // If there is only one element, return the root
+        if (startPre == endPre) {
+            return root;
+        }
+
+        // Find the boundary of the left subtree
+        int index = startPost;
+        while (index < endPost) {
+            if (preorder[startPre + 1] == postorder[index]) {
+                break;
+            }
+            index++;
+        }
+
+        // Recursively construct the left and right subtrees
+        root.left = construct(preorder, startPre + 1, startPre + index - startPost + 1, postorder, startPost, index);
+        root.right = construct(preorder, startPre + index - startPost + 2, endPre, postorder, index + 1, endPost - 1);
+
+        return root;
+    }
 }

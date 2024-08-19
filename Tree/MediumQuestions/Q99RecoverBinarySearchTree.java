@@ -33,7 +33,7 @@ public class Q99RecoverBinarySearchTree {
         }
 
         // 2nd violation case
-        if (first != null && middle != null) {
+        else if (first != null && middle != null) {
             int temp = first.val;
             first.val = middle.val;
             middle.val = temp;

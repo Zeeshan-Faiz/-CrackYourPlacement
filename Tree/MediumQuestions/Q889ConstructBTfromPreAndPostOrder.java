@@ -22,7 +22,7 @@ public class Q889ConstructBTfromPreAndPostOrder {
 
     private TreeNode construct(int[] preorder, int startPre, int endPre, int[] postorder, int startPost,
             int endPost) {
-        // Base case: if the start index exceeds the end index, return null
+        
         if (startPre > endPre || startPost > endPost) {
             return null;
         }

@@ -39,7 +39,7 @@ public class Q173BinarySearchTreeIterator {
     
     private Stack<TreeNode> stack = new Stack<>();
 
-    public BSTIterator(TreeNode root) {
+    public Q173BinarySearchTreeIterator(TreeNode root) {
         pushAll(root);
     }
 

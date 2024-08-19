@@ -1,5 +1,7 @@
 package Tree.MediumQuestions;
 
+import java.util.Stack;
+
 /*
 Implement the BSTIterator class that represents an iterator over the in-order traversal of a binary search tree (BST):
     BSTIterator(TreeNode root) Initializes an object of the BSTIterator class. The root of the BST 
@@ -35,4 +37,23 @@ bSTIterator.hasNext(); // return False
 
 public class Q173BinarySearchTreeIterator {
     
+    private Stack<TreeNode> stack = new Stack<>();
+
+    public BSTIterator(TreeNode root) {
+        pushAll(root);
+    }
+
+    public int next() {
+        TreeNode node = stack.pop();
+        pushAll(node.right);
+        return node.val;
+    }
+
+    public boolean hasNext() {
+        return !stack.isEmpty();
+    }
+
+    private void pushAll(TreeNode root){
+        for(; root != null; stack.push(root), root = root.left); 
+    }
 }

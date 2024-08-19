@@ -36,7 +36,7 @@ bSTIterator.hasNext(); // return False
 */
 
 public class Q173BinarySearchTreeIterator {
-    
+
     private Stack<TreeNode> stack = new Stack<>();
 
     public Q173BinarySearchTreeIterator(TreeNode root) {
@@ -53,7 +53,26 @@ public class Q173BinarySearchTreeIterator {
         return !stack.isEmpty();
     }
 
-    private void pushAll(TreeNode root){
-        for(; root != null; stack.push(root), root = root.left); 
+    private void pushAll(TreeNode root) {
+        for (; root != null; stack.push(root), root = root.left);
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+
+        TreeNode(int val) {
+            this.val = val;
+        }
+
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }

@@ -23,7 +23,7 @@ public class Q99RecoverBinarySearchTree {
 
         first = middle = last = null;
         prev = new TreeNode(Integer.MIN_VALUE);
-        inorder(root);
+        inOrder(root);
 
         // 1st violation case
         if (first != null && last != null) {
@@ -40,12 +40,12 @@ public class Q99RecoverBinarySearchTree {
         }
     }
 
-    private void inorder(TreeNode root) {
+    private void inOrder(TreeNode root) {
         
         if (root == null)
             return;
 
-        inorder(root.left);
+        inOrder(root.left);
 
         if (prev != null && (root.val < prev.val)) {
             // if second violation case
@@ -58,7 +58,7 @@ public class Q99RecoverBinarySearchTree {
                 last = root;
         }
         prev = root;
-        inorder(root.right);
+        inOrder(root.right);
     }
 
     public class TreeNode {

@@ -44,8 +44,8 @@ public class Q99RecoverBinarySearchTree {
         
         if (root == null)
             return;
-            
-        inoder(root.left);
+
+        inorder(root.left);
 
         if (prev != null && (root.val < prev.val)) {
             // if second violation case
@@ -59,5 +59,22 @@ public class Q99RecoverBinarySearchTree {
         }
         prev = root;
         inorder(root.right);
+    }
+
+    public class TreeNode {
+        int val;
+        TreeNode left;
+        TreeNode right;
+
+        TreeNode() {
+        }
+        TreeNode(int val) {
+            this.val = val;
+        }
+        TreeNode(int val, TreeNode left, TreeNode right) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+        }
     }
 }

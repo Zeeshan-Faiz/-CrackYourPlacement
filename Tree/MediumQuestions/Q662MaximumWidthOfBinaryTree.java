@@ -30,7 +30,7 @@ Explanation: The maximum width exists in the second level with length 2 (3,2).
 */
 
 public class Q662MaximumWidthOfBinaryTree {
-    
+
     public int widthOfBinaryTree(TreeNode root) {
 
         if (root == null || (root.left == null && root.right == null))
@@ -41,19 +41,19 @@ public class Q662MaximumWidthOfBinaryTree {
         map.put(root, 0);
         Queue<TreeNode> queue = new LinkedList<>();
         queue.offer(root);
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()) 
+        {
             int size = queue.size();
-            int left = map.get(queue.peek());//
-            while (size-- > 0) {
+            int left = map.get(queue.peek()); // get the left mose node of that level
+            while ((size--) > 0) 
+            {
                 TreeNode head = queue.poll();
                 maxWidth = Math.max(maxWidth, map.get(head) - left + 1);
                 if (head.left != null) {
                     queue.offer(head.left);
                     map.put(head.left, 2 * map.get(head));
                 }
-
                 if (head.right != null) {
-
                     queue.offer(head.right);
                     map.put(head.right, 2 * map.get(head) + 1);
                 }

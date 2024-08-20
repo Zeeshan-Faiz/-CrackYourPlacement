@@ -14,7 +14,7 @@ Output: 3
 */
 
 public class Q230KthSmallestElementInBST {
-    
+
     int count = 0;
     public int kthSmallest(TreeNode root, int k) {
         TreeNode res = helper(root, k);
@@ -22,9 +22,9 @@ public class Q230KthSmallestElementInBST {
     }
 
     public TreeNode helper(TreeNode root, int k) {
-        if (root == null) {
+        
+        if (root == null)
             return null;
-        }
 
         TreeNode left = helper(root.left, k);
         // we have found an answer somewhere below just return the same

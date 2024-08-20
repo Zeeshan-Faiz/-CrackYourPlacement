@@ -38,16 +38,16 @@ public class Q103BinaryZigZagLevelOrderTraversal {
 
         while (!queue.isEmpty()) {
             int size = queue.size();
-            List<Integer> row = new ArrayList<>();
+            List<Integer> ans = new ArrayList<>();
 
             for (int i = 0; i < size; i++) 
             {
                 TreeNode node = queue.poll();
                 
                 if (leftToRight)
-                    row.add(node.val); // Append to the end
+                    ans.add(node.val); // Append to the end
                 else
-                    row.add(0, node.val); // Insert at the beginning
+                    ans.add(0, node.val); // Insert at the beginning
 
                 if (node.left != null) {
                     queue.add(node.left);
@@ -58,11 +58,11 @@ public class Q103BinaryZigZagLevelOrderTraversal {
             }
             // Switch the traversal direction for the next level
             leftToRight = !leftToRight;
-            result.add(row);
+            result.add(ans);
         }
         return result;
     }
-    
+
     public class TreeNode {
         int val;
         TreeNode left;

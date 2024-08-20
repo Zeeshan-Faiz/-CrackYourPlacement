@@ -3,8 +3,6 @@ package Tree.MediumQuestions;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import org.w3c.dom.Node;
-
 /*
 You are given a perfect binary tree where all leaves are on the same level, and every parent has 
 two children. The binary tree has the following definition:
@@ -37,22 +35,42 @@ public class Q116PopulatingNextRightPointersInEachNode {
         Queue<Node> queue = new LinkedList<>();
         queue.offer(root);
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty()) 
+        {
             int size = queue.size();
             Node prev = null;
-            while (size-- > 0) {
-                Node head = queue.poll();
-                head.next = prev;
-                prev = head;
-                if (head.right != null) {
-                    queue.offer(head.right);
+            while ((size-- > 0)) 
+            {
+                Node temp = queue.poll();
+                temp.next = prev;
+                prev = temp;
+                if (temp.right != null) {
+                    queue.offer(temp.right);
                 }
-                if (head.left != null) {
-                    queue.offer(head.left);
+                if (temp.left != null) {
+                    queue.offer(temp.left);
                 }
-
             }
         }
         return root;
+    }
+
+    public class Node {
+        int val;
+        Node left;
+        Node right;
+        Node next;
+
+        Node() {
+        }
+        Node(int val) {
+            this.val = val;
+        }
+        Node(int val, Node left, Node right, Node next) {
+            this.val = val;
+            this.left = left;
+            this.right = right;
+            this.next = next;
+        }
     }
 }

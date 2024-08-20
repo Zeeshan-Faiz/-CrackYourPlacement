@@ -1,5 +1,10 @@
 package Tree.MediumQuestions;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
+import org.w3c.dom.Node;
+
 /*
 You are given a perfect binary tree where all leaves are on the same level, and every parent has 
 two children. The binary tree has the following definition:
@@ -24,4 +29,30 @@ Output: []
 
 public class Q116PopulatingNextRightPointersInEachNode {
     
+     public Node connect(Node root) {
+        if (root == null) {
+            return null;
+        }
+
+        Queue<Node> qu = new LinkedList<>();
+        qu.offer(root);
+
+        while (!qu.isEmpty()) {
+            int size = qu.size();
+            Node prev = null;
+            while (size-- > 0) {
+                Node head = qu.poll();
+                head.next = prev;
+                prev = head;
+                if (head.right != null) {
+                    qu.offer(head.right);
+                }
+                if (head.left != null) {
+                    qu.offer(head.left);
+                }
+
+            }
+        }
+        return root;
+    }
 }

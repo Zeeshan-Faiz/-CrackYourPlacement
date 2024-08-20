@@ -30,33 +30,32 @@ public class Q103BinaryZigZagLevelOrderTraversal {
         if (root == null)
             return result;
 
-        Queue<TreeNode> nodesQueue = new LinkedList<>();
-        nodesQueue.add(root);
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
 
         // Flag to determine the direction of traversal (left to right or right to left)
         boolean leftToRight = true;
 
-        while (!nodesQueue.isEmpty()) {
-            int size = nodesQueue.size();
+        while (!queue.isEmpty()) {
+            int size = queue.size();
             List<Integer> row = new ArrayList<>();
 
-            for (int i = 0; i < size; i++) {
-                TreeNode node = nodesQueue.poll();
-
-                if (leftToRight) {
+            for (int i = 0; i < size; i++) 
+            {
+                TreeNode node = queue.poll();
+                
+                if (leftToRight)
                     row.add(node.val); // Append to the end
-                } else {
+                else
                     row.add(0, node.val); // Insert at the beginning
-                }
 
                 if (node.left != null) {
-                    nodesQueue.add(node.left);
+                    queue.add(node.left);
                 }
                 if (node.right != null) {
-                    nodesQueue.add(node.right);
+                    queue.add(node.right);
                 }
             }
-
             // Switch the traversal direction for the next level
             leftToRight = !leftToRight;
             result.add(row);

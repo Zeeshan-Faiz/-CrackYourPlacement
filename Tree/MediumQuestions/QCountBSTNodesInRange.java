@@ -28,5 +28,18 @@ Explanation: All the nodes are in the given range.
 */
 
 public class QCountBSTNodesInRange {
-    
+
+    int count = 0;
+    int getCount(TreeNode root, int l, int h) {
+        
+        if (root == null)
+            return 0;
+
+        getCount(root.left, l, h);
+        if (root.val >= l && root.val <= h)
+            count++;
+        getCount(root.right, l, h);
+
+        return count;
+    }
 }

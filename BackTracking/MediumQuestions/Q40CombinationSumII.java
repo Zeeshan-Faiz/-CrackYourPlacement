@@ -21,28 +21,32 @@ Output:
 */
 
 public class Q40CombinationSumII {
-    
+
     public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        
+
         List<List<Integer>> ans = new ArrayList<>();
-        Arrays.sort(candidates); 
-        findCombinations(0, candidates, target, ans, new ArrayList<>()); 
-        return ans; 
+        Arrays.sort(candidates);
+        helper(0, candidates, target, ans, new ArrayList<>());
+        return ans;
     }
 
-    private void findCombinations(int ind, int[] arr, int target, List<List<Integer>> ans, List<Integer> ds) {
-        if(target == 0) {
-            ans.add(new ArrayList<>(ds)); 
-            return; 
-        }
+    private void helper(int ind, int[] arr, int target, List<List<Integer>> ans, List<Integer> list) {
         
-        for(int i = ind; i < arr.length;i++) {
-            if(i > ind && arr[i] == arr[i-1]) continue; 
-            if(arr[i]>target) break; 
-            
-            ds.add(arr[i]); 
-            findCombinations(i+1, arr, target - arr[i], ans, ds); 
-            ds.remove(ds.size() - 1); 
+        if (target == 0) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        for (int i = ind; i < arr.length; i++) 
+        {
+            if (i > ind && arr[i] == arr[i - 1])
+                continue;//skip the similar element
+            if (arr[i] > target)
+                break;
+
+            list.add(arr[i]);
+            helper(i + 1, arr, target - arr[i], ans, list);
+            list.remove(list.size() - 1);//backtrack and remove the selected elements
         }
     }
 }

@@ -30,10 +30,28 @@ Output: []
 */
 
 public class Q39CombinationSum {
-    
+
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> ans = new ArrayList<>();
         helper(0, candidates, target, ans, new ArrayList<>());
         return ans;
+    }
+
+    private void helper(int ind, int[] arr, int target, List<List<Integer>> ans, List<Integer> list) {
+
+        if (ind == arr.length) {
+            if (target == 0) {
+                ans.add(new ArrayList<>(list));
+            }
+            return;
+        }
+
+        if (arr[ind] <= target) {
+            list.add(arr[ind]);
+            helper(ind, arr, target - arr[ind], ans, list);// pick same element
+            list.remove(list.size() - 1); // backtrack if the picked element didn't help to reach target
+        }
+        // pick next element
+        helper(ind + 1, arr, target, ans, list);
     }
 }

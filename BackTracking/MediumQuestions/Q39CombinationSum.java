@@ -1,5 +1,8 @@
 package BackTracking.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Given an array of distinct integers candidates and a target integer target, return a list of 
 all unique combinations of candidates where the chosen numbers sum to target. You may return 
@@ -28,4 +31,9 @@ Output: []
 
 public class Q39CombinationSum {
     
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(0, candidates, target, ans, new ArrayList<>());
+        return ans;
+    }
 }

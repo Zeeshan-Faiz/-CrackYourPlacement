@@ -20,7 +20,7 @@ Explanation: There is 1 choose 1 = 1 total combination.
 */
 
 public class Q77Combinations {
-    
+
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> ans = new ArrayList<>();
         helper(n, k, ans, new ArrayList<>());
@@ -28,6 +28,7 @@ public class Q77Combinations {
     }
 
     private void helper(int n, int k, List<List<Integer>> ans, List<Integer> list) {
+        
         if (k == 0) {
             ans.add(new ArrayList<>(list));
             return;
@@ -42,6 +43,6 @@ public class Q77Combinations {
         list.remove(list.size() - 1);// backtrack to remove the current element
 
         // not pick
-        helper(n-1, k, ans, list);
+        helper(n - 1, k, ans, list);
     }
 }

@@ -1,5 +1,8 @@
 package BackTracking.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Given two integers n and k, return all possible combinations of k numbers chosen from the range 
 [1, n]. You may return the answer in any order.
@@ -18,4 +21,27 @@ Explanation: There is 1 choose 1 = 1 total combination.
 
 public class Q77Combinations {
     
+    public List<List<Integer>> combine(int n, int k) {
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(n, k, ans, new ArrayList<>());
+        return ans;
+    }
+
+    private void helper(int n, int k, List<List<Integer>> ans, List<Integer> list) {
+        if (k == 0) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        if (n == 0)
+            return;
+
+        // pick
+        list.add(n);
+        helper(n - 1, k - 1, ans, list);
+        list.remove(list.size() - 1);// backtrack to remove the current element
+
+        // not pick
+        helper(n-1, k, ans, list);
+    }
 }

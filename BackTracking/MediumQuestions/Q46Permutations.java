@@ -44,7 +44,7 @@ public class Q46Permutations {
 
             list.add(nums[i]);
             helper(nums, ans, list);
-            // Backtrack and Remove the current element
+            // Backtrack and Remove the picked element
             list.remove(list.size() - 1);
         }
     }

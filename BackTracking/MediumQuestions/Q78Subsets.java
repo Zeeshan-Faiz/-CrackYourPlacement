@@ -19,24 +19,24 @@ Output: [[],[0]]
 public class Q78Subsets {
 
     public List<List<Integer>> subsets(int[] nums) {
-        
+
         List<List<Integer>> ans = new ArrayList<>();
-        helper(0, nums,ans, new ArrayList<>());
+        helper(0, nums, ans, new ArrayList<>());
         return ans;
     }
 
     private void helper(int ind, int[] nums, List<List<Integer>> ans, List<Integer> list) {
-        
-        // Add the set to list
-        ans.add(new ArrayList<>(list));
-        for (int i = ind; i < nums.length; i++) 
-        {
-            // pick the element
-            list.add(nums[i]);
-            helper(i+1, nums, ans, list);
 
-            // backtrack and remove the picked element
-            list.remove(list.size() - 1);
+        if (ind == nums.length) {
+            ans.add(new ArrayList<>(list));
+            return;
         }
+
+        // pick the element
+        list.add(nums[ind]);
+        helper(ind + 1, nums, ans, list);
+        list.remove(list.size() - 1);// backtrack and remove the picked element
+
+        helper(ind + 1, nums, ans, list);
     }
 }

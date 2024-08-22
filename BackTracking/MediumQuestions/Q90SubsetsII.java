@@ -18,21 +18,25 @@ Output: [[],[0]]
 */
 
 public class Q90SubsetsII {
-    
+
     public List<List<Integer>> subsetsWithDup(int[] nums) {
-         Arrays.sort(nums);
-        List<List<Integer>>ans=new ArrayList<>();
-        sub(0,nums,new ArrayList<>(),ans);
+        Arrays.sort(nums);
+        List<List<Integer>> ans = new ArrayList<>();
+        sub(0, nums, ans, new ArrayList<>());
         return ans;
     }
 
-    public void sub(int ind,int[] nums,List<Integer>ds,List<List<Integer>>ans){
-        ans.add(new ArrayList<>(ds));
-        for(int i=ind;i<nums.length;i++){
-            if(i!=ind && nums[i]==nums[i-1]) continue;
-            ds.add(nums[i]);
-            sub(i+1,nums,ds,ans);
-            ds.remove(ds.size()-1);
+    public void sub(int ind, int[] nums, List<List<Integer>> ans, List<Integer> list) {
+
+        ans.add(new ArrayList<>(list));
+        for (int i = ind; i < nums.length; i++) 
+        {
+            // skip duplicate elements
+            if (i != ind && nums[i] == nums[i - 1])
+                continue;
+            list.add(nums[i]);
+            sub(i + 1, nums, ans, list);
+            list.remove(list.size() - 1);// backtrack and remove the selected elements
         }
-    }    
+    }
 }

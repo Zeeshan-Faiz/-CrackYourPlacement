@@ -21,36 +21,31 @@ Output: [[1]]
 */
 
 public class Q46Permutations {
-    
+
     public List<List<Integer>> permute(int[] nums) {
 
-        List<List<Integer>> resultList = new ArrayList<>();
-        helper(resultList, new ArrayList<>(), nums);
-        return resultList;
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(nums, ans, new ArrayList<>());
+        return ans;
     }
- 
-    private void helper(List<List<Integer>> resultList,
-                    ArrayList<Integer> tempList, int[] nums) {
 
-        // If we match the length, it is a permutation
-        if (tempList.size() == nums.length) {
-            resultList.add(new ArrayList<>(tempList));
+    private void helper(int[] nums, List<List<Integer>> ans, ArrayList<Integer> list) {
+
+        if (list.size() == nums.length) {
+            ans.add(new ArrayList<>(list));
             return;
         }
 
-        for (int number : nums) {
+        for (int i = 0; i < nums.length; i++) {
 
-             // Skip if we get same element
-            if (tempList.contains(number))
+            // Skip if we get same element
+            if (list.contains(nums[i]))
                 continue;
-            // Add the new element
-            tempList.add(number);
 
-            // Go back to try other element
-            helper(resultList, tempList, nums);
-
-            // Remove the element
-            tempList.remove(tempList.size() - 1);
+            list.add(nums[i]);
+            helper(nums, ans, list);
+            // Backtrack and Remove the current element
+            list.remove(list.size() - 1);
         }
     }
 }

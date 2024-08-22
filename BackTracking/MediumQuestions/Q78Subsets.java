@@ -20,23 +20,23 @@ public class Q78Subsets {
 
     public List<List<Integer>> subsets(int[] nums) {
         
-        List<List<Integer>> resultList = new ArrayList<>();
-        backtrack(0, nums,resultList, new ArrayList<>())
-        return resultList;
+        List<List<Integer>> ans = new ArrayList<>();
+        helper(0, nums,ans, new ArrayList<>());
+        return ans;
     }
 
-    private void backtrack(int ind, int[] nums, List<List<Integer>> resultSets, List<Integer> tempSet) {
+    private void helper(int ind, int[] nums, List<List<Integer>> ans, List<Integer> list) {
         
         // Add the set to list
-        resultSets.add(new ArrayList<>(tempSet));
-        for (int i = start; i < nums.length; i++) 
+        ans.add(new ArrayList<>(list));
+        for (int i = ind; i < nums.length; i++) 
         {
             // pick the element
-            tempSet.add(nums[i]);
-            backtrack(resultSets, tempSet, nums, i + 1);
+            list.add(nums[i]);
+            helper(i+1, nums, ans, list);
 
             // backtrack and remove the picked element
-            tempSet.remove(tempSet.size() - 1);
+            list.remove(list.size() - 1);
         }
     }
 }

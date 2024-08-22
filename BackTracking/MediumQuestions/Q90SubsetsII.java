@@ -32,7 +32,7 @@ public class Q90SubsetsII {
         for (int i = ind; i < nums.length; i++) 
         {
             // skip duplicate elements
-            if (i != ind && nums[i] == nums[i - 1])
+            if (i > ind && nums[i] == nums[i - 1])
                 continue;
             list.add(nums[i]);
             sub(i + 1, nums, ans, list);

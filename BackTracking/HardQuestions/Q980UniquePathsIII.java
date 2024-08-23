@@ -29,26 +29,26 @@ Explanation: We have the following four paths:
 */
 
 public class Q980UniquePathsIII {
-    
-    public int uniquePathsIII(int[][] grid) {
-        int zero = 0; // Count the 0's
-        int sx = 0; // starting x index
-        int sy = 0; // starting y index
 
-        for (int r = 0; r < grid.length; r++) { // r = row
-            for (int c = 0; c < grid[0].length; c++) { // c = column
+    public int uniquePathsIII(int[][] grid) {
+        int zero = 0; // Count the total 0's
+        int sx = 0, sy = 0; // starting x and y index
+
+        // count total zeroes and find the starting point
+        for (int r = 0; r < grid.length; r++) {
+            for (int c = 0; c < grid[0].length; c++) {
                 if (grid[r][c] == 0)
-                    zero++; // if current cell is 0, count it.
+                    zero++;
                 else if (grid[r][c] == 1) {
-                    sx = r; // starting x co-ordinate
-                    sy = c; // starting y co-ordinate
+                    sx = r;
+                    sy = c;
                 }
             }
         }
-        return dfs(grid, sx, sy, zero);
+        return helper(grid, sx, sy, zero);
     }
 
-    public int dfs(int grid[][], int x, int y, int zero) {
+    public int helper(int grid[][], int x, int y, int zero) {
         // Base Condition
         if (x < 0 || y < 0 || x >= grid.length || y >= grid[0].length || grid[x][y] == -1) {
             return 0;
@@ -61,10 +61,10 @@ public class Q980UniquePathsIII {
         grid[x][y] = -1; // mark the visited cells as -1;
         zero--; // and reduce the zero by 1
 
-        int totalPaths = dfs(grid, x + 1, y, zero) + // calculating all the paths available in 4 directions
-                dfs(grid, x - 1, y, zero) +
-                dfs(grid, x, y + 1, zero) +
-                dfs(grid, x, y - 1, zero);
+        int totalPaths = helper(grid, x + 1, y, zero) + // calculating all the paths available in 4 directions
+                helper(grid, x - 1, y, zero) +
+                helper(grid, x, y + 1, zero) +
+                helper(grid, x, y - 1, zero);
 
         // Let's say if we are not able to count all the paths. Now we use Backtracking
         // over here

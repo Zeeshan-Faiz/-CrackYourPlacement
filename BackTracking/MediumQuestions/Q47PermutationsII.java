@@ -21,8 +21,9 @@ Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 */
 
 public class Q47PermutationsII {
-    
+
     public List<List<Integer>> permuteUnique(int[] nums) {
+        
         List<List<Integer>> ans = new ArrayList<>();
         Arrays.sort(nums);
         helper(nums, new boolean[nums.length], ans, new ArrayList<>());
@@ -45,7 +46,7 @@ public class Q47PermutationsII {
             list.add(nums[i]);
             used[i] = true;
 
-            helper(nums,used, ans, list);
+            helper(nums, used, ans, list);
             // Backtrack and Remove the picked element
             list.remove(list.size() - 1);
             used[i] = false;

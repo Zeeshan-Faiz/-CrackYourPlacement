@@ -57,7 +57,7 @@ public class Q980UniquePathsIII {
         if (grid[x][y] == 2) {
             return zero == -1 ? 1 : 0;// if CountZero = -1, it means we covered all zeroes and return 1 otherwise 0
         }
-        grid[x][y] = -1;// markt the visited cell and reduce countZero
+        grid[x][y] = -1;// mark the visited cell and reduce countZero
         zero--;
 
         // traverse all 4 directions

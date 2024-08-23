@@ -49,28 +49,26 @@ public class Q980UniquePathsIII {
     }
 
     public int helper(int grid[][], int x, int y, int zero) {
-        // Base Condition
-        if (x < 0 || y < 0 || x >= grid.length || y >= grid[0].length || grid[x][y] == -1) {
-            return 0;
-        }
-        if (grid[x][y] == 2) {
-            return zero == -1 ? 1 : 0; // Why zero = -1, because in above example we have 9 zero's. So, when we reach
-                                       // the final cell we are covering one cell extra then the zero count.
-            // If that's the case we find the path and return '1' otherwise return '0';
-        }
-        grid[x][y] = -1; // mark the visited cells as -1;
-        zero--; // and reduce the zero by 1
 
-        int totalPaths = helper(grid, x + 1, y, zero) + // calculating all the paths available in 4 directions
+        if (x < 0 || y < 0 || x >= grid.length || y >= grid[0].length || grid[x][y] == -1)
+            return 0;
+
+        // reached ending point
+        if (grid[x][y] == 2) {
+            return zero == -1 ? 1 : 0;// if CountZero = -1, it means we covered all zeroes and return 1 otherwise 0
+        }
+        grid[x][y] = -1;// markt the visited cell and reduce countZero
+        zero--;
+
+        // traverse all 4 directions
+        int totalPaths = helper(grid, x + 1, y, zero) +
                 helper(grid, x - 1, y, zero) +
                 helper(grid, x, y + 1, zero) +
                 helper(grid, x, y - 1, zero);
 
-        // Let's say if we are not able to count all the paths. Now we use Backtracking
-        // over here
         grid[x][y] = 0;
-        zero++;
+        zero++;// backtrack and unmark the cell and make the CountZero as is.
 
-        return totalPaths; // if we get all the paths, simply return it.
+        return totalPaths;
     }
 }

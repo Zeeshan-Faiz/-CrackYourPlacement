@@ -52,12 +52,14 @@ public class Q51NQueens {
     }
 
     static List<String> construct(char[][] board) {
-        List<String> res = new LinkedList<String>();
+        
+        List<String> list = new LinkedList<String>();
+        //convert character board to String and add in res list
         for (int i = 0; i < board.length; i++) {
             String s = new String(board[i]);
-            res.add(s);
+            list.add(s);
         }
-        return res;
+        return list;
     }
 
     static boolean validate(char[][] board, int row, int col) {

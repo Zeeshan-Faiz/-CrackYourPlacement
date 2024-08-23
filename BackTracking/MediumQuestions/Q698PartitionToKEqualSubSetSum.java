@@ -19,8 +19,8 @@ public class Q698PartitionToKEqualSubSetSum {
     public boolean canPartitionKSubsets(int[] nums, int k) {
         
         int totalSum = 0;
-        for (int el : nums) {
-            totalSum += el;
+        for (int n : nums) {
+            totalSum += n;
         }
 
         if (totalSum % k != 0 || nums.length < k) {

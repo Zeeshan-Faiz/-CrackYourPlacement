@@ -26,6 +26,7 @@ public class Q51NQueens {
     public List<List<String>> solveNQueens(int n) {
 
         char[][] board = new char[n][n];
+        //create an empty board
         for (int i = 0; i < n; i++)
             for (int j = 0; j < n; j++)
                 board[i][j] = '.';
@@ -35,6 +36,7 @@ public class Q51NQueens {
     }
 
     static void helper(int col, char[][] board, List<List<String>> res) {
+        
         if (col == board.length) {
             res.add(construct(board));
             return;
@@ -59,8 +61,11 @@ public class Q51NQueens {
     }
 
     static boolean validate(char[][] board, int row, int col) {
+        
         int duprow = row;
         int dupcol = col;
+
+        //check for upper diagonal
         while (row >= 0 && col >= 0) {
             if (board[row][col] == 'Q')
                 return false;
@@ -70,6 +75,7 @@ public class Q51NQueens {
 
         row = duprow;
         col = dupcol;
+        //check for left 
         while (col >= 0) {
             if (board[row][col] == 'Q')
                 return false;
@@ -78,6 +84,8 @@ public class Q51NQueens {
 
         row = duprow;
         col = dupcol;
+
+        //check for left lower diagonal
         while (col >= 0 && row < board.length) {
             if (board[row][col] == 'Q')
                 return false;

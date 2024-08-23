@@ -18,4 +18,50 @@ Explanation: The input board is shown above and the only valid solution is shown
 
 public class Q37SudokuSolver {
     
+    public void solveSudoku(char[][] board) {
+        solve(board);
+    }
+
+    public boolean solve(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+
+                //if we get empty cell, try adding digits from 1-9
+                if (board[i][j] == '.') {
+
+                    for (char c = '1'; c <= '9'; c++) {
+                        if (isValid(board, i, j, c)) {
+                            board[i][j] = c;
+
+                            if (solve(board))
+                                return true;
+                            else
+                                board[i][j] = '.';//if returned false which means we need to backtrack and check with some other digits
+                        }
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean isValid(char[][] board, int row, int col, char c) {
+        
+        for (int i = 0; i < 9; i++) {
+
+            //check for up & down
+            if (board[i][col] == c)
+                return false;
+
+            //check for left & right
+            if (board[row][i] == c)
+                return false;
+
+            //check in the small 3x3 submatrix
+            if (board[3 * (row / 3) + i / 3][3 * (col / 3) + i % 3] == c)
+                return false;
+        }
+        return true;
+    }
 }

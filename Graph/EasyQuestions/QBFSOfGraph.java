@@ -38,31 +38,29 @@ thus bfs will be 0 1 2.
 */
 
 public class QBFSOfGraph {
-    
-    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-  
-        ArrayList < Integer > bfs = new ArrayList < > ();
-        boolean vis[] = new boolean[V];
-        Queue < Integer > q = new LinkedList < > ();
 
-        q.add(0);
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+
+        ArrayList<Integer> bfs = new ArrayList<>();
+        boolean vis[] = new boolean[V];
+        Queue<Integer> queue = new LinkedList<>();
+
+        queue.add(0);
         vis[0] = true;
 
-        while (!q.isEmpty()) {
-            Integer node = q.poll();
+        while (!queue.isEmpty()) 
+        {
+            Integer node = queue.poll();
             bfs.add(node);
 
-            // Get all adjacent vertices of the dequeued vertex s
-            // If a adjacent has not been visited, then mark it
-            // visited and enqueue it
-            for (Integer it: adj.get(node)) {
-                if (vis[it] == false) {
-                    vis[it] = true;
-                    q.add(it);
+            // check for all neighbors to this current node and add in the queue
+            for (Integer neighbor : adj.get(node)) {
+                if (vis[neighbor] == false) {
+                    vis[neighbor] = true;
+                    queue.add(neighbor);
                 }
             }
         }
-
         return bfs;
     }
 }

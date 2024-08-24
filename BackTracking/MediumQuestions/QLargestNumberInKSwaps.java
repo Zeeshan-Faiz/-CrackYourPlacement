@@ -23,15 +23,51 @@ Explanation:
 Three swaps can make the input 3435335 to 5543333, swapping 3 with 5, 4 with 5 and finally 3 with 4 
 */
 
-public class QLargestNumberInKSwaps{
-    
-    public static String findMaximumNum(String str, int k){
-        
+public class QLargestNumberInKSwaps {
+
+    public static String findMaximumNum(String str, int k) {
+
         char[] chars = str.toCharArray();
-        String[] result = {str}; // Use an array to hold the result since strings are immutable
+        String[] result = { str }; // Array with one element containing "1234567"
         solve(chars, chars.length, k, result, 0);
         return result[0];
     }
 
-    
+    public static void solve(char[] str, int n, int k, String[] ans, int index) {
+        
+        if (k == 0 || index >= n)
+            return;
+
+        char maxchar = str[index];
+
+        //find the maxchar to the right of current digit
+        for (int i = index + 1; i < n; i++) {
+            if (maxchar < str[i]) {
+                maxchar = str[i];
+            }
+        }
+
+        if (maxchar != str[index]) {
+            k--;
+        }
+
+        for (int i = n - 1; i >= index; i--) 
+        {
+            if (str[i] == maxchar) {
+                swap(str, index, i);
+                String newStr = new String(str);
+                if (newStr.compareTo(ans[0]) > 0) {
+                    ans[0] = newStr;
+                }
+                solve(str, n, k, ans, index + 1);
+                swap(str, index, i); // Backtrack
+            }
+        }
+    }
+
+    private static void swap(char[] str, int i, int j) {
+        char temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+    }
 }

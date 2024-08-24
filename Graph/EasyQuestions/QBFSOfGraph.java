@@ -45,6 +45,7 @@ public class QBFSOfGraph {
         boolean vis[] = new boolean[V];
         Queue<Integer> queue = new LinkedList<>();
 
+        // add first node in the queue and mark it visited
         queue.add(0);
         vis[0] = true;
 

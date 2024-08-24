@@ -1,5 +1,7 @@
 package Graph.EasyQuestions;
 
+import java.util.ArrayList;
+
 /*
 You are given a connected undirected graph. Perform a Depth First Traversal of the graph.
 Note: Use the recursive approach to find the DFS traversal of the graph starting from the 0th 
@@ -35,4 +37,27 @@ thus dfs will be 0 1 2 3.
 
 public class QDFSOFGraph {
     
+    public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        boolean vis[] = new boolean[V+1];
+        vis[0] = true; 
+        ArrayList<Integer> ls = new ArrayList<>();
+        dfs(0, vis, adj, ls); 
+        return ls; 
+    }
+    
+    public static void dfs(int node, boolean vis[], ArrayList<ArrayList<Integer>> adj, 
+    ArrayList<Integer> ls) {
+        
+        //marking current node as visited
+        vis[node] = true;
+        ls.add(node);
+        
+        //getting neighbour nodes
+        for(Integer it: adj.get(node)) {
+            if(vis[it] == false) {
+                dfs(it, vis, adj, ls);
+            }
+        }
+    }
 }

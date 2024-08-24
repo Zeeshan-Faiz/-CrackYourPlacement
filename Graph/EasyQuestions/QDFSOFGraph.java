@@ -35,7 +35,7 @@ then back to 0 then 0 to 3
 thus dfs will be 0 1 2 3. 
 */
 
-public class QDFSOFGraph {
+public class QDFSOfGraph {
 
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
 

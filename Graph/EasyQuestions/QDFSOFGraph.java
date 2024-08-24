@@ -36,27 +36,29 @@ thus dfs will be 0 1 2 3.
 */
 
 public class QDFSOFGraph {
-    
+
     public ArrayList<Integer> dfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
-        // Code here
-        boolean vis[] = new boolean[V+1];
-        vis[0] = true; 
-        ArrayList<Integer> ls = new ArrayList<>();
-        dfs(0, vis, adj, ls); 
-        return ls; 
+
+        boolean vis[] = new boolean[V + 1];
+        vis[0] = true;
+        ArrayList<Integer> list = new ArrayList<>();
+        dfs(0, vis, adj, list);
+        return list;
     }
-    
-    public static void dfs(int node, boolean vis[], ArrayList<ArrayList<Integer>> adj, 
-    ArrayList<Integer> ls) {
-        
-        //marking current node as visited
+
+    public static void dfs(int node, boolean vis[], ArrayList<ArrayList<Integer>> adj,
+            ArrayList<Integer> list) {
+
+        // mark and add current node
         vis[node] = true;
-        ls.add(node);
-        
-        //getting neighbour nodes
-        for(Integer it: adj.get(node)) {
-            if(vis[it] == false) {
-                dfs(it, vis, adj, ls);
+        list.add(node);
+
+        // getting neighbour of current node and go depth for each neighbour
+        for (Integer nieghbour : adj.get(node)) 
+        {
+            //recurse only if neighbour is not visited
+            if (vis[nieghbour] == false) {
+                dfs(nieghbour, vis, adj, list);
             }
         }
     }

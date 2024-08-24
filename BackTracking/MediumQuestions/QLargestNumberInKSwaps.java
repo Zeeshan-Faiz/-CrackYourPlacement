@@ -25,4 +25,13 @@ Three swaps can make the input 3435335 to 5543333, swapping 3 with 5, 4 with 5 a
 
 public class QLargestNumberInKSwaps{
     
+    public static String findMaximumNum(String str, int k){
+        
+        char[] chars = str.toCharArray();
+        String[] result = {str}; // Use an array to hold the result since strings are immutable
+        solve(chars, chars.length, k, result, 0);
+        return result[0];
+    }
+
+    
 }

@@ -22,7 +22,7 @@ Explanation: The starting pixel is already colored 0, so no changes are made to 
 */
 
 public class Q733FloodFill {
-    
+
     public int[][] floodFill(int[][] image, int sr, int sc, int color) {
         // get initial color
         int iniColor = image[sr][sc];
@@ -34,22 +34,17 @@ public class Q733FloodFill {
         return ans;
     }
 
-    private void dfs(int row, int col,
-            int[][] ans,
-            int[][] image,
-            int newColor, int delRow[], int delCol[],
+    private void dfs(int row, int col, int[][] ans, int[][] image, int newColor, int delRow[], int delCol[],
             int iniColor) {
-        // color with new color
+
+        // mark the pixel with new color
         ans[row][col] = newColor;
-        int n = image.length;
-        int m = image[0].length;
-        // there are exactly 4 neighbours
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 4; i++) 
+        {
             int nrow = row + delRow[i];
             int ncol = col + delCol[i];
-            // check for valid coordinate
-            // then check for same initial color and unvisited pixel
-            if (nrow >= 0 && nrow < n && ncol >= 0 && ncol < m &&
+            // check for valid coordinate then check for same initial color and unvisited pixel
+            if (nrow >= 0 && nrow < image.length && ncol >= 0 && ncol < image[0].length &&
                     image[nrow][ncol] == iniColor && ans[nrow][ncol] != newColor) {
                 dfs(nrow, ncol, ans, image, newColor, delRow, delCol, iniColor);
             }

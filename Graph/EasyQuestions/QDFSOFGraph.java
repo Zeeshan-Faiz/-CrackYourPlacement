@@ -54,11 +54,11 @@ public class QDFSOFGraph {
         list.add(node);
 
         // getting neighbour of current node and go depth for each neighbour
-        for (Integer nieghbour : adj.get(node)) 
+        for (Integer neighbour : adj.get(node)) 
         {
             //recurse only if neighbour is not visited
-            if (vis[nieghbour] == false) {
-                dfs(nieghbour, vis, adj, list);
+            if (vis[neighbour] == false) {
+                dfs(neighbour, vis, adj, list);
             }
         }
     }

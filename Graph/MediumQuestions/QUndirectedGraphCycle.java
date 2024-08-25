@@ -47,7 +47,7 @@ public class QUndirectedGraphCycle {
                 if (dfs(neighbor, node, vis, adj) == true)
                     return true;
             }
-            // if adjacent node is visited and is not its own parent node
+            // if child node is visited with some different parent node
             else if (neighbor != parent)
                 return true;
         }

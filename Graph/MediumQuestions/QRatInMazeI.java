@@ -29,9 +29,9 @@ Explanation: No path exists and destination cell is blocked.
 public class QRatInMazeI {
 
     public static ArrayList<String> findPath(int[][] m, int n) {
-        
+
         int vis[][] = new int[n][n];
-        //mark all cells as 0 initially
+        // mark all cells as 0 initially
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 vis[i][j] = 0;
@@ -40,9 +40,31 @@ public class QRatInMazeI {
         int delRow[] = { +1, 0, 0, -1 };
         int delCol[] = { 0, -1, 1, 0 };
         ArrayList<String> ans = new ArrayList<>();
-        //if source starts with 1, start traversing
+        // if source starts with 1, start traversing
         if (m[0][0] == 1)
             solve(0, 0, m, n, ans, "", vis, delRow, delCol);
         return ans;
+    }
+
+    private static void solve(int i, int j, int a[][], int n, ArrayList<String> ans, String move,
+            int vis[][], int delRow[], int delCol[]) {
+
+        //if destination reached, add the path
+        if (i == n - 1 && j == n - 1) {
+            ans.add(move);
+            return;
+        }
+        String dir = "DLRU";
+        for (int ind = 0; ind < 4; ind++) {
+            int newRow = i + delRow[ind];
+            int newCol = j + delCol[ind];
+            if (newRow >= 0 && newCol >= 0 && newRow < n && newCol < n &&
+                    vis[newRow][newCol] == 0 && a[newRow][newCol] == 1) {
+
+                vis[i][j] = 1;
+                solve(newRow, newCol, a, n, ans, move + dir.charAt(ind), vis, delRow, delCol);
+                vis[i][j] = 0; //backtrack while coming back from path
+            }
+        }
     }
 }

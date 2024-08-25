@@ -37,11 +37,12 @@ public class QRatInMazeI {
                 vis[i][j] = 0;
             }
         }
-        int di[] = { +1, 0, 0, -1 };
-        int dj[] = { 0, -1, 1, 0 };
+        int delRow[] = { +1, 0, 0, -1 };
+        int delCol[] = { 0, -1, 1, 0 };
         ArrayList<String> ans = new ArrayList<>();
+        //if source starts with 1, start traversing
         if (m[0][0] == 1)
-            solve(0, 0, m, n, ans, "", vis, di, dj);
+            solve(0, 0, m, n, ans, "", vis, delRow, delCol);
         return ans;
     }
 }

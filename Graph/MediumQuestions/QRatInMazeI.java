@@ -1,5 +1,7 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+
 /*
 Consider a rat placed at (0, 0) in a square matrix mat of order n* n. It has to reach the destination 
 at (n - 1, n - 1). Find all possible paths that the rat can take to reach from source to destination. 
@@ -25,5 +27,21 @@ Explanation: No path exists and destination cell is blocked.
 */
 
 public class QRatInMazeI {
-    
+
+    public static ArrayList<String> findPath(int[][] m, int n) {
+        
+        int vis[][] = new int[n][n];
+        //mark all cells as 0 initially
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                vis[i][j] = 0;
+            }
+        }
+        int di[] = { +1, 0, 0, -1 };
+        int dj[] = { 0, -1, 1, 0 };
+        ArrayList<String> ans = new ArrayList<>();
+        if (m[0][0] == 1)
+            solve(0, 0, m, n, ans, "", vis, di, dj);
+        return ans;
+    }
 }

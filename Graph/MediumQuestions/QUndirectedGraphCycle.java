@@ -1,5 +1,7 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+
 /*
 Given an undirected graph with V vertices labelled from 0 to V-1 and E edges, check whether it 
 contains any cycle or not. Graph is in the form of adjacency list where adj[i] contains all the 
@@ -24,4 +26,29 @@ No cycle in the graph.
 
 public class QUndirectedGraphCycle {
     
+    public boolean isCycle(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        int vis[] = new int[V]; 
+       for(int i = 0;i<V;i++) {
+           if(vis[i] == 0) {
+               if(dfs(i, -1, vis, adj) == true) return true; 
+           }
+       }
+       return false; 
+    }
+    
+    private boolean dfs(int node, int parent, int vis[], ArrayList<ArrayList<Integer>> 
+    adj) {
+        vis[node] = 1; 
+        // go to all adjacent nodes
+        for(int adjacentNode: adj.get(node)) {
+            if(vis[adjacentNode]==0) {
+                if(dfs(adjacentNode, node, vis, adj) == true) 
+                    return true; 
+            }
+            // if adjacent node is visited and is not its own parent node
+            else if(adjacentNode != parent) return true; 
+        }
+        return false; 
+    }
 }

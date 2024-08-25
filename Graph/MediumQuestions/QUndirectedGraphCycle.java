@@ -14,7 +14,12 @@ Explanation:
 1->2->3->4->1 is a cycle.
 
 Example 2:
-
+Input: 
+V = 4, E = 2
+adj = {{}, {2}, {1, 3}, {2}}
+Output: 0
+Explanation: 
+No cycle in the graph.
 */
 
 public class QUndirectedGraphCycle {

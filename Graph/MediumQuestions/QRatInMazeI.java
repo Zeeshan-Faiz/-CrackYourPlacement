@@ -10,7 +10,18 @@ Note: In a path, no cell can be visited more than one time. If the source cell i
 to any other cell. In case of no path, return an empty list. The driver will output "-1" automatically.
 
 Example 1:
+Input: mat[][] = [[1, 0, 0, 0],
+                [1, 1, 0, 1], 
+                [1, 1, 0, 0],
+                [0, 1, 1, 1]]
+Output: DDRDRR DRDDRR
+Explanation: The rat can reach the destination at (3, 3) from (0, 0) by two paths - DRDDRR and DDRDRR, when printed in sorted order we get DDRDRR DRDDRR.
 
+Example 2:
+Input: mat[][] = [[1, 0],
+                [1, 0]]
+Output: -1
+Explanation: No path exists and destination cell is blocked.
 */
 
 public class QRatInMazeI {

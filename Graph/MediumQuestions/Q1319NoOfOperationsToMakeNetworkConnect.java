@@ -38,13 +38,16 @@ public class Q1319NoOfOperationsToMakeNetworkConnect {
         for (int i = 0; i < m; i++) {
             int u = edge[i][0];
             int v = edge[i][1];
+            //if any two nodes are already connected, then it means we have extra edges
             if (ds.findUPar(u) == ds.findUPar(v)) {
                 cntExtras++;
-            } else {
+            } 
+            else {
                 ds.unionBySize(u, v);
             }
         }
         int cntC = 0;
+        //count all connected Components
         for (int i = 0; i < n; i++) {
             if (ds.parent.get(i) == i)
                 cntC++;

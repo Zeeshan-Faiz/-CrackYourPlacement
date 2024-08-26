@@ -33,27 +33,27 @@ public class Q1319NoOfOperationsToMakeNetworkConnect {
     public int makeConnected(int n, int[][] edge) {
 
         DisjointSet ds = new DisjointSet(n);
-        int cntExtras = 0;
+        int cntExtraEdges = 0;
         int m = edge.length;
         for (int i = 0; i < m; i++) {
             int u = edge[i][0];
             int v = edge[i][1];
             //if any two nodes are already connected, then it means we have extra edges
             if (ds.findUPar(u) == ds.findUPar(v)) {
-                cntExtras++;
+                cntExtraEdges++;
             } 
             else {
                 ds.unionBySize(u, v);
             }
         }
-        int cntC = 0;
+        int cntComponents = 0;
         //count all connected Components
         for (int i = 0; i < n; i++) {
             if (ds.parent.get(i) == i)
-                cntC++;
+                cntComponents++;
         }
-        int ans = cntC - 1;
-        if (cntExtras >= ans)
+        int ans = cntComponents - 1;
+        if (cntExtraEdges >= ans)
             return ans;
         return -1;
     }

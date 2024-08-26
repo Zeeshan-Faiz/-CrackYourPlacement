@@ -27,28 +27,29 @@ Output: "abcabccdcdcdef"
 */
 
 public class Q394DecodeString {
-    
+
     public String decodeString(String s) {
+        
         Stack<Integer> numStack = new Stack<>();
         Stack<String> stringStack = new Stack<>();
         int k = 0;
 
-        for (char c : s.toCharArray()) {
+        for (char ch : s.toCharArray()) {
 
-            if (Character.isDigit(c)) {
-                k = (k * 10) + (c - '0');
+            if (Character.isDigit(ch)) {
+                k = (k * 10) + (ch - '0');
                 continue;
             }
 
-            if (c == '[') {
+            if (ch == '[') {
                 numStack.push(k);
                 k = 0;
-                stringStack.push(String.valueOf(c));
+                stringStack.push(String.valueOf(ch));
                 continue;
             }
 
-            if (c != ']') {
-                stringStack.push(String.valueOf(c));
+            if (ch != ']') {
+                stringStack.push(String.valueOf(ch));
                 continue;
             }
 
@@ -59,16 +60,16 @@ public class Q394DecodeString {
             // remove the "["
             stringStack.pop();
 
-            // Get the new string
+            // Get the new string add it to the stack
             StringBuilder replacement = new StringBuilder();
             int count = numStack.pop();
             for (int i = 0; i < count; i++)
                 replacement.append(temp);
 
-            // Add it to the stack
             stringStack.push(replacement.toString());
         }
 
+        // remove all strings from stack add it to result and return
         StringBuilder result = new StringBuilder();
         while (!stringStack.empty()) {
             result.insert(0, stringStack.pop());

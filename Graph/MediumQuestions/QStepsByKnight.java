@@ -64,4 +64,15 @@ public class QStepsByKnight {
             return true;
         return false;
     }
+
+    class Coordinates{
+        int x;
+        int y;
+        int dis;
+        Coordinates(int x,int y,int dis){
+            this.x=x;
+            this.y=y;
+            this.dis=dis;
+        }
+    }    
 }

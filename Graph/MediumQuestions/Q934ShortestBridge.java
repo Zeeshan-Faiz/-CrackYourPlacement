@@ -23,8 +23,9 @@ Output: 1
 */
 
 public class Q934ShortestBridge {
-    
+
     public int shortestBridge(int[][] grid) {
+
         int n = grid.length;
         boolean flag = false;
         if (n == 0)
@@ -33,6 +34,7 @@ public class Q934ShortestBridge {
         boolean[][] visited = new boolean[n][n];
         Queue<int[]> q = new LinkedList<>();
 
+        // First we need to find and mark the first island
         for (int i = 0; i < n && !flag; i++) {
             for (int j = 0; j < n && !flag; j++) {
                 if (grid[i][j] == 1) {
@@ -43,7 +45,7 @@ public class Q934ShortestBridge {
         }
 
         int level = 0;
-
+        // Expanding the islands now we have all the cells added to the queue of first island
         while (!q.isEmpty()) {
             int sze = q.size();
             while (sze-- > 0) {
@@ -59,6 +61,7 @@ public class Q934ShortestBridge {
                     if (nrow < 0 || ncol < 0 || nrow >= n || ncol >= n || visited[nrow][ncol])
                         continue;
                     if (grid[nrow][ncol] == 1)
+                        // We reached the second island
                         return level;
                     visited[nrow][ncol] = true;
                     q.offer(new int[] { nrow, ncol });
@@ -73,6 +76,7 @@ public class Q934ShortestBridge {
         if (i < 0 || j < 0 || i >= n || j >= n || visited[i][j] || grid[i][j] == 0)
             return;
 
+        // Mark the current cell to be visited and add it to the queue for BFS
         visited[i][j] = true;
         q.offer(new int[] { i, j });
         int[] dir = { 0, 1, 0, -1, 0 };

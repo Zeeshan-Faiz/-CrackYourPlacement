@@ -40,7 +40,7 @@ public class MColoringProblem {
 
     private static boolean isSafe(int node, List<Integer>[] G, int[] color, int n, int col) {
         for (int neighbor : G[node]) {
-            if (color[neighbor] == col)
+            if (color[neighbor] == col)//if neighbor's color is same as the color we want to apply to current node, return false
                 return false;
         }
         return true;

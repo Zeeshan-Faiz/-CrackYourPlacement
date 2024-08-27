@@ -28,8 +28,9 @@ public class Q1376TimeNeededToInformEmployee {
     int time_needed = 0;
 
     public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-        Map<Integer, ArrayList<Integer>> graph = new HashMap<>();
 
+        // create a graph to store managers and their subordinates
+        Map<Integer, ArrayList<Integer>> graph = new HashMap<>();
         for (int i = 0; i < n; i++) {
             if (manager[i] == -1)
                 continue;
@@ -43,27 +44,24 @@ public class Q1376TimeNeededToInformEmployee {
                 graph.put(manager[i], list);
             }
         }
-
         calculateTime(headID, graph, informTime, 0);
-
         return time_needed;
     }
 
-    // recursive dfs function
     private void calculateTime(int headID, Map<Integer, ArrayList<Integer>> graph, int[] informTime, int t) {
-        // base case for recursion
-        if (informTime[headID] == 0) {
+
+        if (informTime[headID] == 0)
             return;
-        }
 
+        // Get the previous time + current time to let the subordinate know the news
         t = t + informTime[headID];
-
-        ArrayList<Integer> temp = graph.get(headID);
-
-        int s = temp.size();
+        // get all the subordinates of current manager
+        ArrayList<Integer> subordinates = graph.get(headID);
+        int s = subordinates.size();
 
         for (int i = 0; i < s; i++) {
-            calculateTime(temp.get(i), graph, informTime, t);
+            calculateTime(subordinates.get(i), graph, informTime, t);
+            // get the maximum time neded
             if (t > time_needed) {
                 time_needed = t;
             }

@@ -21,23 +21,26 @@ public class MColoringProblem {
 
     private static boolean solve(int node, List<Integer>[] G, int[] color, int n, int m) {
 
+        //if all nodes are colored return true
         if (node == n)
             return true;
 
-        for (int i = 1; i <= m; i++) {
-            if (isSafe(node, G, color, n, i)) {
-                color[node] = i;
+        for (int i = 1; i <= m; i++) 
+        {
+            if (isSafe(node, G, color, n, i)) 
+            {
+                color[node] = i; //color the node and call for the next node
                 if (solve(node + 1, G, color, n, m) == true)
                     return true;
-                color[node] = 0;
+                color[node] = 0; //backtrack and remove the color from node
             }
         }
         return false;
     }
 
     private static boolean isSafe(int node, List<Integer>[] G, int[] color, int n, int col) {
-        for (int it : G[node]) {
-            if (color[it] == col)
+        for (int neighbor : G[node]) {
+            if (color[neighbor] == col)
                 return false;
         }
         return true;

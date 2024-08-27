@@ -20,7 +20,7 @@ public class MColoringProblem {
     }
 
     private static boolean solve(int node, List<Integer>[] G, int[] color, int n, int m) {
-        
+
         if (node == n)
             return true;
 
@@ -33,5 +33,13 @@ public class MColoringProblem {
             }
         }
         return false;
+    }
+
+    private static boolean isSafe(int node, List<Integer>[] G, int[] color, int n, int col) {
+        for (int it : G[node]) {
+            if (color[it] == col)
+                return false;
+        }
+        return true;
     }
 }

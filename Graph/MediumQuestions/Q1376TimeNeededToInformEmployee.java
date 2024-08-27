@@ -1,5 +1,9 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 /*
 A company has n employees with a unique ID for each employee from 0 to n - 1. The head of the 
 company is the one with headID. Each employee has one direct manager given in the manager array 
@@ -20,5 +24,49 @@ The tree structure of the employees in the company is shown.
 */
 
 public class Q1376TimeNeededToInformEmployee {
-    
+
+    int time_needed = 0;
+
+    public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
+        Map<Integer, ArrayList<Integer>> graph = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            if (manager[i] == -1)
+                continue;
+            if (!graph.containsKey(manager[i])) {
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(i);
+                graph.put(manager[i], list);
+            } else {
+                ArrayList<Integer> list = graph.get(manager[i]);
+                list.add(i);
+                graph.put(manager[i], list);
+            }
+        }
+
+        calculateTime(headID, graph, informTime, 0);
+
+        return time_needed;
+    }
+
+    // recursive dfs function
+    private void calculateTime(int headID, Map<Integer, ArrayList<Integer>> graph, int[] informTime, int t) {
+        // base case for recursion
+        if (informTime[headID] == 0) {
+            return;
+        }
+
+        t = t + informTime[headID];
+
+        ArrayList<Integer> temp = graph.get(headID);
+
+        int s = temp.size();
+
+        for (int i = 0; i < s; i++) {
+            calculateTime(temp.get(i), graph, informTime, t);
+            if (t > time_needed) {
+                time_needed = t;
+            }
+        }
+    }
 }

@@ -1,5 +1,8 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 A directed graph of V vertices and E edges is given in the form of an adjacency list adj. Each 
 node of the graph is labelled with a distinct integer in the range 0 to V - 1.
@@ -22,4 +25,21 @@ lead to either node 5 or 6.
 
 public class QEventualSafeStates {
     
+    List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
+
+        int vis[] = new int[V];
+        int pathVis[] = new int[V];
+        int check[] = new int[V];
+        for (int i = 0; i < V; i++) {
+            if (vis[i] == 0) {
+                dfsCheck(i, adj, vis, pathVis, check);
+            }
+        }
+        List<Integer> safeNodes = new ArrayList<>();
+        for (int i = 0; i < V; i++) {
+            if (check[i] == 1)
+                safeNodes.add(i);
+        }
+        return safeNodes;
+    }
 }

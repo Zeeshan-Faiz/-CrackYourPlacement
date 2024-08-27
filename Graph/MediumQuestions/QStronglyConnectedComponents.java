@@ -22,14 +22,14 @@ public class QStronglyConnectedComponents {
 
         int[] vis = new int[V];
         Stack<Integer> st = new Stack<Integer>();
-        //add all the nodes to stack according to finish time
+        // add all the nodes to stack according to finish time
         for (int i = 0; i < V; i++) {
             if (vis[i] == 0) {
                 dfs(i, vis, adj, st);
             }
         }
 
-        //reverse the graph and store in adjT
+        // reverse the graph and store in adjT
         ArrayList<ArrayList<Integer>> adjT = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i < V; i++) {
             adjT.add(new ArrayList<Integer>());
@@ -42,7 +42,7 @@ public class QStronglyConnectedComponents {
                 adjT.get(neighbor).add(i);
             }
         }
-        //perform dfs2 in order of finishing time and count the scc
+        // perform dfs2 in order of finishing time and count the scc
         int scc = 0;
         while (!st.isEmpty()) {
             int node = st.peek();
@@ -53,5 +53,24 @@ public class QStronglyConnectedComponents {
             }
         }
         return scc;
+    }
+
+    private void dfs(int node, int[] vis, ArrayList<ArrayList<Integer>> adj, Stack<Integer> st) {
+        vis[node] = 1;
+        for (Integer neighbor : adj.get(node)) {
+            if (vis[neighbor] == 0) {
+                dfs(neighbor, vis, adj, st);
+            }
+        }
+        st.push(node);
+    }
+
+    private void dfs2(int node, int[] vis, ArrayList<ArrayList<Integer>> adjT) {
+        vis[node] = 1;
+        for (Integer nieghbor : adjT.get(node)) {
+            if (vis[nieghbor] == 0) {
+                dfs2(nieghbor, vis, adjT);
+            }
+        }
     }
 }

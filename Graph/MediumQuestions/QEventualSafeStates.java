@@ -24,7 +24,7 @@ lead to either node 5 or 6.
 */
 
 public class QEventualSafeStates {
-    
+
     List<Integer> eventualSafeNodes(int V, List<List<Integer>> adj) {
 
         int vis[] = new int[V];
@@ -41,5 +41,27 @@ public class QEventualSafeStates {
                 safeNodes.add(i);
         }
         return safeNodes;
+    }
+
+    private boolean dfsCheck(int node, List<List<Integer>> adj, int vis[], int pathVis[], int check[]) {
+
+        vis[node] = 1;
+        pathVis[node] = 1;
+        check[node] = 0;
+        for (int neighbor : adj.get(node)) {
+            // when the node is not visited
+            if (vis[neighbor] == 0) {
+                if (dfsCheck(neighbor, adj, vis, pathVis, check) == true)
+                    return true;
+            }
+            // if the node has been previously visited
+            // but it has to be visited on the same path
+            else if (pathVis[neighbor] == 1) {
+                return true;
+            }
+        }
+        check[node] = 1;
+        pathVis[node] = 0;
+        return false;
     }
 }

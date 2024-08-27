@@ -11,10 +11,10 @@ possible to colour vertices and 0 otherwise.
 
 public class MColoringProblem {
 
-    public static boolean graphColoring(List<Integer>[] G, int[] color, int i, int C) {
+    public static boolean graphColoring(List<Integer>[] G, int[] color, int M) {
 
         int n = G.length;
-        if (solve(i, G, color, n, C) == true)
+        if (solve(0, G, color, n, M) == true)
             return true;
         return false;
     }

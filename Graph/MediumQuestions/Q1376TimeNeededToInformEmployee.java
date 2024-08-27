@@ -13,7 +13,10 @@ informTime[i] minutes, all his direct subordinates can start spreading the news)
 Return the number of minutes needed to inform all the employees about the urgent news.
 
 Example 1:
-
+Input: n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]
+Output: 1
+Explanation: The head of the company with id = 2 is the direct manager of all the employees in the company and needs 1 minute to inform them all.
+The tree structure of the employees in the company is shown.
 */
 
 public class Q1376TimeNeededToInformEmployee {

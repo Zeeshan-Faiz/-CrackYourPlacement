@@ -1,5 +1,8 @@
 package Graph.MediumQuestions;
 
+import java.util.List;
+import java.util.PriorityQueue;
+
 /*
 Given a weighted, undirected, and connected graph with V vertices and E edges, your task is to 
 find the sum of the weights of the edges in the Minimum Spanning Tree (MST) of the graph. The graph 
@@ -29,5 +32,33 @@ Only one Spanning Tree is possible which has a weight of 5.
 */
 
 public class QMinimumSpanningTree {
-    
+
+    // Using Prim's Algorithm
+    public int spanningTree(int V, int E, List<List<int[]>> adj) {
+        
+        PriorityQueue<Pair> pq = new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
+        int[] vis = new int[V];
+        pq.add(new Pair(0, 0));
+        int sum = 0;
+        while (pq.size() > 0) {
+            int wt = pq.peek().distance;
+            int node = pq.peek().node;
+            pq.remove();
+
+            if (vis[node] == 1)
+                continue;
+
+            vis[node] = 1;
+            sum += wt;
+
+            for (int i = 0; i < adj.get(node).size(); i++) {
+                int edW = adj.get(node).get(i)[1];
+                int adjNode = adj.get(node).get(i)[0];
+                if (vis[adjNode] == 0) {
+                    pq.add(new Pair(edW, adjNode));
+                }
+            }
+        }
+        return sum;
+    }
 }

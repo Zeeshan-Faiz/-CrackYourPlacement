@@ -8,7 +8,24 @@ integers. Each vector represents an edge, with the first integer denoting the en
 and the second integer denoting the weight of the edge.
 
 Example 1:
+Input:
+3 3
+0 1 5
+1 2 3
+0 2 1
+Output:
+4
+Explanation:
+The Spanning Tree resulting in a weight of 4 is shown above.
 
+Example 2:
+Input:
+2 1
+0 1 5
+Output:
+5
+Explanation:
+Only one Spanning Tree is possible which has a weight of 5.
 */
 
 public class QMinimumSpanningTree {

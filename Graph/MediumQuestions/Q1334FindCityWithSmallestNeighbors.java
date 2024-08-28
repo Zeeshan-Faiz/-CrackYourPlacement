@@ -34,8 +34,9 @@ The city 0 has 1 neighboring city at a distanceThreshold = 2.
 */
 
 public class Q1334FindCityWithSmallestNeighbors {
-    
+
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
+        
         int m = edges.length;
         int[][] dist = new int[n][n];
         for (int i = 0; i < n; i++) {
@@ -49,7 +50,7 @@ public class Q1334FindCityWithSmallestNeighbors {
             dist[u][v] = wt;
             dist[v][u] = wt;
         }
-        //first make distance between same cities as 0
+        // first make distance between same cities as 0
         for (int i = 0; i < n; i++)
             dist[i][i] = 0;
 

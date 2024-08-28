@@ -62,14 +62,14 @@ public class Q947MostStonesRemoved {
         int cnt = 0;
         for (Map.Entry<Integer, Integer> it : stoneNodes.entrySet()) {
             if (ds.findUPar(it.getKey()) == it.getKey()) {
-                cnt++;
+                cnt++;//count all components
             }
         }
         return n - cnt;
     }
 
     class DisjointSet {
-        
+
         List<Integer> rank = new ArrayList<>();
         List<Integer> parent = new ArrayList<>();
         List<Integer> size = new ArrayList<>();
@@ -121,5 +121,4 @@ public class Q947MostStonesRemoved {
             }
         }
     }
-
 }

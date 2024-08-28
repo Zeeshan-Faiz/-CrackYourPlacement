@@ -50,7 +50,6 @@ public class QMinimumSpanningTree {
 
             vis[node] = 1;
             sum += wt;
-
             for (int i = 0; i < adj.get(node).size(); i++) {
                 int edW = adj.get(node).get(i)[1];
                 int adjNode = adj.get(node).get(i)[0];
@@ -60,5 +59,14 @@ public class QMinimumSpanningTree {
             }
         }
         return sum;
+    }
+
+    class Pair {
+        int node;
+        int distance;
+        public Pair(int distance, int node) {
+            this.node = node;
+            this.distance = distance;
+        }
     }
 }

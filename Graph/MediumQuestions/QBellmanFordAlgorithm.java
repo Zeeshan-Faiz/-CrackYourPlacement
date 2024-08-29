@@ -1,5 +1,7 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+
 /*
 Given a weighted and directed graph of V vertices and E edges, Find the shortest distance of all 
 the vertex's from the source vertex S. If a vertices can't be reach from the S then mark the 
@@ -31,5 +33,33 @@ For nodes 2 to 0, we can follow the path- 2-0. This has a distance of 1. For nod
 */
 
 public class QBellmanFordAlgorithm {
-    
+
+    static int[] bellman_ford(int V, ArrayList<ArrayList<Integer>> edges, int S) {
+
+        int[] dist = new int[V];
+        //initialise each distance as infinity initially
+        for (int i = 0; i < V; i++)
+            dist[i] = (int) (1e8);
+        dist[S] = 0;// from source to itself 0 distance
+        for (int i = 0; i < V - 1; i++) {
+            for (ArrayList<Integer> it : edges) {
+                int u = it.get(0);
+                int v = it.get(1);
+                int wt = it.get(2);
+                if (dist[u] != 1e8 && dist[u] + wt < dist[v]) {
+                    dist[v] = dist[u] + wt;
+                }
+            }
+        }
+        // Nth relaxation to check negative cycle
+        for (ArrayList<Integer> it : edges) {
+            int u = it.get(0);
+            int v = it.get(1);
+            int wt = it.get(2);
+            if (dist[u] != 1e8 && dist[u] + wt < dist[v]) {
+                return new int[] { -1 };
+            }
+        }
+        return dist;
+    }
 }

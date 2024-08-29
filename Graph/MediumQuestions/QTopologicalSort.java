@@ -27,32 +27,31 @@ would be 1 for all test cases. One possible Topological order for the graph is 5
 */
 
 public class QTopologicalSort {
-    
-    public int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) 
-    {
-        // add your code here
+
+    public int[] topoSort(int V, ArrayList<ArrayList<Integer>> adj) {
+
         int vis[] = new int[V];
-        Stack<Integer> st = new Stack<Integer>();
+        Stack<Integer> stack = new Stack<Integer>();
         for (int i = 0; i < V; i++) {
             if (vis[i] == 0) {
-                dfs(i, vis, st, adj);
+                dfs(i, vis, stack, adj);
             }
         }
 
         int ans[] = new int[V];
         int i = 0;
-        while (!st.isEmpty()) {
-            ans[i++] = st.pop();
+        while (!stack.isEmpty()) {
+            ans[i++] = stack.pop();
         }
         return ans;
     }
-    private static void dfs(int node, int vis[], Stack<Integer> st,
-            ArrayList<ArrayList<Integer>> adj) {
+
+    private static void dfs(int node, int vis[], Stack<Integer> stack, ArrayList<ArrayList<Integer>> adj) {
         vis[node] = 1;
         for (int it : adj.get(node)) {
             if (vis[it] == 0)
-                dfs(it, vis, st, adj);
+                dfs(it, vis, stack, adj);
         }
-        st.push(node);
+        stack.push(node);
     }
 }

@@ -52,7 +52,7 @@ public class QTopologicalSortUsingBFS {
         while (!queue.isEmpty()) 
         {
             int node = queue.remove();
-            ans[i] = node;
+            ans[i] = node;//add node in the answer
             i++;
             for (int neighbor : adj.get(node)) {
                 indegree[neighbor]--;

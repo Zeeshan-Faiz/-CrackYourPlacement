@@ -47,23 +47,20 @@ public class QTopologicalSortUsingBFS {
             }
         }
 
-        int topo[] = new int[V];
+        int ans[] = new int[V];
         int i = 0;
-        while (!queue.isEmpty()) {
-            int node = queue.peek();
-            queue.remove();
-            topo[i++] = node;
-            // node is in your topo sort
-            // so please remove it from the indegree
-
-            for (int it : adj.get(node)) {
-                indegree[it]--;
-                if (indegree[it] == 0) {
-                    queue.add(it);
+        while (!queue.isEmpty()) 
+        {
+            int node = queue.remove();
+            ans[i] = node;
+            i++;
+            for (int neighbor : adj.get(node)) {
+                indegree[neighbor]--;
+                if (indegree[neighbor] == 0) {
+                    queue.add(neighbor);
                 }
             }
         }
-
-        return topo;
+        return ans;
     }
 }

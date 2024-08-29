@@ -9,7 +9,28 @@ vertex S. You have to return a list of integers denoting shortest distance betwe
 Source vertex S.
 Note: The Graph doesn't contain any negative weight cycle.
 
+Example 1:
+Input:
+V = 2
+adj [] = {{{1, 9}}, {{0, 9}}}
+S = 0
+Output:
+0 9
+Explanation:
+The source vertex is 0. Hence, the shortest distance of node 0 is 0 and the shortest distance from node 1 is 9.
 
+Example 2:
+
+Input:
+V = 3, E = 3
+adj = {{{1, 1}, {2, 6}}, {{2, 3}, {0, 1}}, {{1, 3}, {0, 6}}}
+S = 2
+Output:
+4 3 0
+Explanation:
+For nodes 2 to 0, we can follow the path- 2-1-0. This has a distance of 1+3 = 4,
+whereas the path 2-0 has a distance of 6. So, the Shortest path from 2 to 0 is 4.
+The shortest distance from 0 to 1 is 1 .
 */
 
 public class QDjikstraAlgorithm{

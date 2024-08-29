@@ -3,8 +3,6 @@ package Graph.MediumQuestions;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-import Graph.MediumQuestions.QMinimumSpanningTree.Pair;
-
 /*
 Given a weighted, undirected and connected graph of V vertices and an adjacency list adj where 
 adj[i] is a list of lists containing two integers where the first integer of each list j denotes 
@@ -40,7 +38,7 @@ The shortest distance from 0 to 1 is 1 .
 
 public class QDjikstraAlgorithm {
 
-    static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S) {
+    public int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S) {
 
         PriorityQueue<Pair> pq = new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
         int[] dist = new int[V];
@@ -51,9 +49,9 @@ public class QDjikstraAlgorithm {
         dist[S] = 0; // Source initialised with dist=0.
         pq.add(new Pair(0, S));
 
-        // Now, pop the minimum distance node first from the min-heap and traverse for all its adjacent nodes.
-        while (pq.size() != 0) 
-        {
+        // Now, pop the minimum distance node first from the min-heap and traverse for
+        // all its adjacent nodes.
+        while (pq.size() != 0) {
             int dis = pq.peek().distance;
             int node = pq.peek().node;
             pq.remove();
@@ -73,4 +71,15 @@ public class QDjikstraAlgorithm {
         // Return the list containing shortest distances from source to all the nodes.
         return dist;
     }
+
+    class Pair {
+        int node;
+        int distance;
+
+        public Pair(int distance, int node) {
+            this.node = node;
+            this.distance = distance;
+        }
+    }
+
 }

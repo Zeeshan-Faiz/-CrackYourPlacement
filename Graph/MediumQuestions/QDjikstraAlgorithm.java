@@ -42,7 +42,7 @@ public class QDjikstraAlgorithm {
 
         PriorityQueue<Pair> pq = new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
         int[] dist = new int[V];
-        // Initialising distTo list with infinity initially.
+        // Initialising dist[] list with infinity initially.
         for (int i = 0; i < V; i++)
             dist[i] = (int) (1e9);
 
@@ -81,5 +81,4 @@ public class QDjikstraAlgorithm {
             this.distance = distance;
         }
     }
-
 }

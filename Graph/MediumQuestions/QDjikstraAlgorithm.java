@@ -1,5 +1,10 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
+import Graph.MediumQuestions.QMinimumSpanningTree.Pair;
+
 /*
 Given a weighted, undirected and connected graph of V vertices and an adjacency list adj where 
 adj[i] is a list of lists containing two integers where the first integer of each list j denotes 
@@ -33,6 +38,47 @@ whereas the path 2-0 has a distance of 6. So, the Shortest path from 2 to 0 is 4
 The shortest distance from 0 to 1 is 1 .
 */
 
-public class QDjikstraAlgorithm{
+public class QDjikstraAlgorithm {
 
+    static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S) {
+
+        PriorityQueue<Pair> pq = new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
+
+        int[] dist = new int[V];
+
+        // Initialising distTo list with a large number to
+        // indicate the nodes are unvisited initially.
+        // This list contains distance from source to the nodes.
+        for (int i = 0; i < V; i++)
+            dist[i] = (int) (1e9);
+
+        // Source initialised with dist=0.
+        dist[S] = 0;
+        pq.add(new Pair(0, S));
+
+        // Now, pop the minimum distance node first from the min-heap
+        // and traverse for all its adjacent nodes.
+        while (pq.size() != 0) {
+            int dis = pq.peek().distance;
+            int node = pq.peek().node;
+            pq.remove();
+
+            // Check for all adjacent nodes of the popped out
+            // element whether the prev dist is larger than current or not.
+            for (int i = 0; i < adj.get(node).size(); i++) {
+                int edgeWeight = adj.get(node).get(i).get(1);
+                int adjNode = adj.get(node).get(i).get(0);
+
+                // If current distance is smaller,
+                // push it into the queue.
+                if (dis + edgeWeight < dist[adjNode]) {
+                    dist[adjNode] = dis + edgeWeight;
+                    pq.add(new Pair(dist[adjNode], adjNode));
+                }
+            }
+        }
+        // Return the list containing shortest distances
+        // from source to all the nodes.
+        return dist;
+    }
 }

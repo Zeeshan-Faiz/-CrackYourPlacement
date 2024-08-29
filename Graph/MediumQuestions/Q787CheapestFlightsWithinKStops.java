@@ -36,6 +36,8 @@ The optimal path with no stops from city 0 to 2 is marked in red and has cost 50
 public class Q787CheapestFlightsWithinKStops {
 
     public int findCheapestPrice(int n, int[][] flights, int src, int dst, int K) {
+
+        // create adjacency list to form a graph
         ArrayList<ArrayList<Pair>> adj = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             adj.add(new ArrayList<>());
@@ -45,25 +47,21 @@ public class Q787CheapestFlightsWithinKStops {
             adj.get(flights[i][0]).add(new Pair(flights[i][1], flights[i][2]));
         }
 
-        // Create a queue which stores the node and their distances from the
-        // source in the form of {stops, {node, dist}} with ‘stops’ indicating
-        // the no. of nodes between src and current node.
-        Queue<Tuple> q = new LinkedList<>();
-
-        q.add(new Tuple(0, src, 0));
+        // Create a queue which stores {stops, {node, dist}}
+        Queue<Tuple> queue = new LinkedList<>();
+        queue.add(new Tuple(0, src, 0));// add source with 0 cost
 
         // Distance array to store the updated distances from the source.
         int[] dist = new int[n];
         for (int i = 0; i < n; i++) {
             dist[i] = (int) (1e9);
         }
-        dist[src] = 0;
+        dist[src] = 0;// source distance to itself has 0 cost
 
-        // Iterate through the graph using a queue like in Dijkstra with
-        // popping out the element with min stops first.
-        while (!q.isEmpty()) {
-            Tuple it = q.peek();
-            q.remove();
+        while (!queue.isEmpty()) 
+        {
+            Tuple it = queue.peek();
+            queue.remove();
             int stops = it.first;
             int node = it.second;
             int cost = it.third;
@@ -71,6 +69,7 @@ public class Q787CheapestFlightsWithinKStops {
             // We stop the process as soon as the limit for the stops reaches.
             if (stops > K)
                 continue;
+
             for (Pair iter : adj.get(node)) {
                 int adjNode = iter.first;
                 int edW = iter.second;
@@ -79,12 +78,10 @@ public class Q787CheapestFlightsWithinKStops {
                 // less than the prev and the stops are also within limits.
                 if (cost + edW < dist[adjNode] && stops <= K) {
                     dist[adjNode] = cost + edW;
-                    q.add(new Tuple(stops + 1, adjNode, cost + edW));
+                    queue.add(new Tuple(stops + 1, adjNode, cost + edW));
                 }
             }
         }
-        // If the destination node is unreachable return ‘-1’
-        // else return the calculated dist from src to dst.
         if (dist[dst] == (int) (1e9))
             return -1;
         return dist[dst];

@@ -43,17 +43,12 @@ public class QDjikstraAlgorithm {
     static int[] dijkstra(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj, int S) {
 
         PriorityQueue<Pair> pq = new PriorityQueue<Pair>((x, y) -> x.distance - y.distance);
-
         int[] dist = new int[V];
-
-        // Initialising distTo list with a large number to
-        // indicate the nodes are unvisited initially.
-        // This list contains distance from source to the nodes.
+        // Initialising distTo list with infinity initially.
         for (int i = 0; i < V; i++)
             dist[i] = (int) (1e9);
 
-        // Source initialised with dist=0.
-        dist[S] = 0;
+        dist[S] = 0; // Source initialised with dist=0.
         pq.add(new Pair(0, S));
 
         // Now, pop the minimum distance node first from the min-heap

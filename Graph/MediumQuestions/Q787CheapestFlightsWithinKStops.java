@@ -89,4 +89,24 @@ public class Q787CheapestFlightsWithinKStops {
             return -1;
         return dist[dst];
     }
+
+    class Pair {
+        int first;
+        int second;
+
+        public Pair(int first, int second) {
+            this.first = first;
+            this.second = second;
+        }
+    }
+
+    class Tuple {
+        int first, second, third;
+
+        Tuple(int first, int second, int third) {
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+    }
 }

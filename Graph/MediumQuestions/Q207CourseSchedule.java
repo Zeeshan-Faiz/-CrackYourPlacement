@@ -37,7 +37,7 @@ public class Q207CourseSchedule {
         }
         int m = prerequisites.length;
         for (int i = 0; i < m; i++) {
-            adj.get(prerequisites[i][0]).add(prerequisites[i][1]);
+            adj.get(prerequisites[i][1]).add(prerequisites[i][0]);
         }
 
         // find indegree of each course

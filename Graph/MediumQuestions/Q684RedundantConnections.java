@@ -24,22 +24,22 @@ Output: [1,4]
 */
 
 public class Q684RedundantConnections {
-    
+
     public int[] findRedundantConnection(int[][] edges) {
-        
+
         int m = edges.length;
-        //we'll use hashmap to store our adjacency matrix
+        // we'll use hashmap to store our adjacency matrix
         Map<Integer, Set<Integer>> map = new HashMap<>();
         for (int i = 1; i <= m; i++) {
             map.put(i, new HashSet<>());
         }
 
-        //traverse all edges and check whether adding current edge will create a cycle
+        // traverse all edges and check whether adding current edge will create a cycle
         for (int[] edge : edges) {
             if (isCycle(new HashSet<>(), map, edge[0], edge[1]))
-                return edge;//cycle can be found by adding this current edge, return it
+                return edge;// cycle can be found by adding this current edge, return it
 
-            //otherwise add an undirected edge between both the nodes
+            // otherwise add an undirected edge between both the nodes
             map.get(edge[0]).add(edge[1]);
             map.get(edge[1]).add(edge[0]);
         }
@@ -47,10 +47,10 @@ public class Q684RedundantConnections {
     }
 
     private boolean isCycle(Set<Integer> visited, Map<Integer, Set<Integer>> map, int src, int target) {
-        
+
         if (src == target)
             return true;
-        //add source as visited
+        // add source as visited
         visited.add(src);
         for (int next : map.get(src)) {
             if (!visited.contains(next)) {

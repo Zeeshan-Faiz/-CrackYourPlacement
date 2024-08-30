@@ -36,7 +36,7 @@ public class Q684RedundantConnections {
 
         //traverse all edges and check whether adding current edge will create a cycle
         for (int[] edge : edges) {
-            if (dfs(new HashSet<>(), map, edge[0], edge[1]))
+            if (isCycle(new HashSet<>(), map, edge[0], edge[1]))
                 return edge;//cycle can be found by adding this current edge, return it
 
             //otherwise add an undirected edge between both the nodes
@@ -46,14 +46,15 @@ public class Q684RedundantConnections {
         return null;
     }
 
-    private boolean dfs(Set<Integer> visited, Map<Integer, Set<Integer>> map,
-            int src, int target) {
+    private boolean isCycle(Set<Integer> visited, Map<Integer, Set<Integer>> map, int src, int target) {
+        
         if (src == target)
             return true;
+        //add source as visited
         visited.add(src);
         for (int next : map.get(src)) {
             if (!visited.contains(next)) {
-                if (dfs(visited, map, next, target))
+                if (isCycle(visited, map, next, target))
                     return true;
             }
         }

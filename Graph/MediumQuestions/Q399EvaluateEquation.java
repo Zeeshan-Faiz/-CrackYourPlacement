@@ -35,14 +35,17 @@ Output: [0.50000,2.00000,-1.00000,-1.00000]
 */
 
 public class Q399EvaluateEquation {
-    
-    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
-        Map<String, Map<String, Double>> graph = buildGraph(equations, values);
 
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+
+        // build the graph between equations and values
+        Map<String, Map<String, Double>> graph = buildGraph(equations, values);
         double[] ans = new double[queries.size()];
         int i = 0;
         for (List<String> query : queries) {
             Set<String> visited = new HashSet<String>();
+            // if both source and target are equal then return 1 or -1 depending upon it's
+            // presence
             if (query.get(0).equals(query.get(1))) {
                 if (graph.containsKey(query.get(0))) {
                     ans[i] = 1.0;
@@ -51,48 +54,49 @@ public class Q399EvaluateEquation {
                 } else {
                     ans[i] = -1.0;
                     i++;
-
                 }
                 continue;
             }
+            // if both source and target are different, do dfs traversal and try to find the
+            // answer
             double res = dfs(query.get(0), query.get(1), graph, visited);
             ans[i] = res;
             i++;
         }
-
         return ans;
     }
 
     private double dfs(String start, String end, Map<String, Map<String, Double>> graph, Set<String> visited) {
-        if (!graph.containsKey(start)) {
-            return -1.0;
-        }
 
-        if (graph.get(start).containsKey(end)) {
+        // if source is not there in our graph then return -1
+        if (!graph.containsKey(start))
+            return -1.0;
+
+        if (graph.get(start).containsKey(end))
             return graph.get(start).get(end);
-        }
 
         visited.add(start);
         Map<String, Double> startMap = graph.get(start);
-        for (Map.Entry<String, Double> entry : startMap.entrySet()) {
+        for (Map.Entry<String, Double> entry : startMap.entrySet()) 
+        {
             if (!visited.contains(entry.getKey())) {
-
                 double currVal = dfs(entry.getKey(), end, graph, visited);
-
                 if (currVal != -1) {
+                    //multiple values from each nodes until you reach target
                     return currVal * entry.getValue();
                 }
             }
         }
         return -1.0;
-
     }
 
     private Map<String, Map<String, Double>> buildGraph(List<List<String>> equations, double[] values) {
+
         // source, <End, Value>
         Map<String, Map<String, Double>> graph = new HashMap<>();
         int i = 0;
-        for (List<String> equation : equations) {
+        for (List<String> equation : equations) 
+        {
             String startEl = equation.get(0);
             String endEl = equation.get(1);
             double val = values[i];
@@ -106,6 +110,5 @@ public class Q399EvaluateEquation {
             graph.get(endEl).put(startEl, 1 / val);
         }
         return graph;
-
     }
 }

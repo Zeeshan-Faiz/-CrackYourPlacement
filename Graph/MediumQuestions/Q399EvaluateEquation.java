@@ -65,23 +65,23 @@ public class Q399EvaluateEquation {
         return ans;
     }
 
-    private double dfs(String start, String end, Map<String, Map<String, Double>> graph, Set<String> visited) {
+    private double dfs(String source, String target, Map<String, Map<String, Double>> graph, Set<String> visited) {
 
         // if source is not there in our graph then return -1
-        if (!graph.containsKey(start))
+        if (!graph.containsKey(source))
             return -1.0;
 
-        if (graph.get(start).containsKey(end))
-            return graph.get(start).get(end);
+        if (graph.get(source).containsKey(target))
+            return graph.get(source).get(target);
 
-        visited.add(start);
-        Map<String, Double> startMap = graph.get(start);
+        visited.add(source);
+        Map<String, Double> startMap = graph.get(source);
         for (Map.Entry<String, Double> entry : startMap.entrySet()) 
         {
             if (!visited.contains(entry.getKey())) {
-                double currVal = dfs(entry.getKey(), end, graph, visited);
+                double currVal = dfs(entry.getKey(), target, graph, visited);
                 if (currVal != -1) {
-                    //multiple values from each nodes until you reach target
+                    //multiply values from each nodes until you reach target
                     return currVal * entry.getValue();
                 }
             }
@@ -100,12 +100,12 @@ public class Q399EvaluateEquation {
             String endEl = equation.get(1);
             double val = values[i];
             i++;
-            graph.putIfAbsent(startEl, new HashMap<>());
 
+            //add both ways like a/b & b/a
+            graph.putIfAbsent(startEl, new HashMap<>());
             graph.get(startEl).put(endEl, val);
 
             graph.putIfAbsent(endEl, new HashMap<>());
-
             graph.get(endEl).put(startEl, 1 / val);
         }
         return graph;

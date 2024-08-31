@@ -54,7 +54,7 @@ public class Q785IsGraphBipartite {
 
         for (int i = 0; i < V; i++) {
             if (color[i] == -1) {
-                if (checkColor(i, V, adj, color) == false) {
+                if (checkColor(i, adj, color) == false) {
                     return false;
                 }
             }
@@ -62,7 +62,7 @@ public class Q785IsGraphBipartite {
         return true;
     }
 
-    private boolean checkColor(int start, int V, ArrayList<ArrayList<Integer>> adj, int color[]) {
+    private boolean checkColor(int start, ArrayList<ArrayList<Integer>> adj, int color[]) {
         
         Queue<Integer> queue = new LinkedList<Integer>();
         queue.add(start);

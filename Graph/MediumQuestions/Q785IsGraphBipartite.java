@@ -1,6 +1,8 @@
 package Graph.MediumQuestions;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /*
 There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1. You 
@@ -53,6 +55,33 @@ public class Q785IsGraphBipartite {
         for (int i = 0; i < V; i++) {
             if (color[i] == -1) {
                 if (checkColor(i, V, adj, color) == false) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean checkColor(int start, int V, ArrayList<ArrayList<Integer>> adj, int color[]) {
+        
+        Queue<Integer> q = new LinkedList<Integer>();
+        q.add(start);
+        color[start] = 0;
+        while (!q.isEmpty()) {
+            int node = q.peek();
+            q.remove();
+
+            for (int it : adj.get(node)) {
+                // if the adjacent node is yet not colored
+                // you will give the opposite color of the node
+                if (color[it] == -1) {
+
+                    color[it] = 1 - color[node];
+                    q.add(it);
+                }
+                // is the adjacent guy having the same color
+                // someone did color it on some other path
+                else if (color[it] == color[node]) {
                     return false;
                 }
             }

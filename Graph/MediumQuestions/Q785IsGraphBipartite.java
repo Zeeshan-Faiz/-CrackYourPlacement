@@ -1,5 +1,7 @@
 package Graph.MediumQuestions;
 
+import java.util.ArrayList;
+
 /*
 There is an undirected graph with n nodes, where each node is numbered between 0 and n - 1. You 
 are given a 2D array graph, where graph[u] is an array of nodes that node u is adjacent to. More 
@@ -27,5 +29,34 @@ Explanation: We can partition the nodes into two sets: {0, 2} and {1, 3}.
 */
 
 public class Q785IsGraphBipartite {
-    
+
+    public boolean isBipartite(int[][] graph) {
+
+        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
+
+        // Convert 2D array to adjacency list
+        for (int i = 0; i < graph.length; i++) {
+            // Create a new list for each node
+            adj.add(new ArrayList<>());
+            // Add all adjacent nodes to the list
+            for (int j = 0; j < graph[i].length; j++) {
+                adj.get(i).add(graph[i][j]);
+            }
+        }
+
+        int V = graph.length;
+        int color[] = new int[V];
+        // intialise all nodes with color with -1
+        for (int i = 0; i < V; i++)
+            color[i] = -1;
+
+        for (int i = 0; i < V; i++) {
+            if (color[i] == -1) {
+                if (checkColor(i, V, adj, color) == false) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
 }

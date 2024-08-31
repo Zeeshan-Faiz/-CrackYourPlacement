@@ -27,5 +27,33 @@ Explanation: "geeks" is not present in the given set of strings.
 */
 
 public class QInsertAndSearchInTrie {
-    
+
+    static void insert(TrieNode root, String key) {
+        // Your code here
+        TrieNode curNode = root;
+        for (int i = 0; i < key.length(); i++) {
+            char ch = key.charAt(i);
+            if (curNode.children[ch - 'a'] == null) {
+                // insert current character to the node and point to empty new node
+                TrieNode newNode = new TrieNode();
+                curNode.children[ch - 'a'] = newNode;
+            }
+            curNode = curNode.children[ch - 'a'];// move to new node
+        }
+        curNode.isEndOfWord = true;
+    }
+
+    // Function to use TRIE data structure and search the given string.
+    static boolean search(TrieNode root, String key) {
+        // Your code here
+        TrieNode curNode = root;
+        for (int i = 0; i < key.length(); i++) {
+            char ch = key.charAt(i);
+            if (curNode.children[ch - 'a'] == null) {
+                return false;
+            }
+            curNode = curNode.children[ch - 'a'];// move to new node
+        }
+        return curNode.isEndOfWord;
+    }
 }

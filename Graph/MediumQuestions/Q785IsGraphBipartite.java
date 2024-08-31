@@ -64,23 +64,20 @@ public class Q785IsGraphBipartite {
 
     private boolean checkColor(int start, int V, ArrayList<ArrayList<Integer>> adj, int color[]) {
         
-        Queue<Integer> q = new LinkedList<Integer>();
-        q.add(start);
-        color[start] = 0;
-        while (!q.isEmpty()) {
-            int node = q.peek();
-            q.remove();
-
+        Queue<Integer> queue = new LinkedList<Integer>();
+        queue.add(start);
+        color[start] = 0;// color the first node with either 0 or 1
+        while (!queue.isEmpty()) 
+        {
+            int node = queue.peek();
+            queue.remove();
             for (int it : adj.get(node)) {
-                // if the adjacent node is yet not colored
-                // you will give the opposite color of the node
+                // if the adjacent node is yet not colored, give the opposite color of the node
                 if (color[it] == -1) {
-
                     color[it] = 1 - color[node];
-                    q.add(it);
+                    queue.add(it);
                 }
-                // is the adjacent guy having the same color
-                // someone did color it on some other path
+                // is the adjacent guy having the same color return false
                 else if (color[it] == color[node]) {
                     return false;
                 }

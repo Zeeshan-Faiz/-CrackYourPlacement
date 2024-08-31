@@ -57,8 +57,7 @@ public class Q399EvaluateEquation {
                 }
                 continue;
             }
-            // if both source and target are different, do dfs traversal and try to find the
-            // answer
+            // if both source and target are different, do dfs traversal and try to find the answer
             double res = dfs(query.get(0), query.get(1), graph, visited);
             ans[i] = res;
             i++;

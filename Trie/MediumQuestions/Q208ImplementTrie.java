@@ -29,7 +29,7 @@ trie.search("app");     // return True
 */
 
 public class Q208ImplementTrie {
-    
+
     class Node {
         Node children[] = new Node[26];
         boolean eow = false;
@@ -44,6 +44,7 @@ public class Q208ImplementTrie {
     public Node root = new Node();
 
     public void insert(String word) {
+        
         Node curr = root;
         for (int level = 0; level < word.length(); level++) {
             int idx = word.charAt(level) - 'a';
@@ -56,6 +57,7 @@ public class Q208ImplementTrie {
     }
 
     public boolean search(String word) {
+        
         Node curr = root;
         for (int level = 0; level < word.length(); level++) {
             int idx = word.charAt(level) - 'a';
@@ -68,6 +70,7 @@ public class Q208ImplementTrie {
     }
 
     public boolean startsWith(String prefix) {
+        
         Node curr = root;
         for (int level = 0; level < prefix.length(); level++) {
             int idx = prefix.charAt(level) - 'a';

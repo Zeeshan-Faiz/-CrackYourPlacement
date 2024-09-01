@@ -29,7 +29,7 @@ wordDictionary.search("b.."); // return True
 */
 
 public class Q211DesignAddAndSearchDS {
-    
+
     private Q211DesignAddAndSearchDS[] children;
     boolean isEndOfWord;
 
@@ -40,6 +40,7 @@ public class Q211DesignAddAndSearchDS {
     }
 
     public void addWord(String word) {
+        
         Q211DesignAddAndSearchDS curr = this;
         for (char c : word.toCharArray()) {
             if (curr.children[c - 'a'] == null)
@@ -50,6 +51,7 @@ public class Q211DesignAddAndSearchDS {
     }
 
     public boolean search(String word) {
+        
         Q211DesignAddAndSearchDS curr = this;
         for (int i = 0; i < word.length(); ++i) {
             char c = word.charAt(i);

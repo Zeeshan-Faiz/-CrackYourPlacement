@@ -24,6 +24,51 @@ Explanation: The reverse pairs are:
 (3, 4) --> nums[3] = 5, nums[4] = 1, 5 > 2 * 1
 */
 
-public class Q493ReversePairs{
+public class Q493ReversePairs {
 
+    int ans;
+
+    public int reversePairs(int[] nums) {
+        ans = 0;
+        solve(nums, 0, nums.length - 1);
+        return ans;
+    }
+
+    public int[] solve(int[] nums, int i, int j) {
+
+        if (i == j)
+            return new int[] { nums[i] };
+
+        int mid = (i + j) / 2;
+        int left[] = solve(nums, i, mid);
+        int right[] = solve(nums, mid + 1, j);
+        int r = 0;
+        int temp = 0;
+
+        for (int l = 0; l < left.length; l++) {
+            while (r < right.length && left[l] > 2l * (long) right[r]) {
+                r++;
+                temp = temp + (left.length - l);
+            }
+
+        }
+        ans = ans + temp;
+        int arr[] = new int[left.length + right.length];
+
+        int l = 0;
+        r = 0;
+        int index = 0;
+        while (l < left.length && r < right.length) {
+            if (left[l] < right[r]) {
+                arr[index++] = left[l++];
+            } else {
+                arr[index++] = right[r++];
+            }
+        }
+        while (l < left.length)
+            arr[index++] = left[l++];
+        while (r < right.length)
+            arr[index++] = right[r++];
+        return arr;
+    }
 }

@@ -25,4 +25,30 @@ Explanation: Only the first two points have an absolute difference of 3 or less 
 
 public class Q1499MaxValueOfEquation {
     
+    public int findMaxValueOfEquation(int[][] points, int k) {
+        int n = points.length;
+        int f = 1;
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < n; i++) {
+            if (f < i + 1)
+                f = i + 1;
+            int x1 = points[i][0];
+            int y1 = points[i][1];
+
+            for (int j = f; j < n; j++) {
+                int x2 = points[j][0];
+                int y2 = points[j][1];
+                if (x2 > x1 + k)
+                    break;
+
+                if ((y1 + y2 + x2 - x1) > max) {
+                    max = y1 + y2 + x2 - x1;
+                    f = j - 1;
+                }
+            }
+        }
+
+        return max;
+    }
 }

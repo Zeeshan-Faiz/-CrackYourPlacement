@@ -1,5 +1,13 @@
 package Array.HardQuestions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
 /*
 RandomizedCollection is a data structure that contains a collection of numbers, possibly duplicates 
 (i.e., a multiset). It should support inserting and removing specific elements and also reporting a 
@@ -45,4 +53,56 @@ randomizedCollection.getRandom(); // getRandom should return 1 or 2, both equall
 
 public class Q381InsertDeleteGetRandom {
     
+    List<Integer> nums;
+    Map<Integer, Set<Integer>> idxMap;
+    Random random;
+
+    public Q381InsertDeleteGetRandom() {
+        nums = new ArrayList<>();
+        idxMap = new HashMap<>();
+        random = new Random();
+    }
+
+    public boolean insert(int val) {
+        boolean response = !idxMap.containsKey(val);
+
+        if (response) {
+            idxMap.put(val, new HashSet<>());
+        }
+        idxMap.get(val).add(nums.size());
+        nums.add(val);
+
+        return response;
+    }
+
+    public boolean remove(int val) {
+        if (!idxMap.containsKey(val)) {
+            return false;
+        }
+
+        Set<Integer> idxSet = idxMap.get(val);
+        int idxToBeRemoved = idxSet.iterator().next();
+        if (idxSet.size() == 1) {
+            idxMap.remove(val);
+        } else {
+            idxSet.remove(idxToBeRemoved);
+        }
+
+        int lastIdx = nums.size() - 1;
+        if (idxToBeRemoved != lastIdx) {
+            int lastVal = nums.get(lastIdx);
+            Set<Integer> lastIdxSet = idxMap.get(lastVal);
+            lastIdxSet.add(idxToBeRemoved);
+            lastIdxSet.remove(lastIdx);
+            nums.set(idxToBeRemoved, lastVal);
+        }
+
+        nums.remove(lastIdx);
+
+        return true;
+    }
+
+    public int getRandom() {
+        return nums.get(random.nextInt(nums.size()));
+    }
 }
